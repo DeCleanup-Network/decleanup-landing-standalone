@@ -7,3 +7,8 @@
 - **Live impact numbers (points 5/6)** — wired and working, but mainnet has no indexed cleanups yet (`/api/impact/global` returns 0), so hero shows "—" + "Live · coming Q4". Will populate automatically once verifications are indexed; re-check then.
 - **Kraft (light) theme logo** — uses adaptive HTML text instead of the wordmark image (no dark wordmark asset). If kraft becomes a primary theme, export a black horizontal wordmark and wire it via the existing `logo-themed` two-image pattern.
 - **favicons / og-image** — still the previous mark; optionally regenerate from the new logo for full consistency.
+
+## Added 2026-06-01
+- **TWO divergent landing codebases — pick a source of truth.** This folder is the **standalone** site (React-via-CDN + Babel, no build) deployed to `decleanup-network.vercel.app` via `vercel --prod` CLI, now in repo `DeCleanup-Network/decleanup-landing-standalone`. The org also has `DeCleanup-Network/decleanup-network.github.io`, a separate **Next.js** landing. They will drift apart. Decide which is canonical (and where each is hosted) before doing more landing work, or changes will need porting twice.
+- **Standalone repo is heavy (~49 MB).** Scratch/legacy dirs are committed: `assets extra/`, `uploads/`, `screenshots 2/`, `v1/`, plus full-res images. Kept on first push to avoid data loss; prune what's truly unused (and consider Git LFS for big media) to slim the repo.
+- **Glossary hover-tip on desktop is decorative only** — the real definition is the click→modal (works on all devices). The inline `.term-tip` is `display:none` on touch and a hover preview on desktop; fine, just noting the dual mechanism so it isn't "simplified" away by accident.
