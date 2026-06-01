@@ -1,0 +1,1284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DCU Website Brief — Corrections Spec</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body { padding: 56px 0 120px; }
+  .spec-head {
+    max-width: 1080px;
+    margin: 0 auto 64px;
+    padding: 0 32px;
+  }
+  .spec-head h1 {
+    font-family: var(--f-plakat);
+    font-size: 64px;
+    line-height: 0.9;
+    margin: 0 0 16px;
+    letter-spacing: -0.005em;
+  }
+  .spec-head .lede {
+    font-family: var(--f-serif);
+    font-size: 20px;
+    color: var(--ink-mute);
+    line-height: 1.45;
+    max-width: 720px;
+  }
+  .spec-head .legend {
+    margin-top: 28px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .spec-head .legend span::before {
+    content: "";
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .legend .fix::before { background: var(--yellow); }
+  .legend .new::before { background: var(--green); }
+  .legend .keep::before { background: color-mix(in oklch, var(--ink) 30%, transparent); }
+
+  .spec-block {
+    max-width: 1280px;
+    margin: 0 auto 80px;
+    padding: 0 32px;
+  }
+  .spec-label {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .spec-tag {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--line);
+    color: var(--ink-mute);
+  }
+  .spec-tag.fix { background: color-mix(in oklch, var(--yellow) 12%, transparent); border-color: color-mix(in oklch, var(--yellow) 40%, transparent); color: var(--yellow); }
+  .spec-tag.new { background: color-mix(in oklch, var(--green) 14%, transparent); border-color: color-mix(in oklch, var(--green) 50%, transparent); color: var(--green-ink); }
+  .spec-tag.item { color: var(--ink-faint); }
+  .spec-title {
+    font-family: var(--f-plakat);
+    font-size: 32px;
+    margin: 0;
+    letter-spacing: 0.005em;
+  }
+  .spec-instr {
+    font-family: var(--f-sans);
+    font-size: 13px;
+    color: var(--ink-mute);
+    line-height: 1.6;
+    margin: 0 0 22px;
+    max-width: 820px;
+  }
+  .spec-instr code, .spec-instr strong {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    background: var(--bg-elev-2);
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+  .spec-instr strong { background: color-mix(in oklch, var(--yellow) 20%, transparent); color: var(--ink); }
+
+  .spec-canvas {
+    background:
+      linear-gradient(var(--bg-elev) 1px, transparent 1px) 0 0 / 100% 24px,
+      linear-gradient(90deg, var(--bg-elev) 1px, transparent 1px) 0 0 / 24px 100%,
+      var(--bg);
+    background-color: color-mix(in oklch, var(--bg) 70%, black);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 40px;
+    position: relative;
+  }
+  .spec-canvas::before {
+    content: attr(data-corner);
+    position: absolute;
+    top: 10px; left: 14px;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .compare > div {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+  }
+  .compare > div::after {
+    content: attr(data-label);
+    position: absolute;
+    top: -10px; left: 14px;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: var(--bg);
+    padding: 2px 8px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    color: var(--ink-mute);
+  }
+  .compare .before::after { color: oklch(0.7 0.1 30); border-color: oklch(0.4 0.1 30); }
+  .compare .after::after  { color: var(--green); border-color: color-mix(in oklch, var(--green) 40%, var(--line)); }
+
+  .code {
+    margin-top: 16px;
+    background: oklch(0.13 0.01 75);
+    border: 1px solid var(--line-soft);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    color: var(--ink-mute);
+    line-height: 1.6;
+    overflow-x: auto;
+  }
+  .code .k { color: oklch(0.78 0.1 280); }
+  .code .s { color: var(--green); }
+  .code .a { color: oklch(0.85 0.12 60); }
+  .code .c { color: var(--ink-faint); }
+
+  /* ---------- Header bar tooltip mock ---------- */
+  .mock-header {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18px;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: var(--bg);
+  }
+  .ledger-term {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: help;
+    border-bottom: 1px dotted var(--ink-faint);
+    padding-bottom: 1px;
+  }
+  .ledger-term .q {
+    display: inline-grid;
+    place-items: center;
+    width: 12px; height: 12px;
+    border: 1px solid var(--ink-faint);
+    border-radius: 50%;
+    font-family: var(--f-mono);
+    font-size: 8px;
+    color: var(--ink-faint);
+    line-height: 1;
+  }
+  .ledger-term .tip {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 10px);
+    width: 280px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-family: var(--f-sans);
+    font-size: 12px;
+    line-height: 1.5;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--ink);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    z-index: 5;
+  }
+  .ledger-term .tip::before {
+    content: "";
+    position: absolute;
+    top: -5px; left: 18px;
+    width: 8px; height: 8px;
+    background: var(--bg-elev);
+    border-left: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    transform: rotate(45deg);
+  }
+  .ledger-term .tip .term {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+
+  /* ---------- Hero KPI strip with pilot eyebrow ---------- */
+  .mock-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+    max-width: 720px;
+  }
+  .mock-kpis .pilot-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    background: color-mix(in oklch, var(--yellow) 10%, transparent);
+    border: 1px solid color-mix(in oklch, var(--yellow) 35%, transparent);
+    padding: 2px 6px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+  .mock-kpis .live-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .mock-kpis .num {
+    font-family: var(--f-plakat);
+    font-size: 56px;
+    line-height: 0.9;
+  }
+  .mock-kpis .lbl {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-top: 6px;
+  }
+
+  /* ---------- Recent Verifications ledger ---------- */
+  .mock-ledger {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 480px;
+  }
+  .mock-ledger header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .mock-ledger header .left {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .mock-ledger .colhead {
+    display: grid;
+    grid-template-columns: 1fr 80px 100px;
+    gap: 14px;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 4px;
+  }
+  .mock-ledger .colhead .date { text-align: right; }
+  .mock-ledger .row {
+    display: grid;
+    grid-template-columns: 1fr 80px 100px;
+    gap: 14px;
+    padding: 9px 0;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+  }
+  .mock-ledger .row:first-of-type { border-top: none; }
+  .mock-ledger .row .loc { color: var(--ink); }
+  .mock-ledger .row .typ { color: var(--ink-faint); }
+  .mock-ledger .row .date { color: var(--green); text-align: right; }
+
+  /* ---------- Hero headline period fix ---------- */
+  .mock-headline {
+    font-family: var(--f-plakat);
+    font-size: 96px;
+    line-height: 0.88;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .mock-headline .green { color: var(--green); }
+  .mock-headline .period-good::after {
+    content: ".";
+    color: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+  }
+  .mock-headline .period-bad {
+    position: relative;
+    display: inline-block;
+    width: 0.6ch;
+  }
+  .mock-headline .period-bad::before,
+  .mock-headline .period-bad::after {
+    content: "";
+    position: absolute;
+    bottom: 0.06em;
+    width: 0.32em; height: 0.32em;
+  }
+  .mock-headline .period-bad::before { background: white; left: 0; }
+  .mock-headline .period-bad::after  { background: var(--yellow); left: 0.34em; }
+
+  /* ---------- DMRV step 04 ---------- */
+  .mock-dmrv {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 820px;
+  }
+  .mock-dmrv .step {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .mock-dmrv .step.tokenize {
+    border-color: color-mix(in oklch, var(--green) 60%, var(--line));
+    background: color-mix(in oklch, var(--green) 6%, var(--bg));
+  }
+  .mock-dmrv .n {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: var(--ink-faint);
+  }
+  .mock-dmrv .label {
+    font-family: var(--f-plakat);
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+  .mock-dmrv .sub1 {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: 6px;
+  }
+  .mock-dmrv .sub2 {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--green);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .mock-dmrv .stepnote {
+    grid-column: 1 / -1;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: var(--ink-mute);
+    border-top: 1px solid var(--line-soft);
+    padding-top: 14px;
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+  .mock-dmrv .stepnote .b { color: oklch(0.78 0.16 250); }
+  .mock-dmrv .stepnote .c { color: var(--yellow); }
+
+  /* ---------- Ecosystem cards ---------- */
+  .mock-eco {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .eco-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px;
+    min-height: 280px;
+  }
+  .eco-card .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .eco-card.base .pill { border-color: color-mix(in oklch, #0052FF 60%, transparent); background: color-mix(in oklch, #0052FF 14%, transparent); }
+  .eco-card.celo .pill { border-color: color-mix(in oklch, var(--yellow) 60%, transparent); background: color-mix(in oklch, var(--yellow) 12%, transparent); }
+  .chain-mark {
+    width: 14px; height: 14px;
+    display: inline-grid; place-items: center;
+    border-radius: 50%;
+    font-family: var(--f-mono);
+    font-size: 8px;
+    font-weight: 700;
+  }
+  .chain-mark.base { background: #0052FF; color: white; }
+  .chain-mark.celo { background: var(--yellow); color: #0a0a0a; }
+  .eco-card h3 {
+    font-family: var(--f-plakat);
+    font-size: 36px;
+    margin: 0 0 10px;
+    letter-spacing: 0.005em;
+  }
+  .eco-card .kicker {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 14px;
+  }
+  .eco-card p {
+    font-family: var(--f-serif);
+    font-size: 17px;
+    color: var(--ink-mute);
+    line-height: 1.4;
+    margin: 0 0 18px;
+  }
+  .eco-card .feat {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--f-mono);
+    font-size: 11px;
+  }
+  .eco-card .feat .k { color: var(--ink-faint); letter-spacing: 0.06em; text-transform: uppercase; }
+  .eco-card .feat .v { color: var(--ink); }
+
+  /* ---------- Built On grid ---------- */
+  .mock-builton {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 32px;
+  }
+  .mock-builton header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--line-soft);
+    padding-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .mock-builton h2 {
+    font-family: var(--f-plakat);
+    font-size: 56px;
+    margin: 0;
+    letter-spacing: 0.005em;
+    line-height: 0.9;
+  }
+  .mock-builton .sub {
+    font-family: var(--f-serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-mute);
+    max-width: 320px;
+  }
+  .builton-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+  .builton-cell {
+    aspect-ratio: 1.3 / 1;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--ink);
+    transition: background 0.15s ease;
+  }
+  .builton-cell:hover { background: color-mix(in oklch, var(--ink) 4%, transparent); }
+  .builton-cell .logo-slot {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    background:
+      repeating-linear-gradient(
+        135deg,
+        transparent 0 6px,
+        color-mix(in oklch, var(--ink) 5%, transparent) 6px 7px
+      );
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .builton-cell .nm {
+    font-family: var(--f-sans);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .builton-cell .role {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* ---------- Social links (no arrows) ---------- */
+  .social-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .social-row a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+  }
+  .social-row a:hover { border-color: var(--ink); }
+
+  /* ---------- Side annotations ---------- */
+  .with-annot {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 32px;
+    align-items: start;
+  }
+  @media (max-width: 920px) {
+    .with-annot { grid-template-columns: 1fr; }
+    .compare { grid-template-columns: 1fr; }
+    .mock-dmrv { grid-template-columns: repeat(2, 1fr); }
+    .builton-grid { grid-template-columns: repeat(2, 1fr); }
+    .mock-eco { grid-template-columns: 1fr; }
+  }
+  .annot {
+    padding: 18px 20px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-family: var(--f-sans);
+    font-size: 12.5px;
+    color: var(--ink-mute);
+    line-height: 1.55;
+  }
+  .annot .h {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .annot ul { margin: 0; padding-left: 18px; }
+  .annot li { margin-bottom: 6px; }
+
+  .toc {
+    max-width: 1080px;
+    margin: 0 auto 80px;
+    padding: 24px 32px;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .toc h3 {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin: 0 0 14px;
+  }
+  .toc ol {
+    columns: 2;
+    column-gap: 32px;
+    margin: 0;
+    padding-left: 18px;
+    font-family: var(--f-sans);
+    font-size: 13px;
+  }
+  .toc li { margin-bottom: 6px; break-inside: avoid; }
+  .toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line-soft); }
+  .toc a:hover { border-color: var(--ink); }
+  .toc .num {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: var(--ink-faint);
+    margin-right: 6px;
+  }
+</style>
+</head>
+<body>
+
+<header class="spec-head">
+  <div class="meta" style="margin-bottom: 18px;">DCU · WEBSITE REVAMP · DEVELOPER SPEC</div>
+  <h1>Brief corrections.<br/><span style="color: var(--green)">Pixel reference.</span></h1>
+  <p class="lede">Every fix and new component from the 26.05.2025 dev brief, rendered in the existing design system. Lift the markup and CSS directly — variables, font stack, and color tokens already match <code style="font-family: var(--f-mono); font-size: 13px; color: var(--ink-mute);">styles.css</code>.</p>
+  <div class="legend">
+    <span class="fix">Brief item — fix existing</span>
+    <span class="new">Brief item — new component</span>
+    <span class="keep">Annotation for Claude Code</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h3>Quick index</h3>
+  <ol>
+    <li><span class="num">01</span><a href="#t01">Field Ledger tooltip (header)</a></li>
+    <li><span class="num">03</span><a href="#t03">Hero period rendering fix</a></li>
+    <li><span class="num">04</span><a href="#t04">Hero subheadline highlight removal</a></li>
+    <li><span class="num">05</span><a href="#t05">Hero KPI strip — Pilot Figures badge</a></li>
+    <li><span class="num">06</span><a href="#t06">Recent Verifications widget — 3 columns</a></li>
+    <li><span class="num">07</span><a href="#t07">Em-dash + onchain global sweep</a></li>
+    <li><span class="num">08</span><a href="#t08">"DeCleanup Network changes that." highlight fix</a></li>
+    <li><span class="num">09</span><a href="#t09">DMRV step 04 — stacked tokenize label</a></li>
+    <li><span class="num">10</span><a href="#t10">Ecosystem cards — chain pill badges</a></li>
+    <li><span class="num">11</span><a href="#t11">Backers — clean labels &amp; SDG lazy load</a></li>
+    <li><span class="num">12</span><a href="#t12">Social link buttons — no arrows</a></li>
+    <li><span class="num">NEW</span><a href="#tNEW">Built On — new section</a></li>
+    <li><span class="num">CN</span><a href="#tCN">Brand constants file</a></li>
+  </ol>
+</nav>
+
+<!-- =======================================================
+     01 — FIELD LEDGER TOOLTIP
+     ======================================================= -->
+<section class="spec-block" id="t01">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 01</span>
+    <h2 class="spec-title">Field Ledger — define on first use</h2>
+  </div>
+  <p class="spec-instr">Wrap the term in a <code>&lt;span class="ledger-term"&gt;</code> with a hidden tooltip child. Show on <code>:hover</code> and <code>:focus-within</code>. On mobile (no hover), the inline <code>?</code> icon doubles as a tap target — toggle the tooltip with a click handler.</p>
+
+  <div class="with-annot">
+    <div class="spec-canvas" data-corner="HEADER BAR · 1440 × 44">
+      <div class="mock-header">
+        <span class="meta" style="display: flex; align-items: center; gap: 10px;">
+          <span class="live-dot"></span>
+          <span class="ledger-term" tabindex="0">
+            Field Ledger
+            <span class="q" aria-label="What is this?">?</span>
+            <span class="tip" role="tooltip">
+              <span class="term">Field Ledger</span>
+              A live onchain record of every verified cleanup event in the DeCleanup Network. Each entry includes location, timestamp, and proof of work.
+            </span>
+          </span>
+          · Live
+        </span>
+        <span class="meta" style="color: var(--ink-faint)">ISSUE No. 014 · UPDATED 14.11.2024 · PROTOCOL V2 / CELO + BASE</span>
+        <span class="meta" style="display: flex; gap: 16px;">
+          <span>EN</span>
+          <span style="color: var(--ink-faint)">ES · PT · JA · TH</span>
+        </span>
+      </div>
+      <div style="margin-top: 24px; font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint);">↑ Hover &ldquo;Field Ledger&rdquo; to see tooltip — also focusable via keyboard</div>
+    </div>
+    <aside class="annot">
+      <span class="h">Behavior</span>
+      <ul>
+        <li>Tooltip width: 280px max</li>
+        <li>Open on <code>:hover</code> &amp; <code>:focus-within</code></li>
+        <li>Mobile: click <code>?</code> to toggle, click outside to dismiss</li>
+        <li>Also apply this pattern to <strong>Protocol V2</strong>, <strong>$bDCU</strong>, <strong>$cDCU</strong>, <strong>Hypercert</strong>, <strong>DMRV</strong> — see glossary in <code>brand.ts</code></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- =======================================================
+     03 — HERO PERIOD
+     ======================================================= -->
+<section class="spec-block" id="t03">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 03</span>
+    <h2 class="spec-title">Headline period — replace decorative glyph</h2>
+  </div>
+  <p class="spec-instr">Current: a literal yellow square is being inserted next to <code>PROVE</code> and rendering alongside the missing dot glyph (likely a font-fallback issue with the headline font). Drop the absolute-positioned yellow square. Use a plain <code>.</code> character — Bebas Neue renders it cleanly.</p>
+
+  <div class="compare">
+    <div class="before" data-label="Before — broken">
+      <p class="mock-headline">CLEAN<br/>LOCAL<span class="period-bad"></span></p>
+      <p class="mock-headline"><span class="green">PROVE<span class="period-bad"></span><br/>GLOBAL<span class="period-bad"></span></span></p>
+    </div>
+    <div class="after" data-label="After — clean">
+      <p class="mock-headline">CLEAN<br/>LOCAL<span class="period-good"></span></p>
+      <p class="mock-headline"><span class="green">PROVE<span class="period-good"></span><br/>GLOBAL<span class="period-good"></span></span></p>
+    </div>
+  </div>
+
+  <pre class="code"><span class="c">// In hero.jsx — REMOVE the absolute-positioned yellow square span:</span>
+<span class="c">// &lt;span style={{ position: "absolute", right: -28, top: -4, width: 18, height: 18, background: "var(--yellow)" }}&gt;&lt;/span&gt;</span>
+
+<span class="c">// Use plain text periods instead. The Bebas Neue glyph renders fine.</span>
+&lt;<span class="k">h1</span> <span class="a">className</span>=<span class="s">"plakat"</span>&gt;CLEAN&lt;<span class="k">br</span>/&gt;LOCAL.&lt;/<span class="k">h1</span>&gt;
+&lt;<span class="k">h1</span> <span class="a">className</span>=<span class="s">"plakat green"</span>&gt;PROVE&lt;<span class="k">br</span>/&gt;GLOBAL.&lt;/<span class="k">h1</span>&gt;</pre>
+</section>
+
+<!-- =======================================================
+     04 — HERO SUBHEADLINE
+     ======================================================= -->
+<section class="spec-block" id="t04">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 04</span>
+    <h2 class="spec-title">Hero subheadline — remove yellow highlight, match CTA font</h2>
+  </div>
+  <p class="spec-instr">Drop the <code>&lt;span class="hl"&gt;</code> wrapper. Switch the whole subhead from Instrument Serif to Geist (Space Grotesk in repo's stack), same weight as the CTA button.</p>
+
+  <div class="compare">
+    <div class="before" data-label="Before — partial highlight, serif">
+      <p class="serif" style="font-size: 20px; color: var(--ink-mute); margin: 0; line-height: 1.4; max-width: 480px;">Join volunteers worldwide turning trash pickup into <span class="hl">verified, rewarded impact</span>.</p>
+    </div>
+    <div class="after" data-label="After — clean, sans-serif">
+      <p style="font-family: var(--f-sans); font-weight: 500; font-size: 17px; color: var(--ink-mute); margin: 0; line-height: 1.5; max-width: 480px;">Join volunteers worldwide turning trash pickup into verified and rewarded impact.</p>
+    </div>
+  </div>
+
+  <p class="spec-instr" style="margin-top: 18px;">Also note: <strong>"verified, rewarded"</strong> → <strong>"verified and rewarded"</strong> per copy-corrections table (no comma-only lists in display text).</p>
+</section>
+
+<!-- =======================================================
+     05 — HERO KPI STRIP
+     ======================================================= -->
+<section class="spec-block" id="t05">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 05</span>
+    <h2 class="spec-title">Hero stats — pilot eyebrow vs live state</h2>
+  </div>
+  <p class="spec-instr">Two states behind a feature flag <code>IMPACT_LIVE</code>. Until <code>/api/impact</code> is stable, render the pilot state. When wired, swap the yellow eyebrow for a green live indicator and let numbers update.</p>
+
+  <div class="with-annot">
+    <div class="spec-canvas" data-corner="KPI STRIP · IMPACT_LIVE=false">
+      <div class="mock-kpis">
+        <div>
+          <span class="pilot-eyebrow">Pilot figures · 2024</span>
+          <div class="num">2</div>
+          <div class="lbl">Pilot partners</div>
+        </div>
+        <div>
+          <span class="pilot-eyebrow">Pilot figures · 2024</span>
+          <div class="num">13</div>
+          <div class="lbl">Verified events</div>
+        </div>
+        <div>
+          <span class="pilot-eyebrow" style="color: var(--ink-faint); border-color: var(--line); background: transparent;">Live · coming Q4</span>
+          <div class="num" style="color: var(--ink-dim)">—</div>
+          <div class="lbl">Network counter</div>
+        </div>
+      </div>
+    </div>
+    <aside class="annot">
+      <span class="h">When IMPACT_LIVE=true</span>
+      <ul>
+        <li>Eyebrow → green <code>● LIVE · ONCHAIN</code></li>
+        <li>Numbers update from <code>/api/impact</code></li>
+        <li>Network counter shows real value, not <code>—</code></li>
+        <li>Animate number changes with a 400ms count-up</li>
+      </ul>
+    </aside>
+  </div>
+
+  <div class="spec-canvas" data-corner="KPI STRIP · IMPACT_LIVE=true (preview)" style="margin-top: 16px;">
+    <div class="mock-kpis">
+      <div>
+        <span class="live-eyebrow"><span class="live-dot"></span> Live · onchain</span>
+        <div class="num">4</div>
+        <div class="lbl">Pilot partners</div>
+      </div>
+      <div>
+        <span class="live-eyebrow"><span class="live-dot"></span> Live · onchain</span>
+        <div class="num">147</div>
+        <div class="lbl">Verified events</div>
+      </div>
+      <div>
+        <span class="live-eyebrow"><span class="live-dot"></span> Live · onchain</span>
+        <div class="num" style="color: var(--green)">2.1k</div>
+        <div class="lbl">Network counter</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     06 — RECENT VERIFICATIONS
+     ======================================================= -->
+<section class="spec-block" id="t06">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 06</span>
+    <h2 class="spec-title">Recent Verifications — 3 columns, DD.MM.YYYY</h2>
+  </div>
+  <p class="spec-instr">Drop the entity name column. Render <code>LOCATION · TYPE · DATE</code> with explicit column headers. Date format <code>DD.MM.YYYY</code>, right-aligned. <strong>MIXED</strong> stays as a waste type (it's a real category) — only the column header changes from a vague label to <code>TYPE</code>.</p>
+
+  <div class="with-annot">
+    <div class="spec-canvas" data-corner="LEDGER WIDGET · 480 × auto">
+      <div class="mock-ledger">
+        <header>
+          <span class="left"><span class="live-dot"></span> Recent verifications</span>
+          <span>Onchain · Celo</span>
+        </header>
+        <div class="colhead">
+          <span>Location</span>
+          <span>Type</span>
+          <span class="date">Date</span>
+        </div>
+        <div class="row"><span class="loc">Tokyo Bay, JP</span><span class="typ">Mixed</span><span class="date">14.11.2024</span></div>
+        <div class="row"><span class="loc">Osaka, JP</span><span class="typ">Mixed</span><span class="date">02.10.2024</span></div>
+        <div class="row"><span class="loc">Nsukka, NG</span><span class="typ">Mixed</span><span class="date">28.08.2024</span></div>
+        <div class="row"><span class="loc">Abuja, NG</span><span class="typ">Plastic</span><span class="date">19.07.2024</span></div>
+        <div class="row"><span class="loc">Phangan, TH</span><span class="typ">Plastic</span><span class="date">11.06.2024</span></div>
+        <a href="#" class="meta" style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--ink); text-decoration: none;">
+          <span>View full ledger</span>
+          <span style="font-family: var(--f-mono)">→</span>
+        </a>
+      </div>
+    </div>
+    <aside class="annot">
+      <span class="h">Column rules</span>
+      <ul>
+        <li>Grid: <code>1fr 80px 100px</code></li>
+        <li>Date right-aligned, green</li>
+        <li>Type field accepts: <code>Mixed</code>, <code>Plastic</code>, <code>Glass</code>, <code>Metal</code>, <code>Organic</code>, <code>E-waste</code></li>
+        <li>If <code>type</code> is missing from API, render <code>—</code> (not blank)</li>
+        <li>Drop entire <code>entity</code> field from API response shape</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- =======================================================
+     07 — EM-DASH + ONCHAIN SWEEP
+     ======================================================= -->
+<section class="spec-block" id="t07">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 07</span>
+    <h2 class="spec-title">Global text sweep — em-dashes &amp; "onchain"</h2>
+  </div>
+  <p class="spec-instr">Two find/replace passes across the whole repo. Run before any other text edits so you don't reintroduce dashes.</p>
+
+  <pre class="code"><span class="c"># Pass 1 — "on-chain" → "onchain" (preserve case)</span>
+<span class="k">find</span> src/ -type f \( -name <span class="s">"*.jsx"</span> -o -name <span class="s">"*.tsx"</span> -o -name <span class="s">"*.mdx"</span> -o -name <span class="s">"*.json"</span> \) -exec sed -i <span class="s">'s/on-chain/onchain/g; s/On-chain/Onchain/g; s/ON-CHAIN/ONCHAIN/g'</span> {} +
+
+<span class="c"># Pass 2 — em-dash audit (manual review required, context-dependent)</span>
+<span class="k">grep</span> -rn <span class="s">" — "</span> src/  <span class="c"># review each, replace with comma/period/and</span>
+<span class="k">grep</span> -rn <span class="s">"—"</span> src/    <span class="c"># catches dashes without spaces too</span></pre>
+
+  <p class="spec-instr" style="margin-top: 18px;"><strong>Don't blindly replace em-dashes.</strong> Each instance needs human judgment — see the brief's copy-corrections table for the canonical rewrites of every em-dash on the live site. Code comments and markdown tables keep their dashes.</p>
+</section>
+
+<!-- =======================================================
+     08 — DECLEANUP NETWORK HIGHLIGHT
+     ======================================================= -->
+<section class="spec-block" id="t08">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 08</span>
+    <h2 class="spec-title">"DeCleanup Network changes that." — fix multi-line highlight</h2>
+  </div>
+  <p class="spec-instr">The yellow highlight breaks across lines because the span is <code>display: inline</code>. Fix with <code>box-decoration-break: clone</code> so the background paints on each line fragment.</p>
+
+  <div class="compare">
+    <div class="before" data-label="Before — clips on wrap">
+      <p class="serif" style="font-size: 28px; line-height: 1.3; margin: 0;">
+        <span style="background: var(--yellow); color: #0a0a0a; padding: 0 0.1em;">DeCleanup changes that.</span>
+        <span class="serif-italic" style="color: var(--ink-mute);">Every cleanup becomes verifiable proof.</span>
+      </p>
+    </div>
+    <div class="after" data-label="After — paints per line">
+      <p class="serif" style="font-size: 28px; line-height: 1.3; margin: 0;">
+        <span style="background: var(--yellow); color: #0a0a0a; padding: 0.05em 0.1em; box-decoration-break: clone; -webkit-box-decoration-break: clone;">DeCleanup Network changes that.</span>
+        <span class="serif-italic" style="color: var(--ink-mute);">Every cleanup becomes verifiable proof.</span>
+      </p>
+    </div>
+  </div>
+
+  <pre class="code"><span class="c">// In styles.css — update .hl-strong</span>
+<span class="k">.hl-strong</span> {
+  <span class="a">background</span>: <span class="s">var(--yellow)</span>;
+  <span class="a">color</span>: <span class="s">#0a0a0a</span>;
+  <span class="a">padding</span>: <span class="s">0.05em 0.1em</span>;
+  <span class="a">box-decoration-break</span>: <span class="s">clone</span>;
+  <span class="a">-webkit-box-decoration-break</span>: <span class="s">clone</span>;
+}</pre>
+</section>
+
+<!-- =======================================================
+     09 — DMRV STEP 04
+     ======================================================= -->
+<section class="spec-block" id="t09">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 09</span>
+    <h2 class="spec-title">DMRV V2 — stack tokenize label, add chain subnote</h2>
+  </div>
+  <p class="spec-instr">A single-line label <code>TOKENIZE / HYPERCERT + $bDCU + $cDCU</code> is too dense for a schematic node. Stack into three lines, then add a clarifying subnote beneath the entire diagram.</p>
+
+  <div class="spec-canvas" data-corner="DMRV V2 · 4-STEP SCHEMATIC">
+    <div class="mock-dmrv">
+      <div class="step">
+        <span class="n">01</span>
+        <div>
+          <div class="label">Cleanup</div>
+          <div class="sub1">Real-world action</div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="n">02</span>
+        <div>
+          <div class="label">Capture</div>
+          <div class="sub1">Before / after photo</div>
+        </div>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <div>
+          <div class="label">Verify</div>
+          <div class="sub1">Signed + geotagged</div>
+        </div>
+      </div>
+      <div class="step tokenize">
+        <span class="n">04</span>
+        <div>
+          <div class="label">Tokenize</div>
+          <div class="sub1">Hypercert</div>
+          <div class="sub2">$bDCU · $cDCU</div>
+        </div>
+      </div>
+      <div class="stepnote">
+        <span class="b">Base network</span> earns <span style="color: oklch(0.78 0.16 250)">$bDCU</span>. <span class="c">Celo network</span> earns <span style="color: var(--yellow)">$cDCU</span>. Same proof, two reward surfaces.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     10 — ECOSYSTEM CARDS
+     ======================================================= -->
+<section class="spec-block" id="t10">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 10</span>
+    <h2 class="spec-title">Ecosystem cards — chain pill badges</h2>
+  </div>
+  <p class="spec-instr">Add a header pill to each card. Pill = circle chain mark + chain name. Use the existing white SVGs in <code>/public/</code>. Below shows the structure with text marks as placeholders — swap the <code>.chain-mark</code> div for the real <code>&lt;img&gt;</code> in production.</p>
+
+  <div class="spec-canvas" data-corner="ECOSYSTEM CARDS · BASE × CELO">
+    <div class="mock-eco">
+      <div class="eco-card base">
+        <span class="pill"><span class="chain-mark base">B</span> Base · L2</span>
+        <div class="kicker">Lightweight entry</div>
+        <h3>Mini App</h3>
+        <p>The fastest way for individuals to log a cleanup. Opens inside Farcaster or the Base app, no install required.</p>
+        <div class="feat"><span class="k">Photo</span><span class="v">Photo-based logging</span></div>
+        <div class="feat"><span class="k">Vrfy</span><span class="v">Quick verification</span></div>
+        <div class="feat"><span class="k">$bDCU</span><span class="v">Token rewards</span></div>
+      </div>
+      <div class="eco-card celo">
+        <span class="pill"><span class="chain-mark celo">C</span> Celo · L1</span>
+        <div class="kicker">Deep coordination</div>
+        <h3>Full dApp</h3>
+        <p>For organizations and partners running ongoing cleanup programs with governance and sponsored campaigns.</p>
+        <div class="feat"><span class="k">DAO</span><span class="v">Sponsored campaigns</span></div>
+        <div class="feat"><span class="k">Vrfy</span><span class="v">Community verifiers</span></div>
+        <div class="feat"><span class="k">$cDCU</span><span class="v">Token rewards</span></div>
+      </div>
+    </div>
+  </div>
+
+  <pre class="code"><span class="c">// Replace the .chain-mark text placeholder with the real SVG:</span>
+&lt;<span class="k">span</span> <span class="a">className</span>=<span class="s">"pill"</span>&gt;
+  &lt;<span class="k">img</span> <span class="a">src</span>=<span class="s">"/public/base-logo-white.svg"</span> <span class="a">alt</span>=<span class="s">""</span> <span class="a">width</span>=<span class="s">"14"</span> <span class="a">height</span>=<span class="s">"14"</span> /&gt;
+  Base · L2
+&lt;/<span class="k">span</span>&gt;</pre>
+</section>
+
+<!-- =======================================================
+     11 — BACKERS
+     ======================================================= -->
+<section class="spec-block" id="t11">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 11</span>
+    <h2 class="spec-title">Backers — remove "OPEN", lazy-load SDGs, fix logo filters</h2>
+  </div>
+
+  <div class="with-annot">
+    <div class="spec-canvas" data-corner="BACKERS LABEL STRIP">
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1px solid var(--line);">
+        <div style="padding: 28px 16px; text-align: center; border-right: 1px solid var(--line);">
+          <div class="logo-slot" style="height: 40px; background: repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in oklch, var(--ink) 5%, transparent) 6px 7px); border: 1px dashed var(--line); border-radius: 4px; display: grid; place-items: center; font-family: var(--f-mono); font-size: 9px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">ETHEREUM</div>
+          <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute);">Ethereum<br/><span style="color: var(--ink-faint); font-size: 8px;">for the world</span></div>
+        </div>
+        <div style="padding: 28px 16px; text-align: center; border-right: 1px solid var(--line);">
+          <div class="logo-slot" style="height: 40px; background: repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in oklch, var(--ink) 5%, transparent) 6px 7px); border: 1px dashed var(--line); border-radius: 4px; display: grid; place-items: center; font-family: var(--f-mono); font-size: 9px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">GIVETH</div>
+          <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute);">Giveth</div>
+        </div>
+        <div style="padding: 28px 16px; text-align: center; border-right: 1px solid var(--line);">
+          <div class="logo-slot" style="height: 40px; background: repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in oklch, var(--ink) 5%, transparent) 6px 7px); border: 1px dashed var(--line); border-radius: 4px; display: grid; place-items: center; font-family: var(--f-mono); font-size: 9px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">GITCOIN</div>
+          <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute);">Gitcoin <span style="text-decoration: line-through; color: oklch(0.6 0.15 30);">Open</span></div>
+        </div>
+        <div style="padding: 28px 16px; text-align: center; border-right: 1px solid var(--line);">
+          <div class="logo-slot" style="height: 40px; background: repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in oklch, var(--ink) 5%, transparent) 6px 7px); border: 1px dashed var(--line); border-radius: 4px; display: grid; place-items: center; font-family: var(--f-mono); font-size: 9px; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">OCTANT</div>
+          <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute);">Octant <span style="text-decoration: line-through; color: oklch(0.6 0.15 30);">Open</span></div>
+        </div>
+        <div style="padding: 28px 16px; text-align: center; border-left: 1px solid color-mix(in oklch, var(--green) 50%, var(--line));">
+          <div class="logo-slot" style="height: 40px; background: repeating-linear-gradient(135deg, transparent 0 6px, color-mix(in oklch, var(--green) 8%, transparent) 6px 7px); border: 1px dashed color-mix(in oklch, var(--green) 50%, var(--line)); border-radius: 4px; display: grid; place-items: center; font-family: var(--f-mono); font-size: 9px; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px;">+ ONLYDUST</div>
+          <div style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-ink);">OnlyDust <span style="color: var(--ink-faint); font-size: 8px;">new</span></div>
+        </div>
+      </div>
+    </div>
+    <aside class="annot">
+      <span class="h">Checklist</span>
+      <ul>
+        <li>Strike "Open" qualifier — Gitcoin, Octant render bare</li>
+        <li>Add OnlyDust — file <code>onlydust-logo.png</code> needed in <code>/public/images/backers/</code></li>
+        <li>Audit CSS filter on each: prefer white SVG over <code>filter: invert</code></li>
+        <li>SDG images: add <code>loading="lazy"</code> to every <code>&lt;img&gt;</code> from UN CDN</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- =======================================================
+     12 — SOCIAL BUTTONS
+     ======================================================= -->
+<section class="spec-block" id="t12">
+  <div class="spec-label">
+    <span class="spec-tag fix">FIX</span>
+    <span class="spec-tag item">ITEM 12</span>
+    <h2 class="spec-title">Social link buttons — drop arrow icons</h2>
+  </div>
+  <p class="spec-instr">Keep the arrow on the primary <code>Start cleaning</code> CTA. Strip it from Telegram / X / Farcaster links — the destination is implied by the brand name.</p>
+
+  <div class="compare">
+    <div class="before" data-label="Before">
+      <div class="social-row">
+        <a href="#">Telegram <span style="font-family: var(--f-mono)">↗</span></a>
+        <a href="#">X / Twitter <span style="font-family: var(--f-mono)">↗</span></a>
+        <a href="#">Farcaster <span style="font-family: var(--f-mono)">↗</span></a>
+      </div>
+    </div>
+    <div class="after" data-label="After">
+      <div class="social-row">
+        <a href="#">Telegram</a>
+        <a href="#">X / Twitter</a>
+        <a href="#">Farcaster</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================
+     NEW — BUILT ON SECTION
+     ======================================================= -->
+<section class="spec-block" id="tNEW">
+  <div class="spec-label">
+    <span class="spec-tag new">NEW</span>
+    <span class="spec-tag item">NEW SECTION</span>
+    <h2 class="spec-title">Built On — open infrastructure strip</h2>
+  </div>
+  <p class="spec-instr">Place after Ecosystem cards, before Backers. 2 rows × 4 logos on desktop, 2 × 4 collapses to 4 × 2 on tablet and 8 × 1 on mobile. Each cell is a link to the project's site. Logo cells render a dashed placeholder slot if the file is missing — never break layout.</p>
+
+  <div class="mock-builton">
+    <header>
+      <h2>Built on.<span style="color: var(--green)">·</span></h2>
+      <div class="sub">Open infrastructure. Composable by design.</div>
+    </header>
+    <div class="builton-grid">
+      <a class="builton-cell" href="https://hypercerts.org" target="_blank" rel="noopener">
+        <div class="logo-slot">Hypercerts</div>
+        <div>
+          <div class="nm">Hypercerts</div>
+          <div class="role">Onchain impact certificates per verified cleanup</div>
+        </div>
+      </a>
+      <a class="builton-cell" href="https://farcaster.xyz" target="_blank" rel="noopener">
+        <div class="logo-slot">Farcaster</div>
+        <div>
+          <div class="nm">Farcaster Protocol</div>
+          <div class="role">Social layer · mini app on Base frames</div>
+        </div>
+      </a>
+      <a class="builton-cell" href="https://pimlico.io" target="_blank" rel="noopener">
+        <div class="logo-slot">Pimlico</div>
+        <div>
+          <div class="nm">Pimlico</div>
+          <div class="role">Smart accounts · gasless UX on Base</div>
+        </div>
+      </a>
+      <a class="builton-cell" href="https://supabase.com" target="_blank" rel="noopener">
+        <div class="logo-slot">Supabase</div>
+        <div>
+          <div class="nm">Supabase</div>
+          <div class="role">Backend · profiles, submissions, verification queue</div>
+        </div>
+      </a>
+      <a class="builton-cell" href="https://reown.com" target="_blank" rel="noopener">
+        <div class="logo-slot">Reown</div>
+        <div>
+          <div class="nm">Reown</div>
+          <div class="role">Wallet connection · WalletConnect for Celo dApp</div>
+        </div>
+      </a>
+      <a class="builton-cell" href="https://ens.domains" target="_blank" rel="noopener">
+        <div class="logo-slot">ENS</div>
+        <div>
+          <div class="nm">ENS</div>
+          <div class="role">Onchain identity · decleanupnet.eth</div>
+        </div>
+      </a>
+      <a class="builton-cell" href="https://ultralytics.com" target="_blank" rel="noopener">
+        <div class="logo-slot">YOLO</div>
+        <div>
+          <div class="nm">YOLO Detection</div>
+          <div class="role">AI · trash type &amp; volume from cleanup photos</div>
+        </div>
+      </a>
+      <a class="builton-cell" href="https://developers.google.com/identity" target="_blank" rel="noopener">
+        <div class="logo-slot">Google</div>
+        <div>
+          <div class="nm">Google Auth</div>
+          <div class="role">OAuth 2.0 · alternative to wallet login</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <p class="spec-instr" style="margin-top: 18px;"><strong>Files needed in <code>/public/images/built-on/</code>:</strong> <code>hypercerts-logo.png</code>, <code>farcaster-logo.png</code>, <code>pimlico-logo.png</code>, <code>supabase-logo.png</code>, <code>reown-logo.png</code>, <code>ens-logo.png</code>, <code>yolo-logo.png</code>, <code>google-logo.png</code>. Source white/monochrome SVG from each project's press kit. Until they arrive, the dashed slot placeholder is intentional — the section ships in placeholder mode and upgrades automatically when files land.</p>
+</section>
+
+<!-- =======================================================
+     CN — BRAND CONSTANTS
+     ======================================================= -->
+<section class="spec-block" id="tCN">
+  <div class="spec-label">
+    <span class="spec-tag new">NEW</span>
+    <span class="spec-tag item">SOURCE OF TRUTH</span>
+    <h2 class="spec-title">Brand constants — single source of truth</h2>
+  </div>
+  <p class="spec-instr">Create <code>src/lib/brand.ts</code>. Import from here anywhere a brand string, token name, or color is referenced. This is what enforces name-usage rules going forward and what powers the tooltips from item 01.</p>
+
+  <pre class="code"><span class="c">// src/lib/brand.ts</span>
+
+<span class="k">export const</span> BRAND_NAME = <span class="s">"DeCleanup Network"</span>;
+<span class="k">export const</span> APP_NAMES = {
+  dapp: <span class="s">"DeCleanup dApp"</span>,
+  platform: <span class="s">"DeCleanup platform"</span>,
+  app: <span class="s">"DeCleanup app"</span>,
+  mini: <span class="s">"DeCleanup mini app"</span>,
+};
+
+<span class="k">export const</span> TOKENS = {
+  base: { symbol: <span class="s">"$bDCU"</span>, chain: <span class="s">"Base"</span>, color: <span class="s">"#0052FF"</span> },
+  celo: { symbol: <span class="s">"$cDCU"</span>, chain: <span class="s">"Celo"</span>, color: <span class="s">"#FAFF00"</span> },
+};
+
+<span class="k">export const</span> COLORS = {
+  green: <span class="s">"#58B12F"</span>,   <span class="c">// brand accent</span>
+  yellow: <span class="s">"#FAFF00"</span>,  <span class="c">// CTA only</span>
+  bg: <span class="s">"#0A0A0A"</span>,
+  card: <span class="s">"#141414"</span>,
+};
+
+<span class="k">export const</span> FONTS = {
+  body: <span class="s">"Geist, 'Space Grotesk', system-ui, sans-serif"</span>,
+  mono: <span class="s">"'JetBrains Mono', 'Space Mono', monospace"</span>,
+  display: <span class="s">"'Bebas Neue', Helvetica, Arial, sans-serif"</span>,
+};
+
+<span class="k">export const</span> GLOSSARY = {
+  <span class="s">"Field Ledger"</span>: <span class="s">"A live, onchain record of cleanup events that have been verified by the DeCleanup Network. Each entry includes location, timestamp, and proof of work."</span>,
+  <span class="s">"Protocol V2"</span>: <span class="s">"The second version of DeCleanup Network's verification and reward protocol. V2 adds dual-chain support (Base + Celo), Hypercert-based impact reports, and onchain governance."</span>,
+  DMRV: <span class="s">"Digital Monitoring, Reporting, and Verification. The system that turns a real-world cleanup action into a tamper-proof digital record."</span>,
+  <span class="s">"$bDCU"</span>: <span class="s">"The Base network reward token earned by completing verified cleanups through the DeCleanup mini app on Farcaster or the Base app."</span>,
+  <span class="s">"$cDCU"</span>: <span class="s">"The Celo network reward token earned by completing verified cleanups through the full DeCleanup dApp on Celo."</span>,
+  Hypercert: <span class="s">"An onchain impact certificate that records a contributor's verified environmental work."</span>,
+  onchain: <span class="s">"Data or transactions recorded directly on a blockchain. One word, no hyphen."</span>,
+  <span class="s">"Pilot Partner"</span>: <span class="s">"An organization that participated in DeCleanup Network's 2024 testing phase. Current partners: HEM Japan and Pestathon (Nigeria)."</span>,
+};
+
+<span class="k">export const</span> FEATURE_FLAGS = {
+  IMPACT_LIVE: <span class="k">false</span>,  <span class="c">// flip when /api/impact is stable</span>
+};</pre>
+</section>
+
+<footer class="spec-block" style="margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center;">
+  <div class="meta" style="color: var(--ink-faint);">END OF SPEC · DCU WEBSITE REVAMP · 26.05.2026</div>
+  <div class="serif-italic" style="color: var(--ink-mute); margin-top: 12px;">Questions back to Anastasia / @luminaenvisions.</div>
+</footer>
+
+</body>
+</html>

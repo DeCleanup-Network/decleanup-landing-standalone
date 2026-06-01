@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dcu-pages",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8765", "--directory", "pages"],
+      "port": 8765
+    },
+    {
+      "name": "dcu-root",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [".claude/preview-server.py"],
+      "port": 8766
+    }
+  ]
+}

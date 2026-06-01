@@ -1,0 +1,1336 @@
+/* ============================================
+   DeCleanup Network — v.3 (cofounder review 2026-05-28)
+   Brand: Space Grotesk (headings) + Inter (body) + Space Mono (data labels)
+   Palette: green #4ADE80 primary / yellow #FAFF00 accent only / bg #0A0A0A
+   ============================================ */
+
+:root {
+  /* Surfaces — brief brand specs (#0A0A0A, #141414) with a faint warm tilt for depth */
+  --bg:           #0A0A0A;
+  --bg-elev:      #141414;
+  --bg-elev-2:    #1B1B1B;
+  --line:         rgba(255, 255, 255, 0.10);
+  --line-soft:    rgba(255, 255, 255, 0.06);
+  --ink:          #FFFFFF;
+  /* Per cofounder brief: body + subhead should read as WHITE. Using 92% alpha
+     instead of pure #FFF keeps hierarchy from completely flattening but still
+     reads as white at body sizes. */
+  --ink-mute:     rgba(255, 255, 255, 0.92);
+  --ink-dim:      #8B8B89;
+  /* Bumped from #5C5C5A to #7A7A78 for WCAG AA on body text */
+  --ink-faint:    #7A7A78;
+
+  /* Brand */
+  --green:        #4ADE80;
+  --green-soft:   color-mix(in oklch, #4ADE80 18%, transparent);
+  --green-ink:    color-mix(in oklch, #4ADE80 88%, white);
+  --green-hover:  color-mix(in oklch, #4ADE80 88%, white);
+  --yellow:       #FAFF00;
+  --yellow-soft:  color-mix(in oklch, #FAFF00 22%, transparent);
+  --base-blue:    #0052FF;
+  --celo-yellow:  #FCFF52;
+
+  /* Brand gradient — green → yellow, used on display headings */
+  --grad-heading: linear-gradient(92deg, #4ADE80 0%, #A8F050 55%, #FAFF00 100%);
+
+  /* Type — Space Grotesk for display, Inter for everything else, Space Mono for data */
+  --f-plakat: "Space Grotesk", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-sans:   "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-mono:   "Space Mono", "SF Mono", Menlo, Consolas, monospace;
+  --f-serif:  "Inter", Georgia, "Times New Roman", serif;
+
+  /* Rhythm */
+  --container: 1200px;
+  --section-py: clamp(56px, 8vw, 120px);
+  --radius:    10px;
+  --radius-lg: 18px;
+}
+
+/* Kraft / paper mode */
+:root[data-palette="kraft"] {
+  --bg:        #F4F1EB;
+  --bg-elev:   #EAE5DC;
+  --bg-elev-2: #DFD9CC;
+  --line:      rgba(20, 20, 20, 0.18);
+  --line-soft: rgba(20, 20, 20, 0.10);
+  --ink:       #181816;
+  --ink-mute:  #4A4A47;
+  --ink-dim:   #6E6E6B;
+  --ink-faint: #9A9A95;
+
+  /* Yellow doesn't read on cream — substitute darker amber across the palette. */
+  --yellow:        #B8860B;
+  --yellow-soft:   color-mix(in oklch, #B8860B 22%, transparent);
+
+  /* Darker, denser gradient so the right edge stays visible on cream. */
+  --grad-heading:  linear-gradient(92deg, #1F8A4C 0%, #2EA85F 55%, #6B8E1F 100%);
+}
+
+/* Density */
+:root[data-density="compact"] { --section-py: clamp(40px, 5vw, 80px); }
+:root[data-density="airy"]    { --section-py: clamp(80px, 12vw, 160px); }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+/* Hard-cap horizontal overflow on BOTH html and body. On mobile Safari, body-only
+   overflow-x:hidden lets fixed/position-stretched children leak past the viewport,
+   causing the left-right rubber-band shift. overflow-x:clip + max-width:100vw on
+   html closes that hole. */
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  max-width: 100%;
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+  max-width: 100vw;
+  line-height: 1.55;
+  transition: background 0.4s ease, color 0.4s ease;
+  position: relative;
+}
+/* Ambient bg layer — STATIC single gradient (no animation, no transform).
+   Removed the prior animated drift: even composited, two large radial gradients
+   on a fixed full-viewport layer added noticeable scroll cost on Retina Mac. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(60vw 80vh at 20% 0%,
+    color-mix(in oklch, var(--green) 6%, transparent) 0%,
+    transparent 70%);
+  opacity: 1;
+}
+[data-palette="kraft"] body::before {
+  background: radial-gradient(60vw 80vh at 20% 0%,
+    color-mix(in oklch, var(--green) 8%, transparent) 0%,
+    transparent 70%);
+}
+/* Make sure content sits above the ambient tint layer */
+body > * { position: relative; z-index: 1; }
+
+/* ------- Mobile overflow guards -------
+   On narrow viewports html/body overflow-x:clip hides (rather than scrolls) any
+   content wider than the screen. Grid items default to min-width:auto (= min-content),
+   so a wide logo or long heading can inflate a 1fr track past the viewport and get
+   clipped on the right. These rules keep content within the available width. */
+/* max-width only — NOT height:auto, which would override the height="20"/"24"
+   attributes on the brand wordmark logos and balloon them to natural size. */
+img { max-width: 100%; }
+.builton-cell { min-width: 0; }
+.backers-grid > a { min-width: 0; }
+.dmrv-grid > * { min-width: 0; }
+.term-tip { max-width: calc(100vw - 32px); }
+
+/* ------- Typography ------- */
+.plakat {
+  font-family: var(--f-plakat);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+/* Brand gradient text — green → yellow. Apply to accent headings. */
+.gradient-text {
+  background: var(--grad-heading);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+          color: transparent;
+  display: inline-block;
+}
+
+/* Pilot / live-coming eyebrow chip — themed via vars so kraft mode keeps contrast. */
+.pilot-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-feature-settings: "tnum";
+  color: var(--yellow);
+  background: color-mix(in oklch, var(--yellow) 12%, transparent);
+  border: 1px solid color-mix(in oklch, var(--yellow) 40%, transparent);
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+:root[data-palette="kraft"] .pilot-eyebrow {
+  /* On cream bg the amber needs more body and a dark text fill. */
+  color: #5C3D00;
+  background: color-mix(in oklch, var(--yellow) 28%, transparent);
+  border-color: color-mix(in oklch, var(--yellow) 65%, transparent);
+}
+
+.coming-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-feature-settings: "tnum";
+  color: var(--ink-faint);
+  border: 1px solid var(--line);
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+.serif {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.005em;
+}
+.serif-italic {
+  font-family: var(--f-serif);
+  font-style: italic;
+  letter-spacing: -0.005em;
+}
+.mono {
+  font-family: var(--f-mono);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+.meta {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+/* ------- Layout helpers ------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.wide {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: var(--section-py) 0;
+  position: relative;
+}
+/* Smooth section-to-section transitions — no hard divider line.
+   A subtle scrim at section boundaries lets bg colors flow into each other. */
+.section + .section { /* divider removed for smoother flow */ }
+/* Section with elevated bg (e.g. Total Impact) gets a soft fade-in edge at top
+   so the boundary isn't a hard rectangle. */
+.section[style*="bg-elev"]::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(180deg, transparent 0%, var(--bg-elev) 100%);
+  pointer-events: none;
+}
+.section[style*="bg-elev"]::after {
+  content: "";
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(180deg, var(--bg-elev) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ------- Ledger chip — used for "verified" data motif ------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--bg-elev) 60%, transparent);
+}
+.chip .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--green) 18%, transparent);
+}
+.chip.amber .dot { background: var(--yellow); box-shadow: 0 0 0 3px var(--yellow-soft); }
+
+/* ------- Buttons ------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 22px;
+  font-family: var(--f-sans);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s cubic-bezier(0.2, 0.7, 0.2, 1),
+              box-shadow 0.25s ease,
+              background 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  isolation: isolate;
+}
+.btn:active {
+  /* Tactile press — slightly deeper than before, with a quick rebound feel */
+  transform: translateY(2px) scale(0.985);
+}
+
+/* Green particle splash on .btn-primary click — "cleanup confirmed" energy */
+.cta-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 6px var(--green);
+  animation: cta-particle 0.7s cubic-bezier(0.18, 0.7, 0.3, 1) forwards;
+  z-index: 5;
+}
+@keyframes cta-particle {
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--tx, 0)), calc(-50% + var(--ty, 0))) scale(0.4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-particle { display: none; }
+}
+
+.btn-primary {
+  background: var(--green);
+  color: #0a0a0a;
+  border-color: var(--green);
+  /* Subtle resting depth — feels weighted */
+  box-shadow: 0 1px 0 color-mix(in oklch, var(--green) 60%, #000) inset,
+              0 2px 8px color-mix(in oklch, var(--green) 20%, transparent);
+}
+.btn-primary:hover {
+  background: var(--green-hover);
+  border-color: var(--green-hover);
+  /* Green halo on hover — restrained, no cursor-follow gimmick */
+  box-shadow: 0 1px 0 color-mix(in oklch, var(--green) 60%, #000) inset,
+              0 0 0 4px color-mix(in oklch, var(--green) 14%, transparent),
+              0 6px 20px color-mix(in oklch, var(--green) 35%, transparent);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  box-shadow: 0 1px 0 color-mix(in oklch, var(--green) 60%, #000) inset,
+              0 0 0 2px color-mix(in oklch, var(--green) 18%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn:hover, .btn:active { transform: none; transition: background 0.15s ease, color 0.15s ease; }
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn-ghost:hover {
+  border-color: var(--ink);
+  background: color-mix(in oklch, var(--ink) 4%, transparent);
+}
+
+.btn-mono {
+  font-family: var(--f-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+}
+
+/* ------- Highlight — multi-line safe.
+   Was 22% yellow on dark = too dim ("bleak"). Now green at 38%, on-brand and
+   visible. Kraft theme keeps a darker amber for cream-bg contrast. ------- */
+.hl {
+  background: linear-gradient(180deg,
+    transparent 62%,
+    color-mix(in oklch, var(--green) 38%, transparent) 62%);
+  padding: 0 0.05em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+[data-palette="kraft"] .hl {
+  background: linear-gradient(180deg,
+    transparent 62%,
+    color-mix(in oklch, var(--green) 28%, transparent) 62%);
+}
+.hl-strong {
+  background: var(--green);
+  color: #0a0a0a;
+  padding: 0.05em 0.12em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* ------- Glossary term tooltip (item 01, 02) ------- */
+.term {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: help;
+  border-bottom: 1px dotted currentColor;
+  padding-bottom: 1px;
+  text-decoration: none;
+  color: inherit;
+}
+.term-q {
+  display: inline-grid;
+  place-items: center;
+  width: 15px; height: 15px;
+  border: 1px solid color-mix(in oklch, currentColor 40%, transparent);
+  border-radius: 50%;
+  font-family: var(--f-mono);
+  font-weight: 700;
+  font-size: 9px;
+  color: color-mix(in oklch, currentColor 78%, transparent);
+  line-height: 1;
+  flex-shrink: 0;
+  /* lift the badge off the term's dotted underline so it reads as a button, not a glyph on the line */
+  position: relative;
+  top: -0.28em;
+  text-indent: 0;
+  text-transform: none;
+}
+.term-tip {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 10px);
+  width: 280px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-family: var(--f-sans);
+  font-weight: 400;
+  font-size: 12.5px;
+  line-height: 1.5;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.term-tip::before {
+  content: "";
+  position: absolute;
+  top: -5px; left: 18px;
+  width: 8px; height: 8px;
+  background: var(--bg-elev);
+  border-left: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+.term-tip-head {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+/* The inline tip is a desktop hover preview only (pointer-events:none — purely visual).
+   Touch / click everywhere opens the modal popover instead (see Term in primitives.jsx). */
+@media (hover: hover) {
+  .term:hover .term-tip {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Touch devices never show the hover preview (they get the modal on tap) — drop it
+   from layout entirely so it can't sit off-screen as a clipped, invisible box. */
+@media (hover: none) {
+  .term-tip { display: none; }
+}
+.term-tip.tip-right { left: auto; right: 0; }
+.term-tip.tip-right::before { left: auto; right: 18px; }
+.term-tip.tip-up { top: auto; bottom: calc(100% + 10px); }
+.term-tip.tip-up::before { top: auto; bottom: -5px; transform: rotate(225deg); }
+
+/* ------- Chain pill (item 10) ------- */
+.chain-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: color-mix(in oklch, var(--bg-elev) 50%, transparent);
+}
+.chain-pill img {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+.chain-pill.base {
+  border-color: color-mix(in oklch, var(--base-blue) 60%, transparent);
+  background: color-mix(in oklch, var(--base-blue) 14%, transparent);
+}
+.chain-pill.celo {
+  border-color: color-mix(in oklch, var(--celo-yellow) 60%, transparent);
+  background: color-mix(in oklch, var(--celo-yellow) 12%, transparent);
+}
+
+/* ------- Image utilities ------- */
+.photo {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+/* Subtle film grain — softer, no mix-blend-mode (was creating a stacking context
+   that repainted on every scroll frame). Just a low-opacity noise overlay. */
+.photo.grainy::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 160px 160px;
+}
+[data-palette="kraft"] .photo.grainy::after {
+  opacity: 0.06;
+}
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo .photo-meta {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.photo .corner-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Photo intensity tweak */
+:root[data-photo="grit"] .photo img {
+  filter: contrast(1.08) saturate(0.85) brightness(0.92);
+}
+:root[data-photo="duotone"] .photo img {
+  filter: grayscale(1) contrast(1.1) brightness(0.9);
+  mix-blend-mode: screen;
+}
+:root[data-photo="duotone"] .photo { background: var(--green); }
+
+/* ------- Cards ------- */
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.card:hover { border-color: color-mix(in oklch, var(--ink) 25%, transparent); }
+
+/* ------- Numbers / ticker ------- */
+.figure-num {
+  font-family: var(--f-plakat);
+  font-size: clamp(56px, 8vw, 96px);
+  line-height: 0.85;
+  letter-spacing: 0;
+}
+
+/* Split-flap counter — airport-board feel for KPIs.
+   A single character cell vertically scrolls a column of digits.
+   The Splitflap React component sets --target per cell. */
+.splitflap {
+  display: inline-flex;
+  gap: 2px;
+  font-family: var(--f-plakat);
+  font-weight: 700;
+  font-size: inherit;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+.splitflap-cell {
+  position: relative;
+  display: inline-block;
+  width: 0.62em;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: top;
+  /* Subtle inset shadow so it reads as a physical flap, not flat text */
+  background: linear-gradient(180deg,
+    color-mix(in oklch, var(--bg-elev) 60%, transparent) 0%,
+    transparent 12%,
+    transparent 88%,
+    color-mix(in oklch, #000 30%, transparent) 100%);
+  border-radius: 3px;
+}
+.splitflap-cell.static {
+  background: none;
+  width: auto;
+  min-width: 0.4em;
+  padding: 0 0.05em;
+  height: 1em;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+.splitflap-strip {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(calc(var(--target, 0) * -1em));
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.splitflap-strip > span {
+  height: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* The accent + and other static glyphs (like the green '+' after a count) */
+.splitflap-accent { color: var(--green); }
+
+@media (prefers-reduced-motion: reduce) {
+  .splitflap-strip { transition: none; }
+}
+
+/* ------- Misc ------- */
+.divider {
+  height: 1px;
+  background: var(--line);
+  width: 100%;
+}
+.divider-strong {
+  height: 1px;
+  background: var(--ink);
+  opacity: 0.4;
+}
+
+/* ------- Built On grid (new section) ------- */
+.builton-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.builton-cell {
+  aspect-ratio: 1.3 / 1;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--bg);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.builton-cell:hover {
+  background: var(--bg-elev);
+}
+.builton-logo {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 60px;
+}
+.builton-logo img {
+  max-width: 80%;
+  max-height: 56px;
+  object-fit: contain;
+  /* Theme-aware silhouette: dark theme = white, kraft theme = black. Source SVGs must have transparent BG. */
+  filter: brightness(0) invert(1) opacity(0.85);
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+.builton-cell:hover .builton-logo img {
+  filter: brightness(0) invert(1) opacity(1);
+}
+[data-palette="kraft"] .builton-logo img {
+  filter: brightness(0) opacity(0.85);
+}
+[data-palette="kraft"] .builton-cell:hover .builton-logo img {
+  filter: brightness(0) opacity(1);
+}
+
+/* Theme-switched logos (e.g. Reown): two files, native fills, no brightness filter.
+   Used when a logo's SVG uses layered color fills that the brightness/invert filter
+   cannot flatten into a readable silhouette. */
+.builton-logo img.logo-themed { filter: none; opacity: 0.95; }
+.builton-cell:hover .builton-logo img.logo-themed { opacity: 1; }
+.logo-themed-dark { display: block; }
+.logo-themed-kraft { display: none; }
+[data-palette="kraft"] .logo-themed-dark { display: none; }
+[data-palette="kraft"] .logo-themed-kraft { display: block; }
+
+/* Backers strip — same theme-aware treatment. */
+.backers-grid img {
+  filter: brightness(0) invert(1) opacity(0.95);
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+.backers-grid a:hover img {
+  filter: brightness(0) invert(1) opacity(1);
+}
+[data-palette="kraft"] .backers-grid img {
+  filter: brightness(0) opacity(0.95);
+}
+[data-palette="kraft"] .backers-grid a:hover img {
+  filter: brightness(0) opacity(1);
+}
+.builton-placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 56px;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 6px,
+      rgba(255, 255, 255, 0.04) 6px 7px
+    );
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.builton-name {
+  font-family: var(--f-sans);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink);
+  margin-top: 12px;
+}
+.builton-role {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  line-height: 1.45;
+}
+
+@keyframes marq {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marq 60s linear infinite;
+  gap: 48px;
+  user-select: none;
+  -webkit-user-select: none;
+  will-change: transform;
+}
+.marquee-wrap {
+  overflow: hidden;
+  max-width: 100%;
+  touch-action: pan-y; /* allow vertical scroll, horizontal drag is ours */
+  cursor: grab;
+}
+.marquee-wrap.marquee-dragging { cursor: grabbing; }
+.marquee-wrap.marquee-dragging .marquee { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
+  .marquee-wrap { cursor: default; }
+}
+
+/* ===== Network sites — official striped world map backdrop + card grid ===== */
+.sites-section { position: relative; overflow: hidden; }
+.sites-map-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 78%;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: contain;
+  opacity: 0.22;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+          mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+}
+[data-palette="kraft"] .sites-map-bg { opacity: 0.16; filter: invert(1) hue-rotate(120deg); }
+.sites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 12px;
+}
+.site-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.site-card::before {
+  /* Subtle green corner-glow — quietly reinforces brand without screaming */
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle at top left,
+    color-mix(in oklch, var(--green) 18%, transparent) 0%,
+    transparent 70%);
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+.site-card:hover {
+  border-color: color-mix(in oklch, var(--green) 50%, transparent);
+  transform: translateY(-2px);
+}
+.site-card:hover::before { opacity: 1; }
+.site-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+.site-pulse {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+.site-pulse-dot {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+.site-pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--green);
+  transform-origin: center;
+  animation: sitePulse 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+}
+@keyframes sitePulse {
+  0%   { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.site-card-body {
+  position: relative;
+  z-index: 1;
+}
+.site-city {
+  font-size: clamp(28px, 2.6vw, 36px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--ink);
+}
+.site-country {
+  font-family: var(--f-sans);
+  font-size: 13px;
+  color: var(--ink-mute);
+  margin-top: 6px;
+  letter-spacing: 0.01em;
+}
+.site-card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
+  position: relative;
+  z-index: 1;
+}
+.site-partner {
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+}
+.site-events {
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: 0.04em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-pulse-ring { animation: none; opacity: 0.4; }
+  .site-card:hover { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cleanup-dot-ring { animation: none; opacity: 0.4; }
+}
+
+/* Live dot pulse */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--green);
+  animation: pulse 1.6s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Nav logo (official bag+leaf icon). Subtle hover + click 'pop' easter egg. */
+.logo-icon {
+  flex-shrink: 0;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease;
+}
+.logo-icon:hover {
+  transform: scale(1.08) rotate(-3deg);
+  filter: drop-shadow(0 0 8px color-mix(in oklch, var(--green) 50%, transparent));
+}
+.logo-icon-pop {
+  animation: logo-icon-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes logo-icon-pop {
+  0%   { transform: scale(1) rotate(0deg); }
+  40%  { transform: scale(1.25) rotate(-10deg); filter: drop-shadow(0 0 12px var(--green)); }
+  70%  { transform: scale(0.95) rotate(6deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .logo-icon, .logo-icon:hover, .logo-icon-pop { animation: none; transform: none; }
+}
+
+/* Live REC timestamp — field-camera personality on hero photo */
+.rec-stamp {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+.rec-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 6px;
+  background: #E22222;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.rec-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: rec-pulse 1.1s ease-in-out infinite;
+}
+@keyframes rec-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
+  50%      { opacity: 0.55; transform: scale(0.85); box-shadow: 0 0 0 4px rgba(255,255,255,0); }
+}
+.rec-time {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.92);
+}
+@media (prefers-reduced-motion: reduce) {
+  .rec-dot { animation: none; }
+}
+
+/* ------- Reveal animation ------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* ===== Scanline reveal — headings appear like a developing photograph.
+   A thin green scanline sweeps left→right; the text behind it resolves.
+   Apply class .scan-in; JS adds .scanning when intersecting (once).
+   FAIL-SAFE: if JS is disabled, opacity fallback makes text visible after 2s. ===== */
+.scan-in {
+  position: relative;
+  clip-path: inset(0 100% 0 0);
+  -webkit-clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+  /* JS-disabled fallback — element becomes visible after 2s via animation */
+  animation: scan-in-fallback 0s linear 2.5s forwards;
+}
+@keyframes scan-in-fallback {
+  to { clip-path: inset(0 0 0 0); -webkit-clip-path: inset(0 0 0 0); }
+}
+.scan-in.scanning {
+  animation: scan-reveal 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+.scan-in.scanning::after {
+  /* The traveling scanline itself */
+  content: "";
+  position: absolute;
+  top: -4%;
+  bottom: -4%;
+  width: 3px;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    var(--green) 18%,
+    color-mix(in oklch, var(--green) 60%, white) 50%,
+    var(--green) 82%,
+    transparent 100%);
+  box-shadow: 0 0 16px var(--green),
+              0 0 36px color-mix(in oklch, var(--green) 60%, transparent);
+  animation: scan-line 1.2s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: screen;
+}
+[data-palette="kraft"] .scan-in.scanning::after {
+  mix-blend-mode: multiply;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    color-mix(in oklch, var(--green) 80%, #000) 18%,
+    color-mix(in oklch, var(--green) 90%, #000) 50%,
+    color-mix(in oklch, var(--green) 80%, #000) 82%,
+    transparent 100%);
+}
+@keyframes scan-reveal {
+  0%   { clip-path: inset(0 100% 0 0); -webkit-clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0);    -webkit-clip-path: inset(0 0 0 0); }
+}
+@keyframes scan-line {
+  0%   { left: -1%;  opacity: 0; }
+  10%  { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { left: 101%; opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scan-in { clip-path: none; -webkit-clip-path: none; }
+  .scan-in.scanning { animation: none; }
+  .scan-in.scanning::after { display: none; }
+}
+
+/* ------- Nav ------- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  /* Reduced backdrop blur radius — was 10px (expensive on every scroll frame on
+     Retina Mac/Safari). 6px is still premium-feeling. Solid-er bg compensates. */
+  backdrop-filter: blur(6px) saturate(120%);
+  -webkit-backdrop-filter: blur(6px) saturate(120%);
+  background: color-mix(in oklch, var(--bg) 92%, transparent);
+  border-bottom: 1px solid var(--line-soft);
+  transform: translateZ(0);
+}
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.nav-link {
+  color: var(--ink-mute);
+  text-decoration: none;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.15s ease;
+}
+.nav-link:hover { color: var(--ink); }
+
+/* Footer links — match the mono button-link treatment (cofounder feedback) */
+.footer-link {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.footer-link:hover { color: var(--green); }
+
+/* Brand logo — official wordmark image on dark theme; adaptive text fallback on kraft */
+.brand-lockup .logo-wordmark { display: block; }
+.brand-lockup .logo-wordmark-text { display: none; }
+:root[data-palette="kraft"] .brand-lockup .logo-wordmark { display: none; }
+:root[data-palette="kraft"] .brand-lockup .logo-wordmark-text { display: inline; }
+
+/* ------- Footer ------- */
+footer.site-footer {
+  border-top: 1px solid var(--line-soft);
+  padding: 80px 0 40px;
+  background: var(--bg);
+}
+
+/* ------- Scrollbar ------- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: color-mix(in oklch, var(--ink) 18%, transparent); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: color-mix(in oklch, var(--ink) 30%, transparent); }
+
+/* ------- Responsive ------- */
+@media (max-width: 1024px) {
+  .hero-grid,
+  .dmrv-grid,
+  .how-grid,
+  .eco-grid,
+  .total-grid,
+  .problem-grid,
+  .case-grid,
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .problem-grid > div:nth-child(2) { transform: rotate(90deg); }
+  .total-grid > div:first-child { position: static !important; }
+  .builton-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Nav CTA shortening on narrow screens */
+.nav-cta-short { display: none; }
+@media (max-width: 480px) {
+  .nav-cta-full { display: none; }
+  .nav-cta-short { display: inline; }
+}
+
+/* Hamburger button — hidden on desktop, visible <=860px */
+.nav-hamburger {
+  display: none;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  transition: border-color 0.15s ease;
+}
+.nav-hamburger:hover { border-color: var(--ink); }
+.hamburger-icon {
+  position: relative;
+  width: 18px;
+  height: 14px;
+}
+.hamburger-icon span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+  transform-origin: center;
+  transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+}
+.hamburger-icon span:nth-child(1) { top: 0; }
+.hamburger-icon span:nth-child(2) { top: 6px; }
+.hamburger-icon span:nth-child(3) { top: 12px; }
+.hamburger-icon.open span:nth-child(1) { top: 6px; transform: rotate(45deg); }
+.hamburger-icon.open span:nth-child(2) { opacity: 0; }
+.hamburger-icon.open span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+
+/* Mobile slide-down panel */
+.nav-mobile-panel {
+  display: none;
+  position: fixed;
+  top: 53px;
+  left: 0;
+  right: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  z-index: 49;
+  max-height: calc(100dvh - 53px);
+  overflow-y: auto;
+  transform: translateY(-12px);
+  opacity: 0;
+  /* When closed the panel is invisible (opacity:0) but stays display:block for the
+     slide animation — it MUST NOT capture taps, or its hidden #anchor links sit on top
+     of the hero and hijack clicks (tapping a glossary "?" hit a menu link → page jump). */
+  pointer-events: none;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s ease;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.nav-mobile-panel.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.nav-mobile-inner {
+  padding: 16px 24px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nav-mobile-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 0 4px;
+  font-family: var(--f-sans);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-soft);
+  transition: color 0.15s ease, padding-left 0.2s ease;
+}
+.nav-mobile-link:last-child { border-bottom: none; }
+.nav-mobile-link:hover, .nav-mobile-link:focus-visible {
+  color: var(--green);
+  padding-left: 8px;
+}
+.nav-mobile-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 12px 0;
+}
+.nav-mobile-foot {
+  padding: 12px 24px 20px;
+  border-top: 1px solid var(--line-soft);
+}
+.nav-scrim {
+  position: fixed;
+  inset: 53px 0 0;
+  background: color-mix(in oklch, var(--bg) 60%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 48;
+  animation: navScrimIn 0.2s ease both;
+}
+@keyframes navScrimIn { from { opacity: 0; } to { opacity: 1; } }
+
+@media (max-width: 860px) {
+  .nav-hamburger { display: inline-flex; }
+  .nav-mobile-panel { display: block; }
+  .nav-links { display: none; }
+  .nav-links.compact { display: flex; gap: 16px; }
+  /* Declutter the bar: the START CTA lives in the hamburger panel + hero, so it
+     doesn't need to compete for space here. Removing it guarantees the hamburger
+     stays on-screen instead of being pushed past the right edge. */
+  .nav-cta { display: none; }
+  .nav-inner { gap: 12px; padding: 12px 16px; }
+  .collage {
+    grid-template-columns: 1fr !important;
+  }
+  .collage > * {
+    grid-column: span 1 !important;
+    grid-row: auto !important;
+    min-height: 260px !important;
+  }
+  .closing-strip { grid-template-columns: repeat(2, 1fr) !important; }
+  .backers-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .backers-grid > a { border-right: 1px solid var(--line) !important; border-bottom: 1px solid var(--line) !important; }
+  .sdg-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .builton-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .container, .wide { padding: 0 16px; }
+}
+
+/* Modal backdrop */
+.modal-back {
+  position: fixed; inset: 0;
+  background: color-mix(in oklch, #000 70%, transparent);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  animation: rise 0.25s ease both;
+}
+.modal {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 460px;
+  width: 100%;
+}
+
+/* Focus visible — green so it stays visible on yellow accent elements */
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--green) 18%, transparent);
+}

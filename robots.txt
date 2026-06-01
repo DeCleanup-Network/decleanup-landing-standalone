@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /uploads/
+Disallow: /v1/
+Disallow: /pages/
+
+Sitemap: https://decleanup-network.vercel.app/sitemap.xml

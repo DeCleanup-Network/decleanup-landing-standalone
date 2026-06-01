@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#0a0a0a" />
+<meta name="color-scheme" content="dark light" />
+
+<title>DeCleanup Network — Clean Local. Prove Global.</title>
+<meta name="description" content="Pick up trash. Prove it onchain. Get paid. Cleanup verification protocol live on Base + Celo. 13 events across Japan, Nigeria, Thailand in 2024." />
+<meta name="keywords" content="cleanup, onchain, DMRV, hypercerts, regenerative, web3, ReFi, environmental, volunteer, Base, Celo, blockchain, public goods" />
+<meta name="author" content="DeCleanup Network" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://decleanup-network.vercel.app/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="DeCleanup Network" />
+<meta property="og:title" content="DeCleanup Network — Clean Local. Prove Global." />
+<meta property="og:description" content="Pick up trash. Prove it onchain. Get paid. Cleanup verification protocol live on Base + Celo. 13 events across Japan, Nigeria, Thailand in 2024." />
+<meta property="og:url" content="https://decleanup-network.vercel.app/" />
+<meta property="og:image" content="https://decleanup-network.vercel.app/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="DeCleanup Network volunteers after a community cleanup event" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DeCleanupNet" />
+<meta name="twitter:title" content="DeCleanup Network — Clean Local. Prove Global." />
+<meta name="twitter:description" content="Pick up trash. Prove it onchain. Get paid. Live on Base + Celo." />
+<meta name="twitter:image" content="https://decleanup-network.vercel.app/og-image.jpg" />
+<meta name="twitter:image:alt" content="DeCleanup Network volunteers after a community cleanup event" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="DeCleanup" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<!-- PWA manifest -->
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://decleanup-network.vercel.app/#organization",
+      "name": "DeCleanup Network",
+      "alternateName": "DeCleanup",
+      "url": "https://decleanup-network.vercel.app/",
+      "logo": "https://decleanup-network.vercel.app/icon-512.png",
+      "description": "An open-source, decentralized protocol that turns real-world cleanup actions into verified, onchain impact proof and rewards.",
+      "sameAs": [
+        "https://x.com/DeCleanupNet",
+        "https://farcaster.xyz/decleanupnet",
+        "https://t.me/EcoSynthesisX/443",
+        "https://github.com/DeCleanup-Network"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://decleanup-network.vercel.app/#website",
+      "url": "https://decleanup-network.vercel.app/",
+      "name": "DeCleanup Network",
+      "description": "Clean Local. Prove Global.",
+      "publisher": { "@id": "https://decleanup-network.vercel.app/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://decleanup-network.vercel.app/#webpage",
+      "url": "https://decleanup-network.vercel.app/",
+      "name": "DeCleanup Network — Clean Local. Prove Global.",
+      "isPartOf": { "@id": "https://decleanup-network.vercel.app/#website" },
+      "about": { "@id": "https://decleanup-network.vercel.app/#organization" },
+      "primaryImageOfPage": "https://decleanup-network.vercel.app/og-image.jpg",
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="primitives.jsx"></script>
+<script type="text/babel" src="hero.jsx"></script>
+<script type="text/babel" src="sections.jsx"></script>
+<script type="text/babel" src="community.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+
+</body>
+</html>

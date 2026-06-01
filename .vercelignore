@@ -1,0 +1,17 @@
+.DS_Store
+**/.DS_Store
+.bak.*
+**/*.bak.*
+*.bak
+**/*.bak
+v1
+uploads
+screenshots 2
+assets extra
+pages/_standalone.html
+pages/DeCleanup-Landing-Standalone (1).html
+pages/corrections.html
+.claude
+node_modules
+*.md
+pages

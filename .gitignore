@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+**/.DS_Store
+
+# Vercel (local link + project/org IDs)
+.vercel
+
+# Dependencies / build output
+node_modules
+
+# Editing backups (created automatically during sessions)
+*.bak
+*.bak.*
+**/*.bak
+**/*.bak.*
+.asset-backups-*
+
+# Local Claude config (machine-specific permissions)
+.claude/settings.local.json
