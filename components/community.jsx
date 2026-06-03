@@ -273,7 +273,7 @@ function SiteFooter() {
       <div className="container">
         <div style={{
           display: "grid",
-          gridTemplateColumns: "1.4fr 1fr 1fr 1fr",
+          gridTemplateColumns: "1.6fr 1fr 1fr",
           gap: 40,
           marginBottom: 48,
         }} className="footer-grid">
@@ -292,6 +292,7 @@ function SiteFooter() {
                 <a className="footer-link" href="https://t.me/decentralizedcleanup" target="_blank" rel="noopener noreferrer">Telegram</a>
                 <a className="footer-link" href="https://x.com/DeCleanupNet" target="_blank" rel="noopener noreferrer">X / Twitter</a>
                 <a className="footer-link" href="https://farcaster.xyz/decleanupnet" target="_blank" rel="noopener noreferrer">Farcaster</a>
+                <a className="footer-link" href="https://github.com/DeCleanup-Network" target="_blank" rel="noopener noreferrer">GitHub</a>
               </div>
             </div>
           </div>
@@ -303,12 +304,6 @@ function SiteFooter() {
             ["SDG alignment", "sdg.html"],
             ["Investor brief", "investors/"],
             ["Publications", "https://paragraph.com/@decleanupnet"],
-          ]} />
-          <FooterCol title="Technical" links={[
-            ["GitHub", "https://github.com/DeCleanup-Network"],
-            ["Dev docs", "https://decleanup.net/docs"],
-            ["User guide", "https://decleanup.net/userguide"],
-            ["Terms (soon)", "#"],
           ]} />
           <FooterCol title="Support" links={[
             ["Gardens.fund", "https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960"],
@@ -478,7 +473,7 @@ function ResourcesSection() {
                   <div className="plakat" style={{ fontSize: 19, letterSpacing: "0.01em", marginBottom: 6 }}>{doc.t}</div>
                   <div style={{ fontFamily: "var(--f-sans)", fontSize: 13, lineHeight: 1.4, color: "var(--ink-mute)" }}>{doc.d}</div>
                 </div>
-                <div className="meta" style={{ color: "var(--green)" }}>Read →</div>
+                <div className="meta" style={{ color: "var(--green)" }}>Read</div>
               </a>
             ))}
           </div>
@@ -505,7 +500,7 @@ function InvestorsSection() {
             DeCleanup turns real-world cleanup into independently verifiable, on-chain impact — so climate funds, corporates and grant programs can fund outcomes they can audit, not promises. Live on Base + Celo.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
-            <a className="btn btn-primary" href="investors/">Read the investor brief →</a>
+            <a className="btn btn-primary" href="investors/">Read the investor brief</a>
             <a className="btn btn-ghost" href="mailto:hello@decleanup.net?subject=DeCleanup%20%E2%80%94%20investor%20intro">Talk to the founders</a>
           </div>
           <p className="meta" style={{ color: "var(--ink-faint)", marginTop: 20, fontSize: 10, letterSpacing: "0.04em", maxWidth: 720, lineHeight: 1.5 }}>

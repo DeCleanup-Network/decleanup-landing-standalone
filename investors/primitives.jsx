@@ -36,7 +36,7 @@ function ContentsRail({ active }) {
 
       <div className="rail-cta">
         <a className="btn btn-primary btn-mono" style={{ minHeight: 40 }} href={CONTACT.email}>Contact founders</a>
-        <a className="rail-back" href="https://decleanup.net">← Main site</a>
+        <a className="rail-back" href="https://decleanup.net">Main site</a>
       </div>
     </aside>
   );

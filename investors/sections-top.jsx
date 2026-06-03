@@ -35,7 +35,7 @@ function Masthead({ thesis }) {
 
       <p className="masthead-note">
         This memo covers only what the public landing page does not: market, business model, comparables and token framing.
-        For the product itself — how a cleanup becomes verified impact — see <a href="https://decleanup.net" style={{ color: "var(--green)", textDecoration: "none" }}>decleanup.net ↗</a>.
+        For the product itself — how a cleanup becomes verified impact — see <a href="https://decleanup.net" style={{ color: "var(--green)", textDecoration: "none" }}>decleanup.net</a>.
       </p>
     </section>
   );
@@ -96,7 +96,7 @@ function WhyNowSection() {
 
       <div className="two-col" style={{ marginTop: 8, gap: 40, gridTemplateColumns: "1.05fr 1fr", alignItems: "start" }}>
         <div>
-          <div className="meta" style={{ marginBottom: 16, color: "var(--green)" }}>→ REGULATION FORCES MEASUREMENT</div>
+          <div className="meta" style={{ marginBottom: 16, color: "var(--green)" }}>REGULATION FORCES MEASUREMENT</div>
           <div className="reg-timeline">
             {REG.map((r) => (
               <div className="reg-row" key={r.date}>
@@ -154,7 +154,7 @@ function MoatSection() {
       </div>
 
       <a className="xref" href="https://decleanup.net/#dmrv" target="_blank" rel="noopener noreferrer">
-        See the full dMRV verification flow on the main site <span className="arr">↗</span>
+        See the full dMRV verification flow on the main site
       </a>
       <p className="mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 16, letterSpacing: "0.06em", lineHeight: 1.6 }}>
         Full verification logic and on-chain issuance details are shared with serious counterparties on request.
