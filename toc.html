@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0a0a" />
+<meta name="color-scheme" content="dark light" />
+
+<title>Theory of Change — DeCleanup Network</title>
+<meta name="description" content="Why cleanup action stays invisible and how DeCleanup Network fixes it by converting local efforts into verified, funded, onchain-permanent global proof. v2.2" />
+<meta name="author" content="DeCleanup Network" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://decleanup-network.vercel.app/toc" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="DeCleanup Network" />
+<meta property="og:title" content="Theory of Change — DeCleanup Network" />
+<meta property="og:description" content="Why cleanup action stays invisible — and how DeCleanup Network converts local efforts into verified, funded, onchain-permanent global proof." />
+<meta property="og:url" content="https://decleanup-network.vercel.app/toc" />
+<meta property="og:image" content="https://decleanup-network.vercel.app/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DeCleanupNet" />
+<meta name="twitter:title" content="Theory of Change — DeCleanup Network" />
+<meta name="twitter:description" content="How DeCleanup Network turns invisible local cleanup into verified, funded, onchain-permanent proof." />
+<meta name="twitter:image" content="https://decleanup-network.vercel.app/og-image.jpg" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://decleanup-network.vercel.app/toc#webpage",
+      "url": "https://decleanup-network.vercel.app/toc",
+      "name": "Theory of Change — DeCleanup Network",
+      "description": "Why cleanup action stays invisible and how DeCleanup Network fixes it by converting local efforts into verified, funded, onchain-permanent global proof.",
+      "isPartOf": { "@id": "https://decleanup-network.vercel.app/#website" },
+      "about": { "@id": "https://decleanup-network.vercel.app/#organization" },
+      "primaryImageOfPage": "https://decleanup-network.vercel.app/og-image.jpg",
+      "inLanguage": "en",
+      "breadcrumb": { "@id": "https://decleanup-network.vercel.app/toc#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://decleanup-network.vercel.app/toc#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://decleanup-network.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Theory of Change", "item": "https://decleanup-network.vercel.app/toc" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)">
+      <span style="width:28px;height:28px;border-radius:7px;background:var(--green);display:grid;place-items:center;font-family:var(--f-mono);font-weight:700;color:#0a0a0a;font-size:13px">D</span>
+      <span class="plakat" style="font-size:22px;letter-spacing:0.02em">DeCleanup<span style="color:var(--ink-faint)">.Net</span></span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="litepaper.html">Litepaper</a>
+      <a class="nav-link" href="tokenomics.html">Tokenomics</a>
+      <a class="nav-link" href="toc.html" style="color:var(--ink)">Theory of Change</a>
+      <a class="nav-link" href="sdg.html">SDG</a>
+    </div>
+    <a class="btn btn-primary btn-mono" href="index.html" style="min-height:38px;padding:0 18px;font-size:11px;text-decoration:none">← Back to home</a>
+  </div>
+</nav>
+
+<!-- Header strip -->
+<section style="padding-top:96px;border-bottom:1px solid var(--line-soft)">
+  <div class="wide" style="display:flex;justify-content:space-between;align-items:center;padding:10px 24px;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)">
+    <span class="meta" style="display:flex;align-items:center;gap:10px"><span class="live-dot"></span> Theory of Change · v2.2</span>
+    <span class="meta" style="color:var(--ink-faint)">3 SYSTEMIC GAPS · 4 PATHWAYS · 15+ SMART OUTCOMES · 48-MONTH HORIZON</span>
+    <span class="meta">REF · DECLEANUP.NET</span>
+  </div>
+</section>
+
+<!-- Hero -->
+<section class="section" style="padding-top:48px;padding-bottom:0">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px;display:flex;align-items:center;gap:12px">
+      <span style="width:32px;height:1px;background:var(--green)"></span>
+      <span>THEORY OF CHANGE · v2.2</span>
+    </div>
+    <h1 class="plakat" style="font-size:clamp(46px, 8vw, 116px);margin:0;line-height:0.88;letter-spacing:0.005em">
+      Why cleanup<br/>
+      stays <span style="color:var(--green)">invisible</span>.
+    </h1>
+    <p class="serif" style="font-size:clamp(20px, 2vw, 26px);color:var(--ink-mute);margin:clamp(44px,6vw,72px) 0 0;max-width:760px;line-height:1.4">
+      DeCleanup Network converts grassroots environmental action into <span class="hl">verified, funded, and onchain-permanent impact</span>.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:40px" class="stat-grid">
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px">
+        <div class="figure-num" style="color:var(--green);font-size:56px">3</div>
+        <div class="meta" style="color:var(--ink-faint);margin-top:8px">SYSTEMIC GAPS</div>
+      </div>
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px">
+        <div class="figure-num" style="color:var(--green);font-size:56px">4</div>
+        <div class="meta" style="color:var(--ink-faint);margin-top:8px">PATHWAYS</div>
+      </div>
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px">
+        <div class="figure-num" style="color:var(--green);font-size:56px">15+</div>
+        <div class="meta" style="color:var(--ink-faint);margin-top:8px">SMART OUTCOMES</div>
+      </div>
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px">
+        <div class="figure-num" style="color:var(--green);font-size:56px">48<span style="font-size:24px">mo</span></div>
+        <div class="meta" style="color:var(--ink-faint);margin-top:8px">HORIZON</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 01 Root Cause -->
+<section class="section">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">01 · ROOT CAUSE</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 18px;letter-spacing:0.02em">The problem isn't a lack of action</h2>
+    <p class="serif" style="font-size:22px;color:var(--ink-mute);margin:0 0 40px;max-width:840px;line-height:1.4">
+      Volunteers organize. NGOs mobilize. Communities clean every single day. The problem is that this action remains <span class="hl">invisible</span> — producing no data that funders, partners, or institutions can trust, verify, or build upon.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="step-grid">
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:12px">TRUST GAP</div>
+        <p style="font-size:14px;color:var(--ink);margin:0 0 14px;line-height:1.6">Funders and partners cannot verify outcomes. Decisions rely entirely on self-reported claims.</p>
+        <div class="mono" style="font-size:11px;color:var(--ink-faint);letter-spacing:0.04em">↦ Capital stays on the sidelines</div>
+      </div>
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:12px">COORDINATION GAP</div>
+        <p style="font-size:14px;color:var(--ink);margin:0 0 14px;line-height:1.6">Local actions remain fragmented. Efforts duplicate. Best practices never travel beyond a single neighborhood.</p>
+        <div class="mono" style="font-size:11px;color:var(--ink-faint);letter-spacing:0.04em">↦ No network effect compounds</div>
+      </div>
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:12px">INCENTIVE GAP</div>
+        <p style="font-size:14px;color:var(--ink);margin:0 0 14px;line-height:1.6">Volunteers and organizers receive no structured recognition. Participation stays episodic.</p>
+        <div class="mono" style="font-size:11px;color:var(--ink-faint);letter-spacing:0.04em">↦ Cleanup stays episodic</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;background:var(--bg-elev)">
+      <div class="meta" style="color:var(--ink-faint);margin-bottom:12px">LONG-TERM VISION · 5–10 YEARS</div>
+      <p class="serif-italic" style="font-size:20px;color:var(--ink);margin:0;line-height:1.45;max-width:880px">
+        A world where every cleanup event produces trusted, portable data that connects grassroots action to institutional funding, policy decisions, and regenerative ecosystem coordination.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 Core Logic -->
+<section class="section" style="background:var(--bg-elev)">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">02 · CORE LOGIC</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">From photo to funded impact</h2>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:620px;line-height:1.4">A single verified submission triggers a chain of value that compounds over time.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px" class="five-grid">
+      <div class="card" style="background:var(--bg);padding:22px">
+        <div class="figure-num" style="color:var(--green);font-size:40px">01</div>
+        <h4 class="plakat" style="font-size:18px;margin:12px 0 8px;letter-spacing:0.03em">Documentation</h4>
+        <p style="font-size:12px;color:var(--ink-mute);margin:0;line-height:1.5">Geotagged before/after photos in under 60 seconds.</p>
+      </div>
+      <div class="card" style="background:var(--bg);padding:22px">
+        <div class="figure-num" style="color:var(--green);font-size:40px">02</div>
+        <h4 class="plakat" style="font-size:18px;margin:12px 0 8px;letter-spacing:0.03em">Verification</h4>
+        <p style="font-size:12px;color:var(--ink-mute);margin:0;line-height:1.5">DMRV — AI + human review validates evidence.</p>
+      </div>
+      <div class="card" style="background:var(--bg);padding:22px">
+        <div class="figure-num" style="color:var(--green);font-size:40px">03</div>
+        <h4 class="plakat" style="font-size:18px;margin:12px 0 8px;letter-spacing:0.03em">Onchain Record</h4>
+        <p style="font-size:12px;color:var(--ink-mute);margin:0;line-height:1.5">Immutable anchoring on Base / Celo.</p>
+      </div>
+      <div class="card" style="background:var(--bg);padding:22px">
+        <div class="figure-num" style="color:var(--green);font-size:40px">04</div>
+        <h4 class="plakat" style="font-size:18px;margin:12px 0 8px;letter-spacing:0.03em">Reward</h4>
+        <p style="font-size:12px;color:var(--ink-mute);margin:0;line-height:1.5">$DCU + Impact Product NFT per verified event.</p>
+      </div>
+      <div class="card" style="background:var(--bg);padding:22px">
+        <div class="figure-num" style="color:var(--green);font-size:40px">05</div>
+        <h4 class="plakat" style="font-size:18px;margin:12px 0 8px;letter-spacing:0.03em">Capital Flow</h4>
+        <p style="font-size:12px;color:var(--ink-mute);margin:0;line-height:1.5">Funders use verified dashboards — fund more cleanups.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;background:var(--bg);border-color:color-mix(in oklch, var(--green) 35%, transparent)">
+      <div class="meta" style="color:var(--green);margin-bottom:14px">30-SECOND STRATEGY TEST</div>
+      <p style="font-size:15px;color:var(--ink);margin:0;line-height:1.65;max-width:920px">
+        We discovered that <strong style="color:var(--ink)">grassroots cleanup cannot attract institutional capital because it produces no verifiable data.</strong> So we are prioritizing <em class="serif-italic">verification infrastructure first</em> — a 60-second documentation process that creates immutable onchain records. We are testing this by running a hybrid AI + human validation pipeline and piloting with a few communities around the world. If we can show <strong style="color:var(--green)">80% DMRV compliance and 3+ funders using dashboard data by month 12</strong>, we will scale organizer activation across 10+ countries.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 Inputs / Outputs -->
+<section class="section">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">03 · RESOURCES</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">Inputs → Outputs</h2>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:680px;line-height:1.4">What we put in, and what the network produces. Outputs connect to measurable behavior change.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="two-col">
+      <div class="card">
+        <div class="meta" style="color:var(--ink-faint);margin-bottom:16px">INPUTS</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;font-size:14px;color:var(--ink-mute);line-height:1.5">
+          <li>— Human capital (volunteers, organizers, devs)</li>
+          <li>— Technology (Base + Celo, AI/ML, DMRV)</li>
+          <li>— Financial (Giveth, Gitcoin, Octant, $bDCU)</li>
+          <li>— Partnerships (disposal, municipal, ReFi)</li>
+          <li>— Knowledge (DMRV, ESG, impact standards)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:color-mix(in oklch, var(--green) 40%, transparent)">
+        <div class="meta" style="color:var(--green);margin-bottom:16px">OUTPUTS</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;font-size:14px;color:var(--ink);line-height:1.5">
+          <li>↦ Verified cleanup records (DMRV threshold)</li>
+          <li>↦ Waste datasets (ESG reporting)</li>
+          <li>↦ Immutable onchain logs</li>
+          <li>↦ Impact dashboards for funders</li>
+          <li>↦ Governance proposals (onchain)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 Causal Pathways -->
+<section class="section" style="background:var(--bg-elev)">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">04 · CAUSAL PATHWAYS</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">Four pathways to systemic change</h2>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:780px;line-height:1.4">Trust creation is the trunk; coordination and incentives branch in parallel; verification credibility is where institutional trust lives.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px" class="two-col">
+      <div class="card" style="background:var(--bg);border-color:color-mix(in oklch, var(--green) 40%, transparent)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+          <div class="meta" style="color:var(--green)">P1 · TRUST CREATION</div>
+          <div class="mono" style="font-size:10px;color:var(--ink-faint)">TRUNK</div>
+        </div>
+        <ul style="list-style:none;padding:0;margin:0 0 14px;display:flex;flex-direction:column;gap:9px;font-size:13px;color:var(--ink-mute);line-height:1.5">
+          <li>— Documentation under 60s</li>
+          <li>— Geotag + timestamp</li>
+          <li>— Verifiable onchain records</li>
+          <li>— Funders gain confidence</li>
+          <li>— Capital flows to verified cleanups</li>
+        </ul>
+        <div class="mono" style="font-size:10px;color:var(--ink-faint);border-top:1px dashed var(--line);padding-top:12px">→ Trust enables shared infrastructure to scale</div>
+      </div>
+      <div class="card" style="background:var(--bg)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+          <div class="meta" style="color:var(--ink)">P2 · COORDINATION</div>
+          <div class="mono" style="font-size:10px;color:var(--ink-faint)">NETWORK EFFECTS</div>
+        </div>
+        <ul style="list-style:none;padding:0;margin:0 0 14px;display:flex;flex-direction:column;gap:9px;font-size:13px;color:var(--ink-mute);line-height:1.5">
+          <li>— Shared DMRV across regions</li>
+          <li>— Common data standards</li>
+          <li>— Organizers discover best practices</li>
+          <li>— Knowledge transfer</li>
+          <li>— Effectiveness improves network-wide</li>
+        </ul>
+        <div class="mono" style="font-size:10px;color:var(--ink-faint);border-top:1px dashed var(--line);padding-top:12px">→ More organizers generate more submissions</div>
+      </div>
+      <div class="card" style="background:var(--bg)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+          <div class="meta" style="color:var(--ink)">P3 · INCENTIVES</div>
+          <div class="mono" style="font-size:10px;color:var(--ink-faint)">SUSTAINED BEHAVIOR</div>
+        </div>
+        <ul style="list-style:none;padding:0;margin:0 0 14px;display:flex;flex-direction:column;gap:9px;font-size:13px;color:var(--ink-mute);line-height:1.5">
+          <li>— $bDCU structured recognition</li>
+          <li>— Tangible acknowledgment per action</li>
+          <li>— Episodic → sustained participation</li>
+          <li>— Documentation normalized</li>
+          <li>— Data quality improves</li>
+        </ul>
+        <div class="mono" style="font-size:10px;color:var(--ink-faint);border-top:1px dashed var(--line);padding-top:12px">→ Higher volume feeds verification pipeline</div>
+      </div>
+      <div class="card" style="background:var(--bg);border-color:color-mix(in oklch, var(--yellow) 35%, transparent)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+          <div class="meta" style="color:var(--yellow)">P4 · VERIFICATION CREDIBILITY</div>
+          <div class="mono" style="font-size:10px;color:var(--ink-faint)">CANOPY</div>
+        </div>
+        <ul style="list-style:none;padding:0;margin:0 0 14px;display:flex;flex-direction:column;gap:9px;font-size:13px;color:var(--ink-mute);line-height:1.5">
+          <li>— Open source waste detection model</li>
+          <li>— AI flags for human review</li>
+          <li>— Hybrid reduces fraud</li>
+          <li>— Quality = network reputation</li>
+          <li>— Partners trust for ESG reporting</li>
+        </ul>
+        <div class="mono" style="font-size:10px;color:var(--ink-faint);border-top:1px dashed var(--line);padding-top:12px">↺ Loops back to P1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 SMART Outcomes -->
+<section class="section">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">05 · SMART OUTCOMES</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">Measurable targets across three horizons</h2>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:720px;line-height:1.4">Outputs are activity. Outcomes are behavior change. Every target passes the "So What?" test.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="step-grid">
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:16px">SHORT-TERM · 0–12 MONTHS</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;font-size:13px;color:var(--ink);line-height:1.5">
+          <li>↦ 300 verified submissions (DMRV)</li>
+          <li>↦ 25 organizers in 10+ countries</li>
+          <li>↦ 30% repeat volunteer rate</li>
+          <li>↦ 80% DMRV compliance</li>
+          <li>↦ 85% AI waste detection accuracy</li>
+          <li>↦ 3+ funders using dashboards</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:16px">MEDIUM-TERM · 12–24 MONTHS</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;font-size:13px;color:var(--ink);line-height:1.5">
+          <li>↦ 3+ funding decisions citing DeCleanup</li>
+          <li>↦ 75k kg verified waste documented</li>
+          <li>↦ 100+ stakers in verification</li>
+          <li>↦ 3 multi-country campaigns</li>
+          <li>↦ 10+ governance proposals</li>
+          <li>↦ 3+ ReFi integrations</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:16px">LONG-TERM · 24–48 MONTHS</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;font-size:13px;color:var(--ink);line-height:1.5">
+          <li>↦ $100k+ capital to verified cleanups</li>
+          <li>↦ 30% partners adopting DMRV</li>
+          <li>↦ 70% community-initiated campaigns</li>
+          <li>↦ 10+ ESG reports referencing data</li>
+          <li>↦ 80% decisions by community vote</li>
+          <li>↦ Self-sustaining feedback loop</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 Decentralization Roadmap -->
+<section class="section" style="background:var(--bg-elev)">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">06 · DECENTRALIZATION ROADMAP</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">Verification: trusted → trustless</h2>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:640px;line-height:1.4">Progressive decentralization. Quality standards first, then distributed responsibility.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="step-grid">
+      <div class="card" style="background:var(--bg);border-color:color-mix(in oklch, var(--green) 40%, transparent)">
+        <div class="meta" style="color:var(--green);margin-bottom:6px;display:flex;align-items:center;gap:8px"><span class="live-dot"></span> ACTIVE NOW</div>
+        <h4 class="plakat" style="font-size:24px;margin:8px 0 6px;letter-spacing:0.02em">Phase 1 · Human Review</h4>
+        <p style="font-size:13px;color:var(--ink-mute);margin:0 0 14px;line-height:1.5">Core team manually reviews every submission.</p>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--ink-dim);line-height:1.4">
+          <li>— Manual photo review</li>
+          <li>— Geotag validation</li>
+          <li>— Timestamp checking</li>
+          <li>— Before / after comparison</li>
+          <li>— Feedback to submitters</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--bg)">
+        <div class="meta" style="color:var(--yellow);margin-bottom:6px">IN DEVELOPMENT</div>
+        <h4 class="plakat" style="font-size:24px;margin:8px 0 6px;letter-spacing:0.02em">Phase 2 · AI-Assisted</h4>
+        <p style="font-size:13px;color:var(--ink-mute);margin:0 0 14px;line-height:1.5">AI-assisted validation; human confirms.</p>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--ink-dim);line-height:1.4">
+          <li>— Open source trash detection</li>
+          <li>— Duplicate detection</li>
+          <li>— Geo inconsistency flagging</li>
+          <li>— Fraud probability scoring</li>
+          <li>— Human confirms AI flags</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--bg)">
+        <div class="meta" style="color:var(--ink-faint);margin-bottom:6px">PLANNED</div>
+        <h4 class="plakat" style="font-size:24px;margin:8px 0 6px;letter-spacing:0.02em">Phase 3 · Trustless</h4>
+        <p style="font-size:13px;color:var(--ink-mute);margin:0 0 14px;line-height:1.5">Decentralized: token holders become verifiers.</p>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--ink-dim);line-height:1.4">
+          <li>— Community staking for verification</li>
+          <li>— Stake-weighted votes</li>
+          <li>— Verification rewards</li>
+          <li>— Slashing for false approvals</li>
+          <li>— Fully onchain governance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 Stakeholders -->
+<section class="section">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">07 · STAKEHOLDERS</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">Who makes the network work</h2>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:560px;line-height:1.4">Six participant types. The network functions when all six are active.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)" class="six-grid">
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px">
+        <h4 class="plakat" style="font-size:24px;margin:0 0 8px;letter-spacing:0.02em;color:var(--green)">Volunteers</h4>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0">Clean. Document. Earn.</p>
+      </div>
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px">
+        <h4 class="plakat" style="font-size:24px;margin:0 0 8px;letter-spacing:0.02em;color:var(--green)">Organizers</h4>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0">Launch campaigns.</p>
+      </div>
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px">
+        <h4 class="plakat" style="font-size:24px;margin:0 0 8px;letter-spacing:0.02em;color:var(--green)">Funders</h4>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0">Anyone can fund impact.</p>
+      </div>
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px">
+        <h4 class="plakat" style="font-size:24px;margin:0 0 8px;letter-spacing:0.02em;color:var(--green)">$DCU Holders</h4>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0">Trade. Govern. Stake. Verify.</p>
+      </div>
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px">
+        <h4 class="plakat" style="font-size:24px;margin:0 0 8px;letter-spacing:0.02em;color:var(--green)">Partners</h4>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0">Municipalities &amp; waste.</p>
+      </div>
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px">
+        <h4 class="plakat" style="font-size:24px;margin:0 0 8px;letter-spacing:0.02em;color:var(--green)">Developers</h4>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0">Build &amp; maintain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 Assumptions table -->
+<section class="section" style="background:var(--bg-elev)">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">08 · ASSUMPTIONS</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">What must be true — and how we test it</h2>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:680px;line-height:1.4">Every pathway rests on assumptions. We state them, test early, and pivot if they fail.</p>
+
+    <div style="overflow-x:auto">
+      <table class="toc-table">
+        <thead>
+          <tr>
+            <th>Assumption</th>
+            <th>Timeline</th>
+            <th>Success Criteria</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Volunteers document if process &lt;60s</td><td class="mono">Month 1–3</td><td>70%+ completion rate</td></tr>
+          <tr><td>Funders value verified over self-reported</td><td class="mono">Month 3–6</td><td>1+ funding decision cites data</td></tr>
+          <tr><td>Onchain anchoring adds trust</td><td class="mono">Month 3–6</td><td>&lt;10% user confusion</td></tr>
+          <tr><td>Community governance attracts participants</td><td class="mono">Month 12–18</td><td>5+ proposals, 10%+ participation</td></tr>
+          <tr><td>AI verification improves accuracy</td><td class="mono">Month 3–6</td><td>85%+ trash detection accuracy</td></tr>
+          <tr><td>Fair-launch prevents extractive behavior</td><td class="mono">Month 1–6</td><td>No holder &gt;5%; &lt;30% sell pressure</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 09 Risk Register -->
+<section class="section">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">09 · RISK REGISTER</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">Known risks — how we respond</h2>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:700px;line-height:1.4">Good strategy names risks, assigns probability and impact, and prepares mitigations.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="step-grid">
+      <div class="card"><span class="risk-tag high">HIGH IMPACT</span><h4 style="font-size:16px;margin:12px 0 8px;color:var(--ink)">Low Adoption from Friction</h4><p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.5">UX target &lt;60s; feedback on every rejection.</p></div>
+      <div class="card"><span class="risk-tag high">HIGH IMPACT</span><h4 style="font-size:16px;margin:12px 0 8px;color:var(--ink)">Funder Indifference to Verified Data</h4><p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.5">Validate with grant partners; reframe to coordination if needed.</p></div>
+      <div class="card"><span class="risk-tag high">HIGH IMPACT</span><h4 style="font-size:16px;margin:12px 0 8px;color:var(--ink)">Regulatory Uncertainty</h4><p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.5">Utility-only framing; legal counsel as we scale.</p></div>
+      <div class="card"><span class="risk-tag med">MEDIUM IMPACT</span><h4 style="font-size:16px;margin:12px 0 8px;color:var(--ink)">Token Speculation Overrides Utility</h4><p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.5">Fair-launch; staking for verification.</p></div>
+      <div class="card"><span class="risk-tag med">MEDIUM IMPACT</span><h4 style="font-size:16px;margin:12px 0 8px;color:var(--ink)">AI Verification Errors</h4><p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.5">Hybrid: AI flags, humans confirm; publish metrics.</p></div>
+      <div class="card"><span class="risk-tag med">MEDIUM IMPACT</span><h4 style="font-size:16px;margin:12px 0 8px;color:var(--ink)">Governance Apathy</h4><p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.5">Progressive decentralization; expand as participation proves sustained.</p></div>
+      <div class="card"><span class="risk-tag med">MEDIUM IMPACT</span><h4 style="font-size:16px;margin:12px 0 8px;color:var(--ink)">Local Disposal Gaps</h4><p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.5">Partner with municipalities before expanding region.</p></div>
+      <div class="card"><span class="risk-tag med">MEDIUM IMPACT</span><h4 style="font-size:16px;margin:12px 0 8px;color:var(--ink)">Data Quality Inconsistency</h4><p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.5">Strict DMRV; reject with actionable feedback.</p></div>
+      <div class="card"><span class="risk-tag managed">MANAGED IMPACT</span><h4 style="font-size:16px;margin:12px 0 8px;color:var(--ink)">Community Trust Erosion</h4><p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.5">Transparent governance; fair-launch; no insider advantages.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Closing -->
+<section class="section" style="background:var(--bg-elev)">
+  <div class="container" style="text-align:center">
+    <div class="meta" style="margin-bottom:20px;color:var(--green)">READY TO BE PART OF THE PROOF?</div>
+    <h2 class="plakat" style="font-size:clamp(40px,7vw,90px);margin:0 auto 24px;line-height:0.9;max-width:980px">
+      Every cleanup you verify makes the next funder <span style="color:var(--green)">more confident</span>.
+    </h2>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px">
+      <a class="btn btn-primary" href="https://dapp.decleanup.net" target="_blank" rel="noopener">Start your first cleanup ↗</a>
+      <a class="btn btn-ghost" href="https://t.me/DecentralizedCleanup" target="_blank" rel="noopener">Join community ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <div class="meta">© 2026 DECLEANUP NETWORK · OPEN-SOURCE · MIT</div>
+      <div class="meta" style="display:flex;gap:24px;flex-wrap:wrap">
+        <a href="litepaper.html" style="color:var(--ink-mute);text-decoration:none">LITEPAPER</a>
+        <a href="tokenomics.html" style="color:var(--ink-mute);text-decoration:none">TOKENOMICS</a>
+        <span style="color:var(--ink-faint)">BUILT ON CELO + BASE</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.toc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 640px;
+}
+.toc-table th {
+  text-align: left;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.toc-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--ink);
+  vertical-align: top;
+  line-height: 1.45;
+}
+.toc-table td.mono { font-family: var(--f-mono); font-size: 12px; color: var(--green); white-space: nowrap; }
+.toc-table tbody tr:hover { background: var(--bg); }
+.toc-table td:last-child { color: var(--ink-mute); }
+
+.risk-tag {
+  display: inline-block;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+.risk-tag.high { color: var(--yellow); border-color: color-mix(in oklch, var(--yellow) 45%, transparent); background: var(--yellow-soft); }
+.risk-tag.med { color: var(--ink-mute); }
+.risk-tag.managed { color: var(--green); border-color: color-mix(in oklch, var(--green) 45%, transparent); background: var(--green-soft); }
+
+@media (max-width: 1024px) {
+  .five-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .step-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 860px) {
+  .two-col, .six-grid { grid-template-columns: 1fr !important; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .nav-links { display: none; }
+}
+@media (max-width: 600px) {
+  .five-grid, .step-grid { grid-template-columns: 1fr !important; }
+}
+</style>
+
+</body>
+</html>

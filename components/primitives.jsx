@@ -374,8 +374,20 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
             </a>
           ))}
           <div className="nav-mobile-divider"></div>
+          <a className="nav-mobile-link" href="litepaper.html" onClick={closeMenu}>
+            <span>Litepaper</span>
+          </a>
+          <a className="nav-mobile-link" href="tokenomics.html" onClick={closeMenu}>
+            <span>Tokenomics</span>
+          </a>
+          <a className="nav-mobile-link" href="toc.html" onClick={closeMenu}>
+            <span>Theory of change</span>
+          </a>
           <a className="nav-mobile-link" href="sdg.html" onClick={closeMenu}>
             <span>SDG alignment</span>
+          </a>
+          <a className="nav-mobile-link" href="investors/" onClick={closeMenu}>
+            <span>Investor brief</span>
           </a>
           <a className="nav-mobile-link" href="https://github.com/DeCleanup-Network" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
             <span>GitHub</span>

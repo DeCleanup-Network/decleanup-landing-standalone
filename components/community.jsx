@@ -297,10 +297,11 @@ function SiteFooter() {
           </div>
 
           <FooterCol title="Resources" links={[
-            ["Litepaper", "https://decleanup.net/litepaper"],
-            ["Tokenomics", "https://decleanup.net/tokenomics"],
-            ["Theory of change", "https://decleanup.net/toc"],
+            ["Litepaper", "litepaper.html"],
+            ["Tokenomics", "tokenomics.html"],
+            ["Theory of change", "toc.html"],
             ["SDG alignment", "sdg.html"],
+            ["Investor brief", "investors/"],
             ["Publications", "https://paragraph.com/@decleanupnet"],
           ]} />
           <FooterCol title="Technical" links={[

@@ -17,3 +17,6 @@ node_modules
 
 # Local Claude config (machine-specific permissions)
 .claude/settings.local.json
+
+# Internal research — not for the public repo
+docs/research/

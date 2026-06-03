@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0a0a" />
+<meta name="color-scheme" content="dark light" />
+
+<title>Litepaper — DeCleanup Network</title>
+<meta name="description" content="DeCleanup Network Litepaper — infrastructure for verifiable, governable, and fundable environmental impact. Turn cleanups into proof. Turn proof into funding." />
+<meta name="author" content="DeCleanup Network" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://decleanup-network.vercel.app/litepaper" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="DeCleanup Network" />
+<meta property="og:title" content="Litepaper — DeCleanup Network" />
+<meta property="og:description" content="Infrastructure for verifiable, governable, and fundable environmental impact. Turn cleanups into proof. Turn proof into funding." />
+<meta property="og:url" content="https://decleanup-network.vercel.app/litepaper" />
+<meta property="og:image" content="https://decleanup-network.vercel.app/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@DeCleanupNet" />
+<meta name="twitter:title" content="Litepaper — DeCleanup Network" />
+<meta name="twitter:description" content="Infrastructure for verifiable, governable, and fundable environmental impact." />
+<meta name="twitter:image" content="https://decleanup-network.vercel.app/og-image.jpg" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://decleanup-network.vercel.app/litepaper#webpage",
+      "url": "https://decleanup-network.vercel.app/litepaper",
+      "name": "Litepaper — DeCleanup Network",
+      "description": "DeCleanup Network Litepaper — infrastructure for verifiable, governable, and fundable environmental impact.",
+      "isPartOf": { "@id": "https://decleanup-network.vercel.app/#website" },
+      "about": { "@id": "https://decleanup-network.vercel.app/#organization" },
+      "primaryImageOfPage": "https://decleanup-network.vercel.app/og-image.jpg",
+      "inLanguage": "en",
+      "breadcrumb": { "@id": "https://decleanup-network.vercel.app/litepaper#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://decleanup-network.vercel.app/litepaper#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://decleanup-network.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Litepaper", "item": "https://decleanup-network.vercel.app/litepaper" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)">
+      <span style="width:28px;height:28px;border-radius:7px;background:var(--green);display:grid;place-items:center;font-family:var(--f-mono);font-weight:700;color:#0a0a0a;font-size:13px">D</span>
+      <span class="plakat" style="font-size:22px;letter-spacing:0.02em">DeCleanup<span style="color:var(--ink-faint)">.Net</span></span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="litepaper.html" style="color:var(--ink)">Litepaper</a>
+      <a class="nav-link" href="tokenomics.html">Tokenomics</a>
+      <a class="nav-link" href="toc.html">Theory of Change</a>
+      <a class="nav-link" href="sdg.html">SDG</a>
+    </div>
+    <a class="btn btn-primary btn-mono" href="index.html" style="min-height:38px;padding:0 18px;font-size:11px;text-decoration:none">← Back to home</a>
+  </div>
+</nav>
+
+<!-- Header strip -->
+<section style="padding-top:96px;border-bottom:1px solid var(--line-soft)">
+  <div class="wide" style="display:flex;justify-content:space-between;align-items:center;padding:10px 24px;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)">
+    <span class="meta" style="display:flex;align-items:center;gap:10px"><span class="live-dot"></span> Litepaper</span>
+    <span class="meta" style="color:var(--ink-faint)">PHASE 1 LIVE · BASE + CELO · OPEN INFRASTRUCTURE</span>
+    <span class="meta">REF · DECLEANUP.NET</span>
+  </div>
+</section>
+
+<!-- Hero -->
+<section class="section" style="padding-top:48px;padding-bottom:0">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px;display:flex;align-items:center;gap:12px">
+      <span style="width:32px;height:1px;background:var(--green)"></span>
+      <span>LITEPAPER · v.2</span>
+    </div>
+    <h1 class="plakat" style="font-size:clamp(46px, 8vw, 116px);margin:0;line-height:0.88;letter-spacing:0.005em">
+      Infrastructure for<br/>
+      <span style="color:var(--green)">verifiable</span>, governable<br/>
+      &amp; fundable impact.
+    </h1>
+    <p class="serif" style="font-size:clamp(20px, 2vw, 26px);color:var(--ink-mute);margin:clamp(44px,6vw,72px) 0 0;max-width:760px;line-height:1.4">
+      DeCleanup Network turns cleanups into proof — and turns proof into funding. We convert local environmental action into <span class="hl">independently verifiable, on-chain impact</span>.
+    </p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:32px">
+      <span class="chip"><span class="dot"></span> Phase 1 — Live</span>
+      <span class="chip"><span class="dot"></span> Base</span>
+      <span class="chip"><span class="dot"></span> Celo</span>
+      <span class="chip"><span class="dot"></span> Open-source</span>
+    </div>
+  </div>
+</section>
+
+<!-- Why DeCleanup Exists -->
+<section class="section">
+  <div class="container">
+    <div class="meta" style="margin-bottom:28px">01 · WHY DECLEANUP NETWORK EXISTS</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="two-col">
+      <div class="card">
+        <div class="meta" style="color:var(--ink-faint);margin-bottom:10px">THE PROBLEM</div>
+        <p class="serif" style="font-size:24px;line-height:1.3;margin:0;color:var(--ink)">
+          Cleanups happen — but there's <span class="hl">no credible proof</span> or transparent coordination.
+        </p>
+      </div>
+      <div class="card" style="border-color:color-mix(in oklch, var(--green) 40%, transparent)">
+        <div class="meta" style="color:var(--green);margin-bottom:10px">THE SOLUTION</div>
+        <p class="serif" style="font-size:24px;line-height:1.3;margin:0;color:var(--ink)">
+          Verifiable, incentivized, and transparently funded environmental action.
+        </p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:16px" class="two-col">
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:12px">DMRV — CREDIBLE PROOF</div>
+        <h3 class="plakat" style="font-size:26px;margin:0 0 12px;letter-spacing:0.02em">Data, Measurement, Reporting, Verification</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">
+          Every cleanup is captured with photos, location, and waste estimates; scored by AI and verified by the community; then minted as a permanent impact record. This creates a shared, machine-readable evidence base for funders, ESG reporting, and impact accounting.
+        </p>
+      </div>
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:12px">ONCHAIN IMMUTABILITY</div>
+        <h3 class="plakat" style="font-size:26px;margin:0 0 12px;letter-spacing:0.02em">Permanent records</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">
+          Records live on Base and Celo. They cannot be altered after verification, so funders and partners can trust that impact data is real and attributable — the backbone for rewards, Hypercerts, and future certification layers.
+        </p>
+      </div>
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:12px">INCENTIVES &amp; REPUTATION</div>
+        <h3 class="plakat" style="font-size:26px;margin:0 0 12px;letter-spacing:0.02em">Reward real work</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">
+          Participants earn $bDCU for verified cleanups and build reputation through streaks and verification activity. $cDCU on Celo ties reputation to governance, so long-term contributors have a voice in how the network and funding evolve.
+        </p>
+      </div>
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:12px">OPEN COORDINATION</div>
+        <h3 class="plakat" style="font-size:26px;margin:0 0 12px;letter-spacing:0.02em">Transparent funding</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">
+          Campaigns, proposals, and funding pools are governed transparently. Communities decide priorities; funders can trace capital to verified outcomes. No single gatekeeper — coordination and funding are open and auditable.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Mission -->
+<section class="section" style="background:var(--bg-elev)">
+  <div class="container">
+    <div class="meta" style="margin-bottom:28px">02 · THE MISSION</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)" class="mission-grid">
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:28px">
+        <h3 class="plakat" style="font-size:28px;margin:0 0 14px;color:var(--green);letter-spacing:0.02em">Verifiable Data</h3>
+        <p style="font-size:14px;color:var(--ink);margin:0 0 12px;line-height:1.6">We turn invisible cleanup efforts into standardized, onchain evidence. No more "trust me" — only "verify me."</p>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0;line-height:1.6">Geotagged photos, timestamps, and DMRV create immutable records on Base and Celo.</p>
+      </div>
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:28px">
+        <h3 class="plakat" style="font-size:28px;margin:0 0 14px;color:var(--green);letter-spacing:0.02em">Auditable Impact</h3>
+        <p style="font-size:14px;color:var(--ink);margin:0 0 12px;line-height:1.6">Traceable impact records compatible with Hypercerts. Funders see where capital goes and what outcomes it produced.</p>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0;line-height:1.6">AI + human verification reduces fraud; impact is attributed to real actors.</p>
+      </div>
+      <div style="border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:28px">
+        <h3 class="plakat" style="font-size:28px;margin:0 0 14px;color:var(--green);letter-spacing:0.02em">Governable Funding</h3>
+        <p style="font-size:14px;color:var(--ink);margin:0 0 12px;line-height:1.6">DAO-based allocation using linked tokens. Communities and funders decide how capital flows.</p>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0;line-height:1.6">Governance is tied to $cDCU and reputation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How Cleanups Become Proof -->
+<section class="section">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">03 · HOW CLEANUPS BECOME PROOF</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">Digital Monitoring, Reporting &amp; Verification</h2>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:640px;line-height:1.4">Every cleanup is accounted for — from a photo on the ground to a permanent record on-chain.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px" class="step-grid">
+      <div class="card">
+        <div class="figure-num" style="color:var(--green);font-size:48px">01</div>
+        <h4 class="plakat" style="font-size:22px;margin:14px 0 8px;letter-spacing:0.03em">Capture</h4>
+        <p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.55">Before / after photos + GPS location + waste estimate.</p>
+      </div>
+      <div class="card">
+        <div class="figure-num" style="color:var(--green);font-size:48px">02</div>
+        <h4 class="plakat" style="font-size:22px;margin:14px 0 8px;letter-spacing:0.03em">AI Scan</h4>
+        <p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.55">Automated waste detection and category scoring.</p>
+      </div>
+      <div class="card">
+        <div class="figure-num" style="color:var(--green);font-size:48px">03</div>
+        <h4 class="plakat" style="font-size:22px;margin:14px 0 8px;letter-spacing:0.03em">Verify</h4>
+        <p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.55">Community review catches edge cases and fraud.</p>
+      </div>
+      <div class="card">
+        <div class="figure-num" style="color:var(--green);font-size:48px">04</div>
+        <h4 class="plakat" style="font-size:22px;margin:14px 0 8px;letter-spacing:0.03em">Onchain</h4>
+        <p style="font-size:13px;color:var(--ink-mute);margin:0;line-height:1.55">Minted as a permanent Impact Record (Hypercert-compatible).</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-top:24px" class="two-col">
+      <div class="card" style="background:var(--bg)">
+        <div class="meta" style="color:var(--green);margin-bottom:16px">WHAT MAKES THIS DIFFERENT</div>
+        <ul class="mono" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;font-size:13px;color:var(--ink);letter-spacing:0.02em">
+          <li>↦ Evidence-based, not claim-based</li>
+          <li>↦ Machine-readable data for ESG and SDG reporting</li>
+          <li>↦ Portable across impact ecosystems</li>
+          <li>↦ Tamper-resistant verification trail</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--bg);display:flex;flex-direction:column;justify-content:center">
+        <div class="meta" style="color:var(--ink-faint);margin-bottom:18px">DATA FLOW</div>
+        <div class="mono" style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13px;color:var(--ink)">
+          <span class="chip">Phone</span>
+          <span style="color:var(--green)">→</span>
+          <span class="chip">AI + Verify</span>
+          <span style="color:var(--green)">→</span>
+          <span class="chip">Blockchain</span>
+          <span style="color:var(--green)">→</span>
+          <span class="chip">Funder dashboard</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The Ecosystem -->
+<section class="section" style="background:var(--bg-elev)">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">04 · THE ECOSYSTEM</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">Two ways to use DeCleanup</h2>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:560px;line-height:1.4">A lightweight mini app, or the full platform.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="two-col">
+      <div class="card" style="background:var(--bg)">
+        <span class="chain-pill base" style="margin-bottom:18px">Base</span>
+        <h3 class="plakat" style="font-size:30px;margin:0 0 10px;letter-spacing:0.02em">Mini App</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 20px;line-height:1.6">Lightweight entry for individuals via Farcaster or the Base app.</p>
+        <ul class="mono" style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:10px;font-size:12px;color:var(--ink)">
+          <li>↦ Photo-based logging</li>
+          <li>↦ Quick verification</li>
+          <li>↦ $bDCU rewards</li>
+        </ul>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-ghost btn-mono" href="https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards" target="_blank" rel="noopener" style="min-height:40px;font-size:11px">Open on Farcaster ↗</a>
+          <a class="btn btn-ghost btn-mono" href="https://base.app/app/miniapp.decleanup.net" target="_blank" rel="noopener" style="min-height:40px;font-size:11px">Open on Base app ↗</a>
+        </div>
+      </div>
+      <div class="card" style="background:var(--bg)">
+        <span class="chain-pill celo" style="margin-bottom:18px">Celo</span>
+        <h3 class="plakat" style="font-size:30px;margin:0 0 10px;letter-spacing:0.02em">Full Platform</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 20px;line-height:1.6">Full platform for individuals, NGOs and organizers. Governance and coordination.</p>
+        <ul class="mono" style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:10px;font-size:12px;color:var(--ink)">
+          <li>↦ Geolocation and maps</li>
+          <li>↦ Impact reports (Hypercerts)</li>
+          <li>↦ Funding governance</li>
+        </ul>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-ghost btn-mono" href="https://dapp.decleanup.net" target="_blank" rel="noopener" style="min-height:40px;font-size:11px">Explore Celo dApp ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Two Tokens -->
+<section class="section">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">05 · TWO TOKENS</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 40px;letter-spacing:0.02em">One for action. One for proof.</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="two-col">
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+          <img src="public/token-icon.png" alt="$bDCU token" style="width:40px;height:40px;border-radius:50%" />
+          <div>
+            <div class="plakat" style="font-size:30px;letter-spacing:0.02em">$bDCU</div>
+            <div class="meta" style="color:var(--ink-faint)">UTILITY TOKEN · BASE</div>
+          </div>
+        </div>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 16px;line-height:1.6">The "action token." Used on Base for cleanup rewards, streaks &amp; referrals, and verifier staking. Liquid &amp; tradable.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+          <a class="btn btn-ghost btn-mono" href="https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x30171b7014c02229497CdE6745DD3aD821F12b07" target="_blank" rel="noopener" style="min-height:38px;font-size:11px">Swap ETH / $bDCU ↗</a>
+          <a class="btn btn-ghost btn-mono" href="https://app.uniswap.org/swap?chain=base&inputCurrency=0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2&outputCurrency=0x30171b7014c02229497CdE6745DD3aD821F12b07" target="_blank" rel="noopener" style="min-height:38px;font-size:11px">Swap USDT / $bDCU ↗</a>
+        </div>
+        <a class="mono" href="https://basescan.org/token/0x30171b7014c02229497CdE6745DD3aD821F12b07" target="_blank" rel="noopener" style="font-size:11px;color:var(--green);text-decoration:none;letter-spacing:0.04em;word-break:break-all">$bDCU: 0x30171b7014c02229497CdE6745DD3aD821F12b07 ↗</a>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+          <img src="public/token-icon.png" alt="$cDCU token" style="width:40px;height:40px;border-radius:50%;filter:hue-rotate(40deg) saturate(1.4)" />
+          <div>
+            <div class="plakat" style="font-size:30px;letter-spacing:0.02em">$cDCU</div>
+            <div class="meta" style="color:var(--ink-faint)">GOVERNANCE · CELO</div>
+          </div>
+        </div>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 16px;line-height:1.6">Reputation, governance &amp; advanced utilities. Earned through verified cleanups, non-tradable (reputation-linked), with governance via Gardens.fund and verifier roles, streaks, analytics.</p>
+        <div class="mono" style="font-size:11px;color:var(--ink-faint);letter-spacing:0.06em;border:1px dashed var(--line);border-radius:8px;padding:12px 14px;margin-top:4px">
+          CELO dAPP — GOVERNANCE IN DEVELOPMENT (INACTIVE)
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:24px">
+      <a class="btn btn-ghost btn-mono" href="tokenomics.html" style="font-size:11px">Read full tokenomics →</a>
+    </div>
+  </div>
+</section>
+
+<!-- From Action to Infrastructure -->
+<section class="section" style="background:var(--bg-elev)">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">06 · FROM ACTION TO INFRASTRUCTURE</div>
+    <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 40px;letter-spacing:0.02em">The gap we close</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="two-col">
+      <div class="card" style="background:var(--bg)">
+        <div class="meta" style="color:var(--ink-faint);margin-bottom:16px">WITHOUT DECLEANUP</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;font-size:14px;color:var(--ink-mute);line-height:1.5">
+          <li>— Cleanups happen but stay invisible</li>
+          <li>— Funders rely on trust and reports</li>
+          <li>— Data sits in spreadsheets</li>
+          <li>— Volunteers get nothing</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--bg);border-color:color-mix(in oklch, var(--green) 40%, transparent)">
+        <div class="meta" style="color:var(--green);margin-bottom:16px">WITH DECLEANUP</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;font-size:14px;color:var(--ink);line-height:1.5">
+          <li>↦ Every cleanup becomes a verified record</li>
+          <li>↦ Funders verify outcomes before funding</li>
+          <li>↦ Data travels across ecosystems</li>
+          <li>↦ Contributors build reputation and earn rewards</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:40px">
+      <div class="meta" style="margin-bottom:18px;color:var(--ink-faint)">SDG ALIGNMENT</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span class="chip"><span class="dot"></span> SDG 11 · Sustainable Cities</span>
+        <span class="chip"><span class="dot"></span> SDG 12 · Responsible Consumption</span>
+        <span class="chip"><span class="dot"></span> SDG 13 · Climate Action</span>
+        <span class="chip"><span class="dot"></span> SDG 14 · Life Below Water</span>
+        <span class="chip"><span class="dot"></span> SDG 15 · Life on Land</span>
+      </div>
+      <div style="margin-top:18px"><a class="btn btn-ghost btn-mono" href="sdg.html" style="font-size:11px">Full SDG alignment →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- Theory of Change summary -->
+<section class="section">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">07 · THEORY OF CHANGE</div>
+    <p class="serif" style="font-size:clamp(22px,2.6vw,30px);color:var(--ink);margin:0 0 32px;max-width:880px;line-height:1.4">
+      Our theory of change describes how DeCleanup turns invisible cleanup action into visible, verified impact: from the problem of unverified efforts, through the engine of DMRV and onchain records, to outcomes that funders and communities can trust and scale.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="step-grid">
+      <div class="card" style="background:var(--bg-elev)">
+        <div class="meta" style="color:var(--ink-faint);margin-bottom:10px">PROBLEM</div>
+        <h4 class="plakat" style="font-size:24px;margin:0 0 12px;letter-spacing:0.02em">Results are invisible</h4>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0;line-height:1.6">Inconsistent data · Hard to verify · Undercapitalized</p>
+      </div>
+      <div class="card" style="background:var(--bg-elev)">
+        <div class="meta" style="color:var(--green);margin-bottom:10px">THE ENGINE</div>
+        <h4 class="plakat" style="font-size:24px;margin:0 0 12px;letter-spacing:0.02em">DMRV + onchain</h4>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0;line-height:1.6">Inputs: people &amp; funds → Activities: events &amp; DMRV → Outputs: verified data</p>
+      </div>
+      <div class="card" style="background:var(--bg-elev)">
+        <div class="meta" style="color:var(--ink-faint);margin-bottom:10px">IMPACT</div>
+        <h4 class="plakat" style="font-size:24px;margin:0 0 12px;letter-spacing:0.02em">Credible action</h4>
+        <p class="mono" style="font-size:11px;color:var(--ink-dim);margin:0;line-height:1.6">Short: documented → Mid: funded → Long: infrastructure</p>
+      </div>
+    </div>
+    <div style="margin-top:24px"><a class="btn btn-ghost btn-mono" href="toc.html" style="font-size:11px">Read the full theory of change →</a></div>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section class="section" style="background:var(--bg-elev)">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">08 · WHERE WE ARE &amp; WHERE WE'RE GOING</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="step-grid">
+      <div class="card" style="background:var(--bg);border-color:color-mix(in oklch, var(--green) 40%, transparent)">
+        <div class="meta" style="color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:8px"><span class="live-dot"></span> PHASE 1 — LIVE</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--ink);line-height:1.5">
+          <li>↦ Base Mini App</li>
+          <li>↦ $bDCU rewards</li>
+          <li>↦ Basic verification</li>
+          <li>↦ Farcaster integration</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--bg)">
+        <div class="meta" style="color:var(--yellow);margin-bottom:14px">PHASE 2 — IN DEV</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--ink-mute);line-height:1.5">
+          <li>↦ Celo Full dApp</li>
+          <li>↦ Impact Products v2</li>
+          <li>↦ Hypercert records</li>
+          <li>↦ Gardens governance</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--bg)">
+        <div class="meta" style="color:var(--ink-faint);margin-bottom:14px">PHASE 3 — FUTURE</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--ink-dim);line-height:1.5">
+          <li>— AI-powered verification</li>
+          <li>— RWI Rank (reputation)</li>
+          <li>— Impact staking</li>
+          <li>— Cross-campaign analytics</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="background:var(--bg);margin-top:16px">
+      <div class="meta" style="color:var(--green);margin-bottom:14px">CURRENT FOCUS · Q1–Q2 2026</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px 32px" class="two-col">
+        <div class="mono" style="font-size:12px;color:var(--ink);line-height:1.5">↦ Onboarding first 50 verified cleanups</div>
+        <div class="mono" style="font-size:12px;color:var(--ink);line-height:1.5">↦ Celo governance testing</div>
+        <div class="mono" style="font-size:12px;color:var(--ink);line-height:1.5">↦ AI trash detection (YOLOv8 on TACO dataset)</div>
+        <div class="mono" style="font-size:12px;color:var(--ink);line-height:1.5">↦ Coordinator tools for campaign management</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- For Coordinators & Funders -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="two-col">
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:14px">09 · FOR COORDINATORS</div>
+        <h3 class="plakat" style="font-size:30px;margin:0 0 12px;letter-spacing:0.02em">Build campaigns that prove themselves</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 20px;line-height:1.6">In-person cleanups create real impact and stronger communities. Coordinating them with DeCleanup means every event produces verified, onchain records — participants get recognition and funders can support what's actually happening on the ground.</p>
+        <ul style="list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:14px">
+          <li><span class="mono" style="font-size:12px;color:var(--ink)">↦ Create campaigns</span><br/><span style="font-size:13px;color:var(--ink-dim)">Set location, goals, and participant criteria. Build auditable impact records.</span></li>
+          <li><span class="mono" style="font-size:12px;color:var(--ink)">↦ Submit proposals</span><br/><span style="font-size:13px;color:var(--ink-dim)">Shape network rules and priorities. Decisions happen onchain.</span></li>
+          <li><span class="mono" style="font-size:12px;color:var(--ink)">↦ Apply for funding</span><br/><span style="font-size:13px;color:var(--ink-dim)">Equipment, logistics, and organizer support. Pools governed by $cDCU holders.</span></li>
+        </ul>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-primary btn-mono" href="https://t.me/decleanup" target="_blank" rel="noopener" style="min-height:40px;font-size:11px">Start coordinating ↗</a>
+          <a class="btn btn-ghost btn-mono" href="mailto:decentralizedcleanup@gmail.com" style="min-height:40px;font-size:11px">Email us</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="meta" style="color:var(--green);margin-bottom:14px">10 · FOR FUNDERS</div>
+        <h3 class="plakat" style="font-size:30px;margin:0 0 12px;letter-spacing:0.02em">Fund action, not promises</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 20px;line-height:1.6">DeCleanup turns cleanup action into verifiable, onchain evidence. Funders get tamper-resistant records instead of self-reported claims, reusable data for ESG and SDG reporting, and a say in how pools and priorities are set through governance.</p>
+        <ul style="list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:14px">
+          <li><span class="mono" style="font-size:12px;color:var(--ink)">↦ Auditable outcomes</span><br/><span style="font-size:13px;color:var(--ink-dim)">Tamper-resistant records, not self-reported claims.</span></li>
+          <li><span class="mono" style="font-size:12px;color:var(--ink)">↦ Reusable data</span><br/><span style="font-size:13px;color:var(--ink-dim)">Structured for ESG, SDG, and impact accounting.</span></li>
+          <li><span class="mono" style="font-size:12px;color:var(--ink)">↦ Governance voice</span><br/><span style="font-size:13px;color:var(--ink-dim)">$cDCU holders shape pool criteria and priorities.</span></li>
+        </ul>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-primary btn-mono" href="https://giveth.io/project/decentralized-cleanup-network" target="_blank" rel="noopener" style="min-height:40px;font-size:11px">Donate on Giveth ↗</a>
+          <a class="btn btn-ghost btn-mono" href="https://t.me/decleanup" target="_blank" rel="noopener" style="min-height:40px;font-size:11px">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Closing -->
+<section class="section" style="background:var(--bg-elev)">
+  <div class="container" style="text-align:center">
+    <div class="meta" style="margin-bottom:20px;color:var(--green)">NOT HYPE. INFRASTRUCTURE.</div>
+    <h2 class="plakat" style="font-size:clamp(40px,7vw,96px);margin:0 auto 24px;line-height:0.9;max-width:1000px">
+      Open, SDG-aligned infrastructure for turning real work into <span style="color:var(--green)">verifiable, fundable outcomes</span>.
+    </h2>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px">
+      <a class="btn btn-primary" href="https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards" target="_blank" rel="noopener">Start on Base ↗</a>
+      <a class="btn btn-ghost" href="https://dapp.decleanup.net" target="_blank" rel="noopener">Test on Celo ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <div class="meta">© 2026 DECLEANUP NETWORK · OPEN-SOURCE · MIT</div>
+      <div class="meta" style="display:flex;gap:24px;flex-wrap:wrap">
+        <a href="tokenomics.html" style="color:var(--ink-mute);text-decoration:none">TOKENOMICS</a>
+        <a href="toc.html" style="color:var(--ink-mute);text-decoration:none">THEORY OF CHANGE</a>
+        <span style="color:var(--ink-faint)">BUILT ON CELO + BASE</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+@media (max-width: 860px) {
+  .two-col, .step-grid, .mission-grid { grid-template-columns: 1fr !important; }
+  .nav-links { display: none; }
+}
+@media (max-width: 1024px) {
+  .step-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+</style>
+
+</body>
+</html>
