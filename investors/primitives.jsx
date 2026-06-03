@@ -85,8 +85,10 @@ function Footer() {
           <FooterCol title="Protocol" links={[
             ["Main site", "https://decleanup.net"],
             ["Litepaper", "https://decleanup.net/litepaper"],
+            ["Tokenomics", "https://decleanup.net/tokenomics"],
+            ["Theory of change", "https://decleanup.net/toc"],
+            ["SDG alignment", "https://decleanup.net/sdg"],
             ["GitHub", "https://github.com/DeCleanup-Network"],
-            ["SDG alignment", "https://decleanup.net/toc"],
           ]} />
           <FooterCol title="Talk to us" links={[
             ["Email founders", CONTACT.email],
