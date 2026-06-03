@@ -100,16 +100,16 @@ function Hero({ onLaunch }) {
 
               <div style={{ display: "flex", gap: 12, marginTop: 28, flexWrap: "wrap" }}>
                 <button className="btn btn-primary" onClick={onLaunch}>
-                  Start cleaning
+                  Start Cleaning
                 </button>
                 <a className="btn btn-ghost" href="#how">
-                  How it works
+                  How It Works
                 </a>
               </div>
             </div>
 
             {/* Live network metrics — cleanups / weight removed / weight recycled.
-                Pulls from /api/impact/global; shows "—" + "coming Q4" until mainnet indexes. */}
+                Pulls from /api/impact/global; shows "—" until verifications are indexed. */}
             <div style={{
               marginTop: 40,
               display: "grid",
@@ -230,7 +230,7 @@ function Kpi({ label, value, sub, isLive }) {
           marginBottom: 8,
         }}><span className="live-dot"></span> Live · onchain</span>
       ) : (
-        <span className="coming-eyebrow">Live · coming Q4</span>
+        <span className="coming-eyebrow">Live · onchain</span>
       )}
       <div style={{ fontSize: "clamp(34px, 4vw, 52px)", lineHeight: 0.9 }}>
         <Splitflap value={value} />

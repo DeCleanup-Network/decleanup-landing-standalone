@@ -7,20 +7,39 @@ const { useState, useEffect, useRef } = React;
 // ---- Brand source of truth (item 01, 02 + name rules) ----
 const BRAND = {
   name: "DeCleanup Network",
-  app: { dapp: "DeCleanup dApp", platform: "DeCleanup platform", mini: "DeCleanup mini app" },
+  app: {
+    rewards: "DeCleanup Rewards",
+    dapp: "DeCleanup dApp",
+    platform: "DeCleanup platform",
+    mini: "DeCleanup mini app",
+  },
 };
 
 const TOKENS = {
   base: { symbol: "$bDCU", chain: "Base",  color: "#0052FF" },
-  celo: { symbol: "$cDCU", chain: "Celo",  color: "#FCFF52" },
+  celo: { symbol: "$cDCU", chain: "Celo",  color: "#FAFF00" },
+};
+
+const CDCU_GOVERNANCE = {
+  participate: "250 $cDCU unlocks governance participation",
+  full: "500 $cDCU unlocks full governance participation",
+};
+
+const LINKS = {
+  cDCU: {
+    contract: "0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1",
+    celoscan: "https://celoscan.io/token/0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1",
+    governance: "https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960",
+    governanceTiers: CDCU_GOVERNANCE,
+  },
 };
 
 const GLOSSARY = {
   "Field Ledger": "A live, onchain record of cleanup events that have been verified by the DeCleanup Network. Each entry includes location, timestamp, and proof of work.",
   "Protocol V2":  "The second version of DeCleanup Network's verification and reward protocol. V2 adds dual-chain support (Base + Celo), Hypercert-based impact reports, and onchain governance.",
   "DMRV":         "Digital Monitoring, Reporting, and Verification. The system that turns a real-world cleanup action into a tamper-proof digital record.",
-  "$bDCU":        "The Base network reward token earned by completing verified cleanups through the DeCleanup mini app on Farcaster or the Base app.",
-  "$cDCU":        "The Celo network reward token earned by completing verified cleanups through the full DeCleanup dApp on Celo.",
+  "$bDCU":        "The Base network reward token earned by completing verified cleanups through DeCleanup Rewards on Farcaster or the Base app.",
+  "$cDCU":        "The Celo proof token (contract 0x34d6…9bfc1) earned through verified cleanups on the DeCleanup dApp. Holders vote on funding via Gardens on Celo.",
   "Hypercert":    "An onchain impact certificate that records a contributor's verified environmental work. Permanent, transferable proof of cleanup participation.",
   "onchain":      "Data or transactions recorded directly on a blockchain. One word, no hyphen.",
   "Pilot Partner":"An organization that participated in DeCleanup Network's 2024 testing phase. Current partners: HEM Japan and Pestathon (Nigeria).",
@@ -341,7 +360,7 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
               </svg>
             )}
           </button>
-          <button className="btn btn-primary btn-mono nav-cta" onClick={onLaunch} style={{ minHeight: 44, padding: "0 18px", fontSize: 11 }}>
+          <button className="btn btn-primary btn-compact nav-cta" onClick={onLaunch}>
             <span className="nav-cta-full">Start Cleaning</span>
             <span className="nav-cta-short">Start</span>
           </button>
@@ -401,7 +420,7 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
             style={{ width: "100%", marginBottom: 14 }}
             onClick={() => { closeMenu(); onLaunch(); }}
           >
-            Start cleaning
+            Start Cleaning
           </button>
           <span className="meta">DECLEANUP NETWORK · OPEN-SOURCE · MIT</span>
         </div>
@@ -437,21 +456,21 @@ function StartModal({ open, onClose }) {
         <div style={{ display: "grid", gap: 10 }}>
           <ChoiceLink
             href="https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards"
-            label="Mini app on Farcaster"
-            sub="Fastest. Log a cleanup in under a minute"
+            label="DeCleanup Rewards"
+            sub="Farcaster mini app · log a cleanup in under a minute"
             tag="BASE" tagColor="#0052FF"
           />
           <ChoiceLink
             href="https://base.app/app/miniapp.decleanup.net"
-            label="Mini app on Base"
-            sub="Native to the Base app environment"
+            label="DeCleanup Rewards"
+            sub="Base app · same rewards on Base"
             tag="BASE" tagColor="#0052FF"
           />
           <ChoiceLink
             href="https://dapp.decleanup.net"
-            label="Full platform"
-            sub="For organisers, NGOs & geolocated events"
-            tag="CELO" tagColor="#FCFF52"
+            label="DeCleanup dApp"
+            sub="Celo platform for organisers, NGOs & geolocated events"
+            tag="CELO" tagColor="#FAFF00"
           />
         </div>
         <p className="meta" style={{ marginTop: 20, textAlign: "center" }}>OPENS IN A NEW TAB</p>
@@ -624,4 +643,4 @@ function SectionHead({ marker, title, lede, align = "left" }) {
   );
 }
 
-Object.assign(window, { Chip, Tag, MetaLine, Nav, StartModal, ContactModal, ChoiceLink, SectionHead, img, Term, Splitflap, RecTimestamp, BRAND, TOKENS, GLOSSARY, IMPACT_LIVE, useImpactStats });
+Object.assign(window, { Chip, Tag, MetaLine, Nav, StartModal, ContactModal, ChoiceLink, SectionHead, img, Term, Splitflap, RecTimestamp, BRAND, TOKENS, LINKS, CDCU_GOVERNANCE, GLOSSARY, IMPACT_LIVE, useImpactStats });

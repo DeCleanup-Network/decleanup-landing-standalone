@@ -73,31 +73,28 @@
 - **Verified** in local preview: all pages render, no console errors; sdg nav fits desktop with no overflow; every canonical = decleanup.net/<path>; investor footer SDG → /sdg; doc footers carry the uniform link set.
 
 ### Ninth-round — prod fixes: investors blank page, compliance wording, doc cross-linking (2026-06-03)
-- **FIXED the blank/black `/investors` page in production.** Root cause: the sub-app's `index.html` loaded its scripts/CSS with **relative** paths (`src="data.jsx"`, `investors.css`) and `img()` returned relative `public/...`. Served at the clean URL `/investors` (no trailing slash, `cleanUrls:true` + `trailingSlash:false`), the browser resolves those against the **site root** → `/data.jsx` 404 → React never mounts → blank page. (Verified live: `www.decleanup.net/data.jsx` = 404, `/investors/data.jsx` = 200.) Locally it worked only because the preview was loaded at `/investors/index.html`. Fix: made all asset paths **absolute** — `/investors/*.jsx`, `/investors/investors.css`, favicon, and `img = (p) => "/investors/" + …`. Now resolves the same regardless of trailing slash.
-- **Domain is served on `www.decleanup.net`** (apex `decleanup.net` 301-redirects to www), but canonicals say `https://decleanup.net`. Flagged in KNOWN_ISSUES — fix is a Vercel domain setting (make apex primary so www→apex), not a code change.
-- **Compliance wording.** Renamed footer "Invest in token" → "Trade $DCU on Uniswap" (neutral, avoids implying an investment offer). Added a conservative disclaimer ("nothing here is financial/investment/legal advice or an offer/solicitation…") to the homepage footer and to the litepaper + tokenomics footers (token-bearing pages). **Wording is a placeholder — needs lawyer review.**
-- **Gardens.fund** footer link: removed "(soon)", pointed to the live garden `https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960`.
-- **Doc cross-linking.** Added "Investors" to the top nav of litepaper/tokenomics/toc/sdg so the investor brief is reachable from every doc page (was footer-only → felt "orphaned").
-- **SEO audit (clean).** Every page has exactly one canonical / og:title / og:image / og:url / twitter:card / JSON-LD / description — no duplicates; all og:url match canonical on decleanup.net.
-- **Cookies/compliance banner.** Audited the landing code: **no analytics, no cookies, no localStorage, no trackers** are set (only Google Fonts + unpkg CDN, which set no cookies). So a consent banner is **not legally required as-is**. Recommendation pending: add a Privacy Policy + Cookie notice page (footer still shows "Terms (soon) → #") before adding any analytics; the moment a tracker is introduced, a consent banner becomes mandatory (GDPR/ePrivacy).
+- **FIXED the blank/black `/investors` page in production.** Root cause: the sub-app's `index.html` loaded its scripts/CSS with **relative** paths. Served at `/investors` (no trailing slash), the browser resolves those against the site root and 404s. Fix: absolute `/investors/*` paths and `img = (p) => "/investors/" + …`.
+- **Compliance wording.** Renamed footer "Invest in token" → "Trade $DCU on Uniswap". Added conservative disclaimer to homepage + token-bearing doc footers (placeholder — needs lawyer review).
+- **Gardens.fund** footer link pointed to the live garden. **Doc cross-linking:** added "Investors" to doc-page top nav.
+- **SEO audit (clean).** **Cookies/compliance banner:** no analytics/cookies/trackers as-is; Privacy Policy now live at `privacy.html`.
 
 ### Tenth-round — homepage discoverability: Resources strip + Investors band + nav (2026-06-03)
-- **Problem (Paul):** litepaper / tokenomics / theory-of-change / investor-brief were only reachable from the footer; investors especially had no presence on the landing.
-- **Added two homepage sections** (`components/community.jsx`, rendered in `app.jsx` between `SdgStrip` and `JoinSection`):
-  - `ResourcesSection` (`#resources`) — a "Read the protocol" card strip (4 cards: Litepaper, Tokenomics, Theory of Change, SDG), reusing the `.sdg-grid` class so it's 4-up desktop / 2-up mobile.
-  - `InvestorsSection` (`#investors`) — a dedicated "For investors & funders / Back impact you can prove." band with two CTAs ("Read the investor brief →" `/investors`, "Talk to the founders" mailto) and the not-an-offer disclaimer inline.
-- **Navbar:** added `Docs → #resources` and `Investors → #investors` to `navLinks` (primitives.jsx). 7 desktop nav items verified to fit with no overflow down to 890px (hamburger still takes over ≤860px).
-- **Bug caught in review:** the investor heading "…prove." with `maxWidth:720` orphaned the trailing period onto its own line (looked like a stray bullet). Fixed by removing the maxWidth and moving the period inside the gradient `<span>prove.</span>`.
-- **Verified** desktop (full + 890px) and mobile (375px): both sections render, cards/CTAs correct, 0 horizontal overflow, no console errors.
+- Added `ResourcesSection` (`#resources`) and `InvestorsSection` (`#investors`) on the homepage. Navbar: `Docs → #resources`, `Investors → #investors`.
 
 ### Eleventh-round — footer rework + remove ALL arrow glyphs (2026-06-03)
-- **Contact form / Telegram bot: NOT built.** Paul has no Vercel access (cofounder does), so we dropped it. The bot token he pasted was never committed; he should still revoke it (exposed in chat). A secure version would need a serverless `/api/contact` + the token in a Vercel env var (never in this public repo).
-- **Footer "Technical" column removed** (`components/community.jsx`) — Dev docs / User guide / Terms (soon) don't exist. **GitHub moved** into the "Connect" social row (Telegram · X · Farcaster · GitHub). Footer grid 4→3 columns (`1.6fr 1fr 1fr`); collapses to 1 column on mobile as before.
-- **NO arrows in the design (hard rule from Paul — "AI slop").** Removed every visible arrow glyph (`→ ↗ ← `) site-wide: homepage (the Resources/Investors CTAs I'd just added), litepaper, tokenomics, toc, sdg, and the investors sub-app. Decorative CTA/external/back arrows → plain text. **Semantic** flow arrows kept their meaning via the site's `·` middot or the word "to"/"=" (e.g. litepaper DATA FLOW chips, "Inputs to Outputs", "trusted to trustless", "5 cleanups = 500 $cDCU", "BASE TO CELO"). Only `→` left are in JS code comments (not rendered). Saved as a memory rule. Verified 0 visible arrows on every page, all still render, no console errors.
+- Footer Technical column removed; GitHub moved to Connect row. **No visible arrow glyphs** site-wide (decorative CTAs use plain text).
 
 ### Twelfth-round — contact form → email (no backend), Web3Forms (2026-06-03)
-- **Telegram dropped, form goes to email** (Paul, no Vercel access). Decision: send via **Web3Forms** — a no-backend form API. The site posts to `https://api.web3forms.com/submit` with a **public access key** that lives in client code (by design — it's not a secret; it can only deliver to the email it's registered to). So everything works straight from a GitHub push, no Vercel env vars, no server.
-- **Why not put a Telegram bot token in code:** repo is PUBLIC + static site (token visible to everyone in repo and in every browser). A leaked bot token = full bot takeover. Telegram's `sendMessage` requires that token, so any no-backend Telegram path would expose it. Web3Forms sidesteps this (its key is purpose-built to be public).
-- **Built a reusable `ContactModal`** on both apps: main site (`components/primitives.jsx`, controlled by `App` state, opened from the InvestorsSection "Talk to the founders" button + a new footer "Contact founders") and the investor sub-app (`investors/primitives.jsx`, self-managed, opened via a `window` `dcu:contact` event from the rail CTA, the hero "Contact the founders", and the ContactSection). Fields: Name · Contact* · Organization · Interest (Investing / Accelerator / Partnership / Organizing a cleanup / Community / Other) · Message*. Honeypot anti-spam, client validation, graceful error → "email hello@decleanup.net" fallback, success state. No arrows (per the design rule).
-- **REMAINING STEP for Paul:** get a free Web3Forms access key for `hello@decleanup.net` at web3forms.com, then replace the placeholder `PASTE_YOUR_WEB3FORMS_ACCESS_KEY` in BOTH `components/primitives.jsx` and `investors/primitives.jsx` (same string), commit. Until then the form shows the "email us" fallback. **Privacy:** Web3Forms is a third-party processor of submissions — worth a line in a future privacy policy.
-- Verified: both modals open, render in-palette, validate, submit (placeholder key → graceful error fallback as expected), no console errors, 0 arrows.
+- **`ContactModal`** on main site + investor sub-app via Web3Forms. Replace `PASTE_YOUR_WEB3FORMS_ACCESS_KEY` in both `primitives.jsx` files when ready.
+
+### Thirteenth-round — $cDCU contract + Gardens governance links (2026-06-03)
+- **Canonical onchain refs.** $cDCU on Celo + Gardens governance wired via `LINKS.cDCU` across site, doc pages, and investor memo.
+
+### Fourteenth-round — Terms + Privacy subpages (2026-06-03)
+- **`terms.html`** and **`privacy.html`** via `scripts/build-terms-page.mjs`, `scripts/build-privacy-page.mjs`, and `stylesheets/legal.css`. Footer links in Resources column + sitemap.
+
+### Fifteenth-round — merged app privacy policies + Terms UX (2026-06-03)
+- **`privacy.html` expanded** with Farcaster mini app + Celo dApp sections. Terms rebuilt with hero, sticky sidebar, green links.
+
+### Sixteenth-round — unified brand lockup on all subpages (2026-06-03)
+- **`scripts/doc-nav.mjs`** shared header/footer logo lockup (icon + wordmark PNGs) for all doc pages, legal pages, and investors. Replaced green “D” placeholders site-wide.

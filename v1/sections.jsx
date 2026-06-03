@@ -76,7 +76,7 @@ function WhyDeCleanup() {
             marginLeft: "auto",
             marginRight: "auto",
           }}>
-            <span className="hl-strong">DeCleanup changes that.</span>{" "}
+            <span className="hl-strong">DeCleanup Network changes that.</span>{" "}
             <span className="serif-italic" style={{ color: "var(--ink-mute)" }}>
               Every cleanup becomes verifiable proof. Every piece of trash becomes data. Every volunteer becomes fundable.
             </span>
@@ -132,7 +132,7 @@ function DmrvSection() {
               <span style={{ color: "var(--green)" }}>Reporting</span> &amp; <span style={{ color: "var(--green)" }}>Verification</span>.
             </h2>
             <p className="serif" style={{ fontSize: 20, lineHeight: 1.4, color: "var(--ink-mute)", margin: "0 0 28px" }}>
-              DeCleanup provides an open-source DMRV system that turns real-world cleanup actions into <span className="hl">trusted, auditable digital data</span>.
+              DeCleanup Network provides an open-source DMRV system that turns real-world cleanup actions into <span className="hl">trusted, auditable digital data</span>.
             </p>
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
@@ -323,7 +323,7 @@ function EcosystemSection() {
           />
           <EcoCard
             tag="CELO"
-            tagBg="#FCFF52"
+            tagBg="#FAFF00"
             tagColor="#0a0a0a"
             title="Full Platform"
             kicker="For organisers & NGOs"
@@ -331,10 +331,12 @@ function EcosystemSection() {
             features={[
               { k: "MAP",  v: "Geolocation & maps" },
               { k: "RPT",  v: "Hypercert impact reports" },
-              { k: "GOV",  v: "Funding governance" },
+              { k: "GOV",  v: "250 participate · 500 full" },
             ]}
             links={[
-              { label: "Explore Celo dApp", href: "https://dapp.decleanup.net" },
+              { label: "Start on Celo", href: "https://dapp.decleanup.net" },
+              { label: "Governance on Gardens", href: "https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" },
+              { label: "$cDCU contract", href: "https://celoscan.io/token/0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1" },
             ]}
             accent="var(--yellow)"
           />
@@ -412,7 +414,7 @@ function EcoCard({ tag, tagBg, tagColor = "#fff", title, kicker, body, features,
       <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "auto" }}>
         {links.map((l) => (
           <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
-            className="btn btn-ghost btn-mono"
+            className="btn btn-ghost"
             style={{ minHeight: 40, padding: "0 14px" }}>
             {l.label}
             <span style={{ fontFamily: "var(--f-mono)" }}>↗</span>

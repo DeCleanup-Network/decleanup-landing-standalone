@@ -53,16 +53,10 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
   return (
     <nav className="nav" style={{ borderBottomColor: scrolled ? "var(--line)" : "transparent" }}>
       <div className="nav-inner">
-        <a href="#top" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "var(--ink)" }}>
-          <span style={{
-            width: 28, height: 28, borderRadius: 7,
-            background: "var(--green)",
-            display: "grid", placeItems: "center",
-            fontFamily: "var(--f-mono)", fontWeight: 700,
-            color: "#0a0a0a",
-            fontSize: 13, letterSpacing: 0,
-          }}>D</span>
-          <span className="plakat" style={{ fontSize: 22, letterSpacing: "0.02em" }}>DeCleanup<span style={{ color: "var(--ink-faint)" }}>.Net</span></span>
+        <a href="#top" className="brand-lockup" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "var(--ink)" }}>
+          <img src={img("public/brand/logo-icon.png")} alt="" className="logo-icon" width={30} height={30} style={{ display: "block", borderRadius: 7 }} />
+          <img src={img("public/brand/logo-wordmark.png")} alt="DeCleanup Network" className="logo-wordmark" height={20} style={{ width: "auto" }} />
+          <span className="plakat logo-wordmark-text" style={{ fontSize: 22, letterSpacing: "0.02em" }}>DeCleanup<span style={{ color: "var(--ink-faint)" }}>.Net</span></span>
         </a>
         <div className="nav-links">
           <a className="nav-link" href="#what">What</a>
@@ -102,7 +96,7 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
               </svg>
             )}
           </button>
-          <button className="btn btn-primary btn-mono" onClick={onLaunch} style={{ minHeight: 38, padding: "0 18px", fontSize: 11 }}>
+          <button className="btn btn-primary btn-compact" onClick={onLaunch}>
             Start Cleaning ↗
           </button>
         </div>
@@ -148,9 +142,9 @@ function StartModal({ open, onClose }) {
           />
           <ChoiceLink
             href="https://dapp.decleanup.net"
-            label="Full platform"
-            sub="For organisers, NGOs & geolocated events"
-            tag="CELO" tagColor="#FCFF52"
+            label="Start on Celo"
+            sub="Full platform for organisers, NGOs & geolocated events"
+            tag="CELO" tagColor="#FAFF00"
           />
         </div>
         <p className="meta" style={{ marginTop: 20, textAlign: "center" }}>OPENS IN A NEW TAB</p>

@@ -18,6 +18,7 @@ REWRITES = {
     "/sections.jsx":       "/components/sections.jsx",
     "/tweaks-panel.jsx":   "/components/tweaks-panel.jsx",
     "/styles.css":         "/stylesheets/styles.css",
+    "/legal.css":          "/stylesheets/legal.css",
 }
 
 

@@ -1,6 +1,6 @@
 /* global React, MemoHead, ChainPill, HEADLINE_STATS, LEAD_FIGS, MARKET_GROWTH, PCX_FACT, REG, CONTACT, window */
 // ===========================
-// Investor memo — top: Masthead · 01 Category · 02 Why now · 03 Moat
+// Investor memo, top: Masthead · 01 Category · 02 Why now · 03 Moat
 // Data-forward, no field photography (those live on the landing).
 // ===========================
 
@@ -35,7 +35,7 @@ function Masthead({ thesis }) {
 
       <p className="masthead-note">
         This memo covers only what the public landing page does not: market, business model, comparables and token framing.
-        For the product itself — how a cleanup becomes verified impact — see <a href="https://decleanup.net" style={{ color: "var(--green)", textDecoration: "none" }}>decleanup.net</a>.
+        For the product itself, how a cleanup becomes verified impact, see <a href="https://decleanup.net" style={{ color: "var(--green)", textDecoration: "none" }}>decleanup.net</a>.
       </p>
     </section>
   );
@@ -49,7 +49,7 @@ function CategorySection() {
         num="01"
         kicker="The category"
         title={<>tRWI is the impact-sibling of <span className="accent">tokenized real-world assets.</span></>}
-        lede={<>Where RWA tokenizes a Treasury or a building, tRWI tokenizes an independently provable cleanup event — settled on rails investors already fund. A DeCleanup-originated framing, not yet an established market term.</>}
+        lede={<>Where RWA tokenizes a Treasury or a building, tRWI tokenizes an independently provable cleanup event, settled on rails investors already fund. A DeCleanup Network-originated framing, not yet an established market term.</>}
       />
 
       <div className="stat-grid" style={{ marginTop: 8 }}>
@@ -76,7 +76,7 @@ function CategorySection() {
           ))}
         </div>
         <p className="mono" style={{ fontSize: 11, color: "var(--ink-faint)", marginTop: 16, letterSpacing: "0.04em", lineHeight: 1.6 }}>
-          A credibility-starved market projected to grow ~4× this decade — exactly where a verification-first protocol can position.
+          A credibility-starved market projected to grow ~4× this decade, exactly where a verification-first protocol can position.
         </p>
       </div>
     </section>
@@ -91,7 +91,7 @@ function WhyNowSection() {
         num="02"
         kicker="Why now"
         title={<>Voluntary reporting becomes a <span className="accent">legal duty.</span></>}
-        lede="Buyers increasingly pay only for provable impact — just as regulation turns measurement into a legal obligation and the legacy way of proving it breaks down."
+        lede="Buyers increasingly pay only for provable impact, just as regulation turns measurement into a legal obligation and the legacy way of proving it breaks down."
       />
 
       <div className="two-col" style={{ marginTop: 8, gap: 40, gridTemplateColumns: "1.05fr 1fr", alignItems: "start" }}>
@@ -136,7 +136,7 @@ function WhyNowSection() {
   );
 }
 
-// ---------- 03 · MOAT (dMRV as prose — no re-drawn schematic) ----------
+// ---------- 03 · MOAT (dMRV as prose, no re-drawn schematic) ----------
 function MoatSection() {
   return (
     <section className="memo-sec" id="moat">
@@ -144,12 +144,12 @@ function MoatSection() {
         num="03"
         kicker="The moat"
         title={<>Provenance over <span className="accent">perception.</span></>}
-        lede={<>Each cleanup is turned into a geotagged, timestamped proof, signed and issued natively on-chain as a Hypercert — verifiable impact on <span className="hl">waste</span>, settled across two L2s.</>}
+        lede={<>Each cleanup is turned into a geotagged, timestamped proof, signed and issued natively on-chain as a Hypercert, verifiable impact on <span className="hl">waste</span>, settled across two L2s.</>}
       />
 
       <div className="moat-grid" style={{ marginTop: 8 }}>
-        <div className="moat-tile"><div className="k">No common standard</div><p className="v">Plastic credits have no worldwide standard. DeCleanup sets a verifiable, on-chain one.</p></div>
-        <div className="moat-tile"><div className="k">Born on-chain</div><p className="v">Native issuance with proof attached to every unit — not bridged paper credits.</p></div>
+        <div className="moat-tile"><div className="k">No common standard</div><p className="v">Plastic credits have no worldwide standard. DeCleanup Network sets a verifiable, on-chain one.</p></div>
+        <div className="moat-tile"><div className="k">Born on-chain</div><p className="v">Native issuance with proof attached to every unit, not bridged paper credits.</p></div>
         <div className="moat-tile"><div className="k">Audit-ready</div><p className="v">Every unit is geotagged, timestamped and independently checkable on-chain.</p></div>
       </div>
 

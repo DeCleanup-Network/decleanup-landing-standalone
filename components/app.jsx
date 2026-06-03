@@ -4,7 +4,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": "dark",
   "density": "default",
   "photo": "grit",
-  "accent": "#4ADE80"
+  "accent": "#58B12F"
 }/*EDITMODE-END*/;
 
 function App() {
@@ -269,9 +269,9 @@ function App() {
 
         <TweakSection title="Brand accent">
           <TweakColor value={t.accent} onChange={(v) => setTweak("accent", v)} options={[
-            "#4ADE80",
             "#58B12F",
             "#2F9B6E",
+            "#9BC53D",
             "#E4572E",
           ]} />
         </TweakSection>

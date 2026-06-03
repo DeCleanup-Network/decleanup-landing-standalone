@@ -319,7 +319,7 @@ function EcosystemSection() {
             chainLogo="public/celo-mark.svg"
             chainLabel="L2"
             tag="CELO"
-            tagBg="#FCFF52"
+            tagBg="#FAFF00"
             tagColor="#0a0a0a"
             title="Full Platform"
             kicker="For organisers & NGOs"
@@ -327,10 +327,12 @@ function EcosystemSection() {
             features={[
               { k: "MAP",  v: "Geolocation & maps" },
               { k: "RPT",  v: "Hypercert impact reports" },
-              { k: "GOV",  v: "Funding governance" },
+              { k: "GOV",  v: "250 participate · 500 full" },
             ]}
             links={[
-              { label: "Explore Celo dApp", href: "https://dapp.decleanup.net" },
+              { label: "DeCleanup dApp", href: "https://dapp.decleanup.net" },
+              { label: "Governance on Gardens", href: LINKS.cDCU.governance },
+              { label: "$cDCU contract", href: LINKS.cDCU.celoscan },
             ]}
             accent="var(--yellow)"
           />
@@ -409,7 +411,7 @@ function EcoCard({ chain, chainLogo, chainLabel, tag, tagBg, tagColor = "#fff", 
       <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: "auto" }}>
         {links.map((l) => (
           <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
-            className="btn btn-ghost btn-mono"
+            className="btn btn-ghost"
             style={{ minHeight: 40, padding: "0 14px" }}>
             {l.label}
           </a>

@@ -1,7 +1,7 @@
 /* ============================================
    DeCleanup Network — Investor brief
    Reuses brand system: Space Grotesk / Inter / Space Mono
-   Palette: green #4ADE80 primary · yellow #FAFF00 accent · bg #0A0A0A
+   Palette: green #58B12F primary · yellow #FAFF00 accent · bg #0A0A0A
    ============================================ */
 
 :root {
@@ -15,15 +15,15 @@
   --ink-dim:      #8B8B89;
   --ink-faint:    #7A7A78;
 
-  --green:        #4ADE80;
-  --green-soft:   color-mix(in oklch, #4ADE80 18%, transparent);
-  --green-hover:  color-mix(in oklch, #4ADE80 88%, white);
+  --green:        #58B12F;
+  --green-soft:   color-mix(in oklch, #58B12F 18%, transparent);
+  --green-hover:  color-mix(in oklch, #58B12F 88%, white);
   --yellow:       #FAFF00;
   --yellow-soft:  color-mix(in oklch, #FAFF00 22%, transparent);
   --base-blue:    #0052FF;
-  --celo-yellow:  #FCFF52;
+  --celo-yellow:  #FAFF00;
 
-  --grad-heading: linear-gradient(92deg, #4ADE80 0%, #A8F050 55%, #FAFF00 100%);
+  --grad-heading: linear-gradient(92deg, #58B12F 0%, color-mix(in oklch, #58B12F 45%, #FAFF00) 55%, #FAFF00 100%);
 
   --f-plakat: "Bebas Neue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --f-sans:   "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -34,6 +34,14 @@
   --section-py: clamp(56px, 8vw, 120px);
   --radius:    10px;
   --radius-lg: 18px;
+
+  /* Space Grotesk lives in --f-sans on this subsite (--f-plakat is Bebas for display) */
+  --btn-font:       var(--f-sans);
+  --btn-weight:     600;
+  --btn-size:       14px;
+  --btn-tracking:   0.06em;
+  --btn-min-h:      48px;
+  --btn-pad-x:      22px;
 }
 
 /* Kraft / paper mode */
@@ -47,13 +55,13 @@
   --ink-mute:  #4A4A47;
   --ink-dim:   #6E6E6B;
   --ink-faint: #9A9A95;
-  --green:         #1C7A45;
-  --green-soft:    color-mix(in oklch, #1C7A45 16%, transparent);
-  --green-hover:   #16683A;
-  --yellow:        #9A6B0C;
-  --yellow-soft:   color-mix(in oklch, #9A6B0C 22%, transparent);
-  --celo-yellow:   #C9A227;
-  --grad-heading:  linear-gradient(92deg, #1F8A4C 0%, #2EA85F 55%, #6B8E1F 100%);
+  --green:         color-mix(in oklch, #58B12F 68%, black);
+  --green-soft:    color-mix(in oklch, #58B12F 16%, transparent);
+  --green-hover:   color-mix(in oklch, #58B12F 75%, black);
+  --yellow:        color-mix(in oklch, #FAFF00 55%, #6B6500);
+  --yellow-soft:   color-mix(in oklch, #FAFF00 22%, transparent);
+  --celo-yellow:   color-mix(in oklch, #FAFF00 55%, #6B6500);
+  --grad-heading:  linear-gradient(92deg, color-mix(in oklch, #58B12F 72%, black) 0%, #58B12F 55%, color-mix(in oklch, #FAFF00 40%, #4a5200) 100%);
 }
 /* Kraft: primary button needs light text on the deeper green */
 :root[data-palette="kraft"] .btn-primary { color: #FFFFFF; }
@@ -161,11 +169,12 @@ img { max-width: 100%; }
 }
 [data-palette="kraft"] .pilot-eyebrow { color: #5C3D00; background: color-mix(in oklch, var(--yellow) 28%, transparent); border-color: color-mix(in oklch, var(--yellow) 65%, transparent); }
 
-/* ------- Buttons ------- */
+/* ------- Buttons — Space Grotesk ------- */
 .btn {
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  min-height: 48px; padding: 0 22px;
-  font-family: var(--f-sans); font-weight: 600; font-size: 14px; letter-spacing: 0.02em;
+  min-height: var(--btn-min-h); padding: 0 var(--btn-pad-x);
+  font-family: var(--f-sans); font-weight: var(--btn-weight); font-size: var(--btn-size); letter-spacing: var(--btn-tracking);
+  text-transform: uppercase;
   border-radius: 8px; border: 1px solid transparent; cursor: pointer;
   transition: transform 0.12s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   text-decoration: none; white-space: nowrap;
@@ -180,9 +189,20 @@ img { max-width: 100%; }
   box-shadow: 0 1px 0 color-mix(in oklch, var(--green) 60%, #000) inset, 0 0 0 4px color-mix(in oklch, var(--green) 14%, transparent), 0 6px 20px color-mix(in oklch, var(--green) 35%, transparent);
   transform: translateY(-1px);
 }
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost {
+  background: transparent; color: var(--ink); border-color: var(--line);
+  font-family: var(--f-sans); font-weight: var(--btn-weight); font-size: var(--btn-size); letter-spacing: var(--btn-tracking); text-transform: uppercase;
+}
 .btn-ghost:hover { border-color: var(--ink); background: color-mix(in oklch, var(--ink) 4%, transparent); }
-.btn-mono { font-family: var(--f-mono); text-transform: uppercase; letter-spacing: 0.12em; font-size: 12px; }
+.btn.btn-compact:not(.nav-cta), button.btn.btn-compact:not(.nav-cta), a.btn.btn-compact:not(.nav-cta) {
+  min-height: 44px; padding: 0 18px; font-size: 12px; letter-spacing: 0.08em;
+}
+button.btn.btn-primary.nav-cta, .btn-primary.nav-cta.btn {
+  min-height: 36px; height: 36px; padding: 0 14px; font-size: 11px; letter-spacing: 0.1em; border-radius: 6px;
+}
+.btn-mono, .btn-primary.btn-mono, .btn-ghost.btn-mono {
+  font-family: var(--f-sans); text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px;
+}
 @media (prefers-reduced-motion: reduce) { .btn, .btn:hover, .btn:active { transform: none; } }
 
 /* ------- Cards ------- */
@@ -341,6 +361,10 @@ footer.site-footer { border-top: 1px solid var(--line-soft); padding: 72px 0 40p
 .rail-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); }
 .rail-brand img { display: block; border-radius: 7px; }
 .rail-brand .wm { font-family: var(--f-plakat); font-weight: 700; font-size: 19px; letter-spacing: 0.01em; text-transform: uppercase; }
+.brand-lockup .logo-wordmark { display: block; }
+.brand-lockup .logo-wordmark-text { display: none; }
+:root[data-palette="kraft"] .brand-lockup .logo-wordmark { display: none; }
+:root[data-palette="kraft"] .brand-lockup .logo-wordmark-text { display: inline; }
 .rail-doc { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin: 16px 0 4px; }
 .rail-rev { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--green); display: flex; align-items: center; gap: 7px; margin-bottom: 26px; }
 .toc { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; overflow-y: auto; flex: 1 1 auto; }

@@ -68,14 +68,14 @@ function CommunitySection() {
             href="https://x.com/8oobfbldkiw0i9l/status/1848054399597523225"
             org="HEM Japan"
             country="JAPAN · 2024"
-            body="Early partner organizing cleanups across Japan using DeCleanup's verification system."
+            body="Early partner organizing cleanups across Japan using the DeCleanup Network verification system."
             stats={[ { k: "Users", v: "12" }, { k: "Events", v: "9" } ]}
           />
           <CaseCard
             href="https://x.com/trinitymorphy/status/1856394593824014341"
             org="Pestathon"
             country="UNIVERSITY · 2024"
-            body="University campaign combining education and action. Students learned environmental care while cleaning campus. DeCleanup added 120 USDGLO to Atlantis Impact Miner rewards."
+            body="University campaign combining education and action. Students learned environmental care while cleaning campus. DeCleanup Network added 120 USDGLO to Atlantis Impact Miner rewards."
             stats={[ { k: "Users", v: "9" }, { k: "Events", v: "4" } ]}
           />
         </div>
@@ -147,7 +147,7 @@ function TotalImpactSection() {
     { l: "Pestathon · events",        v: "4",   delta: "2024 · confirmed" },
     { l: "Pestathon · active users",  v: "9",   delta: "2024 · confirmed" },
     { l: "Pilot partners",            v: "2",   delta: "HEM · Pestathon" },
-    { l: "Network live counter",      v: "—",   delta: "on-chain · coming Q4 2025" },
+    { l: "Network live counter",      v: "—",   delta: "on-chain · live" },
   ];
   return (
     <section className="section" id="impact" style={{ background: "var(--bg-elev)" }}>
@@ -258,16 +258,10 @@ function SiteFooter() {
           marginBottom: 48,
         }} className="footer-grid">
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-              <span style={{
-                width: 32, height: 32, borderRadius: 8,
-                background: "var(--green)",
-                display: "grid", placeItems: "center",
-                fontFamily: "var(--f-mono)", fontWeight: 700,
-                color: "#0a0a0a",
-                fontSize: 16,
-              }}>D</span>
-              <span className="plakat" style={{ fontSize: 28, letterSpacing: "0.02em" }}>DeCleanup<span style={{ color: "var(--ink-faint)" }}>.Net</span></span>
+            <div className="brand-lockup" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18 }}>
+              <img src={img("public/brand/logo-icon.png")} alt="" className="logo-icon" width={36} height={36} style={{ display: "block", borderRadius: 8 }} />
+              <img src={img("public/brand/logo-wordmark.png")} alt="DeCleanup Network" className="logo-wordmark" height={24} style={{ width: "auto" }} />
+              <span className="plakat logo-wordmark-text" style={{ fontSize: 28, letterSpacing: "0.02em" }}>DeCleanup<span style={{ color: "var(--ink-faint)" }}>.Net</span></span>
             </div>
             <p className="serif" style={{ color: "var(--ink-mute)", fontSize: 17, lineHeight: 1.4, margin: 0, maxWidth: 340 }}>
               An SDG-aligned regenerative impact application. Turning local cleanup actions into global, on-chain proof.
@@ -288,10 +282,11 @@ function SiteFooter() {
             ["GitHub", "https://github.com/DeCleanup-Network"],
             ["Dev docs", "https://decleanup.net/docs"],
             ["User guide", "https://decleanup.net/userguide"],
-            ["Terms (soon)", "#"],
+            ["Terms of service", "terms.html"],
+            ["Privacy policy", "privacy.html"],
           ]} />
           <FooterCol title="Support" links={[
-            ["Gardens.fund (soon)", "https://gardens.fund"],
+            ["$cDCU governance (Gardens)", "https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960"],
             ["Donate on Giveth", "https://giveth.io/project/decentralized-cleanup-network"],
             ["Fund on CrowdWalrus", "https://www.crowdwalrus.xyz/campaigns/decleanupnet"],
             ["Invest in token", "https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x30171b7014c02229497CdE6745DD3aD821F12b07"],

@@ -32,7 +32,7 @@ function CommunitySection() {
           </div>
           {/* Japan */}
           <div className="photo" style={{ gridColumn: "span 3", minHeight: 184 }}>
-            <img src={img("public/testimonial7.jpg")} alt="HEM Japan volunteers gathered around DeCleanup proof, overhead view" loading="lazy" />
+            <img src={img("public/testimonial7.jpg")} alt="HEM Japan volunteers gathered around DeCleanup Network proof, overhead view" loading="lazy" />
             <span className="corner-tag">HEM JAPAN · JP · 2024</span>
           </div>
           {/* Nigeria — Abuja group */}
@@ -42,7 +42,7 @@ function CommunitySection() {
           </div>
           {/* Thailand — action */}
           <div className="photo" style={{ gridColumn: "span 3", minHeight: 184 }}>
-            <img src={img("public/testimonial3.jpg")} alt="Volunteer collecting litter during a DeCleanup at Ethereum DevConnect, Bangkok 2024" loading="lazy" />
+            <img src={img("public/testimonial3.jpg")} alt="Volunteer collecting litter during a DeCleanup Network cleanup at Ethereum DevConnect, Bangkok 2024" loading="lazy" />
             <span className="corner-tag">BANGKOK · TH · 2024</span>
           </div>
           {/* Nigeria — Nsukka */}
@@ -168,7 +168,7 @@ function TotalImpactSection() {
     { l: "Pestathon · events",        v: "4",   delta: "2024 · confirmed" },
     { l: "Pestathon · active users",  v: "9",   delta: "2024 · confirmed" },
     { l: "Pilot partners",            v: "2",   delta: "HEM · Pestathon" },
-    { l: "Network live counter",      v: "—",   delta: "onchain · coming Q4 2025" },
+    { l: "Network live counter",      v: "—",   delta: "onchain · live" },
   ];
   return (
     <section className="section" id="impact" style={{ background: "var(--bg-elev)" }}>
@@ -252,7 +252,7 @@ function JoinSection({ onLaunch }) {
 
           <div style={{ display: "flex", justifyContent: "center", gap: 12, marginTop: 36, flexWrap: "wrap" }}>
             <button className="btn btn-primary" onClick={onLaunch}>
-              Start cleaning
+              Start Cleaning
             </button>
             <a className="btn btn-ghost" href="https://t.me/decentralizedcleanup" target="_blank" rel="noopener noreferrer">Telegram</a>
             <a className="btn btn-ghost" href="https://x.com/DeCleanupNet" target="_blank" rel="noopener noreferrer">X / Twitter</a>
@@ -284,7 +284,7 @@ function SiteFooter({ onContact }) {
               <span className="plakat logo-wordmark-text" style={{ fontSize: 28, letterSpacing: "0.02em" }}>DeCleanup<span style={{ color: "var(--ink-faint)" }}>.Net</span></span>
             </div>
             <p className="serif" style={{ color: "var(--ink-mute)", fontSize: 17, lineHeight: 1.4, margin: 0, maxWidth: 340 }}>
-              Cleanup verification protocol. Open-source. Live on Base + Celo.
+              DeCleanup Network: open-source cleanup verification. DeCleanup Rewards on Base and the DeCleanup dApp on Celo.
             </p>
             <div style={{ marginTop: 24 }}>
               <div className="meta" style={{ marginBottom: 10, color: "var(--ink)" }}>Connect</div>
@@ -304,10 +304,12 @@ function SiteFooter({ onContact }) {
             ["Theory of change", "toc.html"],
             ["SDG alignment", "sdg.html"],
             ["Investor brief", "investors/"],
+            ["Terms of service", "terms.html"],
+            ["Privacy policy", "privacy.html"],
             ["Publications", "https://paragraph.com/@decleanupnet"],
           ]} />
           <FooterCol title="Support" links={[
-            ["Gardens.fund", "https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960"],
+            ["$cDCU governance (Gardens)", LINKS.cDCU.governance],
             ["Donate on Giveth", "https://giveth.io/project/decentralized-cleanup-network"],
             ["Fund on CrowdWalrus", "https://www.crowdwalrus.xyz/campaigns/decleanupnet"],
             ["Trade $DCU on Uniswap", "https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x30171b7014c02229497CdE6745DD3aD821F12b07"],

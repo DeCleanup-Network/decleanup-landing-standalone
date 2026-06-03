@@ -1,7 +1,7 @@
 /* ============================================
    DeCleanup Network — v.3 (cofounder review 2026-05-28)
    Brand: Space Grotesk (headings) + Inter (body) + Space Mono (data labels)
-   Palette: green #4ADE80 primary / yellow #FAFF00 accent only / bg #0A0A0A
+   Palette: green #58B12F primary / yellow #FAFF00 accent only / bg #0A0A0A
    ============================================ */
 
 :root {
@@ -21,17 +21,17 @@
   --ink-faint:    #7A7A78;
 
   /* Brand */
-  --green:        #4ADE80;
-  --green-soft:   color-mix(in oklch, #4ADE80 18%, transparent);
-  --green-ink:    color-mix(in oklch, #4ADE80 88%, white);
-  --green-hover:  color-mix(in oklch, #4ADE80 88%, white);
+  --green:        #58B12F;
+  --green-soft:   color-mix(in oklch, #58B12F 18%, transparent);
+  --green-ink:    color-mix(in oklch, #58B12F 88%, white);
+  --green-hover:  color-mix(in oklch, #58B12F 88%, white);
   --yellow:       #FAFF00;
   --yellow-soft:  color-mix(in oklch, #FAFF00 22%, transparent);
   --base-blue:    #0052FF;
-  --celo-yellow:  #FCFF52;
+  --celo-yellow:  #FAFF00;
 
   /* Brand gradient — green → yellow, used on display headings */
-  --grad-heading: linear-gradient(92deg, #4ADE80 0%, #A8F050 55%, #FAFF00 100%);
+  --grad-heading: linear-gradient(92deg, #58B12F 0%, color-mix(in oklch, #58B12F 45%, #FAFF00) 55%, #FAFF00 100%);
 
   /* Type — Space Grotesk for display, Inter for everything else, Space Mono for data */
   --f-plakat: "Space Grotesk", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -44,6 +44,14 @@
   --section-py: clamp(56px, 8vw, 120px);
   --radius:    10px;
   --radius-lg: 18px;
+
+  /* Buttons — match nav “START CLEANING” (Space Grotesk, caps) */
+  --btn-font:       var(--f-plakat);
+  --btn-weight:     600;
+  --btn-size:       14px;
+  --btn-tracking:   0.06em;
+  --btn-min-h:      48px;
+  --btn-pad-x:      22px;
 }
 
 /* Kraft / paper mode */
@@ -58,12 +66,13 @@
   --ink-dim:   #6E6E6B;
   --ink-faint: #9A9A95;
 
-  /* Yellow doesn't read on cream — substitute darker amber across the palette. */
-  --yellow:        #B8860B;
-  --yellow-soft:   color-mix(in oklch, #B8860B 22%, transparent);
+  /* Yellow doesn't read on cream — darker mix still anchored to brand #FAFF00. */
+  --yellow:        color-mix(in oklch, #FAFF00 55%, #6B6500);
+  --yellow-soft:   color-mix(in oklch, #FAFF00 22%, transparent);
+  --celo-yellow:   color-mix(in oklch, #FAFF00 55%, #6B6500);
 
   /* Darker, denser gradient so the right edge stays visible on cream. */
-  --grad-heading:  linear-gradient(92deg, #1F8A4C 0%, #2EA85F 55%, #6B8E1F 100%);
+  --grad-heading:  linear-gradient(92deg, color-mix(in oklch, #58B12F 72%, black) 0%, #58B12F 55%, color-mix(in oklch, #FAFF00 40%, #4a5200) 100%);
 }
 
 /* Density */
@@ -277,19 +286,22 @@ img { max-width: 100%; }
 }
 .chip.amber .dot { background: var(--yellow); box-shadow: 0 0 0 3px var(--yellow-soft); }
 
-/* ------- Buttons ------- */
-.btn {
+/* ------- Buttons — Space Grotesk + uppercase (same as nav START CLEANING) ------- */
+.btn,
+a.btn,
+button.btn {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 48px;
-  padding: 0 22px;
-  font-family: var(--f-sans);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.02em;
+  min-height: var(--btn-min-h);
+  padding: 0 var(--btn-pad-x);
+  font-family: var(--f-plakat);
+  font-weight: var(--btn-weight);
+  font-size: var(--btn-size);
+  letter-spacing: var(--btn-tracking);
+  text-transform: uppercase;
   border-radius: 8px;
   border: 1px solid transparent;
   cursor: pointer;
@@ -357,16 +369,55 @@ img { max-width: 100%; }
   background: transparent;
   color: var(--ink);
   border-color: var(--line);
+  font-family: var(--f-plakat);
+  text-transform: uppercase;
 }
 .btn-ghost:hover {
   border-color: var(--ink);
   background: color-mix(in oklch, var(--ink) 4%, transparent);
 }
 
-.btn-mono {
-  font-family: var(--f-mono);
+/* Doc / legal “back” links — compact but not nav-sized */
+.btn.btn-compact:not(.nav-cta),
+button.btn.btn-compact:not(.nav-cta),
+a.btn.btn-compact:not(.nav-cta) {
+  min-height: 44px;
+  padding: 0 18px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+/* Header START CLEANING — tight pill (production decleanup.net scale) */
+button.btn.btn-primary.nav-cta,
+.btn-primary.nav-cta.btn {
+  min-height: 36px;
+  height: 36px;
+  padding: 0 14px;
+  font-family: var(--f-plakat);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  border-radius: 6px;
+  box-shadow: 0 1px 0 color-mix(in oklch, var(--green) 55%, #000) inset;
+}
+button.btn.btn-primary.nav-cta:hover,
+.btn-primary.nav-cta.btn:hover {
+  transform: none;
+  box-shadow: 0 1px 0 color-mix(in oklch, var(--green) 55%, #000) inset,
+              0 0 0 3px color-mix(in oklch, var(--green) 12%, transparent);
+}
+button.btn.btn-primary.nav-cta:active,
+.btn-primary.nav-cta.btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.btn-mono,
+.btn-primary.btn-mono,
+.btn-ghost.btn-mono {
+  font-family: var(--f-plakat);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   font-size: 12px;
 }
 

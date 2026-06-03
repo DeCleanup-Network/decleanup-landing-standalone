@@ -32,6 +32,9 @@ one command (`vercel --prod`) from this folder.
 - **`vercel.json`** — tells Vercel how to serve the files (clean URLs, caching, security).
 - **`docs/`** — this file plus the decision log and the known-issues list.
 - **`pages/`, `v1/`** — older snapshots, kept for reference, **not** part of the live site.
+- **`terms.html`, `privacy.html`** — legal subpages (static HTML + `stylesheets/legal.css`). Privacy merges notices from the Base mini app and Celo dApp repos into one canonical page on decleanup.net.
+- **`scripts/build-terms-page.mjs`** — generates `terms.html` (scannable layout + consolidated legal copy).
+  Re-run after counsel updates the clause text in that script.
 
 ## 3. Data flow
 - The page is mostly static text and images written into the components.
@@ -48,6 +51,18 @@ one command (`vercel --prod`) from this folder.
 - **Google Fonts** — Space Grotesk / Inter / Space Mono (the brand typography).
 - **Vercel** — hosting + CDN.
 - **`/api/impact/global`** — backend endpoint for live cleanup stats.
+
+### Onchain references ($cDCU / governance)
+Canonical URLs used across the landing, `tokenomics.html`, `litepaper.html`, `toc.html`,
+and `investors/`:
+
+| What | Value |
+|------|--------|
+| **$cDCU token (Celo)** | `0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1` — [Celoscan](https://celoscan.io/token/0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1) |
+| **Governance (Gardens)** | [DeCleanup Network garden on Celo (chain 42220)](https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960) |
+
+In JSX, these live in `components/primitives.jsx` as `LINKS.cDCU` (loaded before other
+components). The investor memo duplicates them as `CDCU_LINKS` in `investors/data.jsx`.
 
 ## 5. Non-obvious decisions
 - **No build step on purpose** — JSX is compiled in the browser by Babel. Fast to edit,

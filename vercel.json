@@ -9,7 +9,8 @@
     { "source": "/primitives.jsx", "destination": "/components/primitives.jsx" },
     { "source": "/sections.jsx", "destination": "/components/sections.jsx" },
     { "source": "/tweaks-panel.jsx", "destination": "/components/tweaks-panel.jsx" },
-    { "source": "/styles.css", "destination": "/stylesheets/styles.css" }
+    { "source": "/styles.css", "destination": "/stylesheets/styles.css" },
+    { "source": "/legal.css", "destination": "/stylesheets/legal.css" }
   ],
   "headers": [
     {
@@ -39,6 +40,10 @@
     },
     {
       "source": "/styles.css",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+    },
+    {
+      "source": "/legal.css",
       "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
     },
     {

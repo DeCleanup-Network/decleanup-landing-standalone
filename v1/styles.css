@@ -148,7 +148,7 @@ body {
   gap: 8px;
   min-height: 48px;
   padding: 0 22px;
-  font-family: var(--f-sans);
+  font-family: var(--f-plakat);
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.02em;
@@ -160,6 +160,8 @@ body {
   white-space: nowrap;
 }
 .btn:active { transform: translateY(1px); }
+
+.btn-ghost { font-family: var(--f-plakat); }
 
 .btn-primary {
   background: var(--yellow);
@@ -181,10 +183,10 @@ body {
 }
 
 .btn-mono {
-  font-family: var(--f-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 12px;
+  font-family: var(--f-plakat);
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 14px;
 }
 
 /* ------- Highlight (yellow underline marker) ------- */

@@ -1,6 +1,6 @@
-/* global React, img, MemoHead, ChainPill, TRACTION_FIGS, SEGMENTS, COMPARABLES, RAILS, BACKERS, CONTACT, window */
+/* global React, img, MemoHead, ChainPill, TRACTION_FIGS, SEGMENTS, COMPARABLES, RAILS, CDCU_GOVERNANCE, CDCU_LINKS, BACKERS, CONTACT, window */
 // ===========================
-// Investor memo — bottom: 04 Traction · 05 Who pays · 06 Comparables
+// Investor memo, bottom: 04 Traction · 05 Who pays · 06 Comparables
 //   · 07 Token rails · 08 Backers · Disclaimer · Contact
 // ===========================
 
@@ -12,7 +12,7 @@ function TractionSection() {
         num="04"
         kicker="Traction"
         title={<>Intentionally narrow, so every entry is <span className="accent">auditable.</span></>}
-        lede="Reach is deliberately small at launch — every cleanup can be verified end-to-end before the network scales."
+        lede="Reach is deliberately small at launch, every cleanup can be verified end-to-end before the network scales."
       />
 
       <div className="proof-figs" style={{ marginTop: 8 }}>
@@ -50,7 +50,7 @@ function BuyersSection() {
         num="05"
         kicker="Who pays"
         title={<>Organizations that fund cleanup and need <span className="accent">proof-per-dollar.</span></>}
-        lede="The same rails serve developed-market litter programs, corporate EPR spend and Global-South institutional cleanups — anywhere proof is the binding constraint."
+        lede="The same rails serve developed-market litter programs, corporate EPR spend and Global-South institutional cleanups, anywhere proof is the binding constraint."
       />
 
       <div className="table-wrap table-scroll" style={{ marginTop: 8 }}>
@@ -60,7 +60,7 @@ function BuyersSection() {
               <th style={{ width: "20%" }}>Segment</th>
               <th style={{ width: "24%" }}>What they buy</th>
               <th style={{ width: "26%" }}>How they verify today</th>
-              <th style={{ width: "30%" }}>The DeCleanup wedge</th>
+              <th style={{ width: "30%" }}>The DeCleanup Network wedge</th>
             </tr>
           </thead>
           <tbody>
@@ -90,7 +90,7 @@ function ComparablesSection() {
         num="06"
         kicker="Comparables"
         title={<>The only profile combining <span className="accent">layered dMRV on waste.</span></>}
-        lede="Direct plastic/waste comparables verify with self-reported paperwork or slow, conflicted manual audits — and have no common worldwide standard."
+        lede="Direct plastic/waste comparables verify with self-reported paperwork or slow, conflicted manual audits, and have no common worldwide standard."
       />
 
       <div className="table-wrap table-scroll" style={{ marginTop: 8 }}>
@@ -130,7 +130,7 @@ function TokenSection() {
         num="07"
         kicker="Token rails"
         title={<>Rails, <span className="accent">not a headline.</span></>}
-        lede={<>$bDCU and $cDCU are settlement, reward and access rails for verified impact — described as utility only. Supply, emissions and value-accrual sit with counterparties, pending legal review.</>}
+        lede={<>$bDCU and $cDCU are settlement, reward and access rails for verified impact, described as utility only. Supply, emissions and value-accrual sit with counterparties, pending legal review.</>}
       />
 
       <div className="rail-grid" style={{ marginTop: 8 }}>
@@ -148,8 +148,16 @@ function TokenSection() {
         <span className="mono" style={{ fontSize: 12, color: "#5d8bff" }}>$bDCU</span>
         <span style={{ color: "var(--ink-faint)" }}>·</span>
         <ChainPill chain="celo" />
-        <span className="mono" style={{ fontSize: 12, color: "var(--yellow)" }}>$cDCU</span>
+        <a className="mono" href={CDCU_LINKS.contract} target="_blank" rel="noopener noreferrer" style={{ fontSize: 12, color: "var(--yellow)", textDecoration: "none" }}>$cDCU</a>
         <span className="mono" style={{ fontSize: 11, color: "var(--ink-faint)", letterSpacing: "0.04em", marginLeft: "auto" }}>SAME PROOF · TWO REWARD SURFACES</span>
+      </div>
+      <p className="mono" style={{ fontSize: 11, color: "var(--ink-dim)", lineHeight: 1.7, margin: "14px 0 0" }}>
+        {CDCU_GOVERNANCE.participate}<br />
+        {CDCU_GOVERNANCE.full}
+      </p>
+      <div style={{ display: "flex", gap: 10, marginTop: 14, flexWrap: "wrap" }}>
+        <a className="btn btn-ghost" href={CDCU_LINKS.governance} target="_blank" rel="noopener noreferrer" style={{ minHeight: 36 }}>Governance on Gardens ↗</a>
+        <a className="btn btn-ghost" href="https://decleanup.net/tokenomics" target="_blank" rel="noopener noreferrer" style={{ minHeight: 36 }}>Tokenomics ↗</a>
       </div>
     </section>
   );
@@ -193,7 +201,7 @@ function ContactSection() {
           <div className="sec-kicker" style={{ marginBottom: 16 }}><span className="t">Next step</span></div>
           <h2 className="memo-h" style={{ marginBottom: 14 }}>Talk to the <span className="accent">founders.</span></h2>
           <p className="memo-lede">
-            If the thesis fits your mandate, reach out. We share tokenomics, financial model, cap table and named pipeline directly with serious counterparties — no gated portal, just a conversation.
+            If the thesis fits your mandate, reach out. We share tokenomics, financial model, cap table and named pipeline directly with serious counterparties, no gated portal, just a conversation.
           </p>
         </div>
         <div className="contact-actions">
@@ -215,7 +223,7 @@ function DisclaimerSection() {
         <span className="meta" style={{ color: "var(--ink-faint)" }}>FINAL WORDING TO BE CONFIRMED BY COUNSEL</span>
       </div>
       <p className="disclaimer">
-        This page is for informational purposes only and is not an offer, or solicitation of an offer, to invest in, buy, or sell any token, security, or interest. Nothing here is financial, investment, legal, or tax advice. $bDCU and $cDCU are described solely as settlement, reward and access rails for verified impact. Market figures are drawn from cited third-party sources; collection-tonnage figures for comparable projects are vendor-self-reported and not independently audited. DeCleanup-specific metrics, tokenomics and pipeline are subject to founder and legal confirmation.
+        This page is for informational purposes only and is not an offer, or solicitation of an offer, to invest in, buy, or sell any token, security, or interest. Nothing here is financial, investment, legal, or tax advice. $bDCU and $cDCU are described solely as settlement, reward and access rails for verified impact. Market figures are drawn from cited third-party sources; collection-tonnage figures for comparable projects are vendor-self-reported and not independently audited. DeCleanup Network-specific metrics, tokenomics and pipeline are subject to founder and legal confirmation.
       </p>
     </section>
   );

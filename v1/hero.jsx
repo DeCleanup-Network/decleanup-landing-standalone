@@ -109,7 +109,7 @@ function Hero({ onLaunch }) {
             }}>
               <Kpi label="Pilot partners" value="2" sub="HEM Japan · Pestathon" />
               <Kpi label="Verified events" value="13" sub="across 2024 pilots" />
-              <Kpi label="Network counter" value="—" sub="live · coming Q4" />
+              <Kpi label="Network counter" value="—" sub="live · onchain" />
             </div>
           </div>
 
