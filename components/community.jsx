@@ -311,10 +311,10 @@ function SiteFooter() {
             ["Terms (soon)", "#"],
           ]} />
           <FooterCol title="Support" links={[
-            ["Gardens.fund (soon)", "https://gardens.fund"],
+            ["Gardens.fund", "https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960"],
             ["Donate on Giveth", "https://giveth.io/project/decentralized-cleanup-network"],
             ["Fund on CrowdWalrus", "https://www.crowdwalrus.xyz/campaigns/decleanupnet"],
-            ["Invest in token", "https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x30171b7014c02229497CdE6745DD3aD821F12b07"],
+            ["Trade $DCU on Uniswap", "https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x30171b7014c02229497CdE6745DD3aD821F12b07"],
           ]} />
         </div>
 
@@ -333,6 +333,10 @@ function SiteFooter() {
             <span style={{ color: "var(--ink-faint)" }}>BUILT ON CELO + BASE</span>
           </div>
         </div>
+
+        <p className="meta" style={{ color: "var(--ink-faint)", marginTop: 16, lineHeight: 1.5, fontSize: 10, letterSpacing: "0.04em", maxWidth: 920 }}>
+          Nothing on this site is financial, investment, tax, or legal advice, or an offer or solicitation to buy or sell any token or security. $DCU is a utility and reward token tied to verified cleanup activity; availability and features may vary by jurisdiction. Do your own research.
+        </p>
       </div>
     </footer>
   );

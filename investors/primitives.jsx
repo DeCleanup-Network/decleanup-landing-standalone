@@ -4,8 +4,11 @@
 // Dossier layout: sticky contents rail + document spine.
 // ===========================
 
-// Asset path helper — assets live under investors/public/
-const img = (p) => p.replace(/^\/+/, "");
+// Asset path helper — assets live under investors/public/.
+// Absolute /investors/ prefix so paths resolve correctly when the page is
+// served at the clean URL /investors (no trailing slash) — a relative
+// "public/..." would otherwise resolve against the site root and 404.
+const img = (p) => "/investors/" + p.replace(/^\/+/, "");
 
 // ---------- CONTENTS RAIL (replaces the landing-style nav) ----------
 function ContentsRail({ active }) {
