@@ -80,3 +80,12 @@
 - **Doc cross-linking.** Added "Investors" to the top nav of litepaper/tokenomics/toc/sdg so the investor brief is reachable from every doc page (was footer-only → felt "orphaned").
 - **SEO audit (clean).** Every page has exactly one canonical / og:title / og:image / og:url / twitter:card / JSON-LD / description — no duplicates; all og:url match canonical on decleanup.net.
 - **Cookies/compliance banner.** Audited the landing code: **no analytics, no cookies, no localStorage, no trackers** are set (only Google Fonts + unpkg CDN, which set no cookies). So a consent banner is **not legally required as-is**. Recommendation pending: add a Privacy Policy + Cookie notice page (footer still shows "Terms (soon) → #") before adding any analytics; the moment a tracker is introduced, a consent banner becomes mandatory (GDPR/ePrivacy).
+
+### Tenth-round — homepage discoverability: Resources strip + Investors band + nav (2026-06-03)
+- **Problem (Paul):** litepaper / tokenomics / theory-of-change / investor-brief were only reachable from the footer; investors especially had no presence on the landing.
+- **Added two homepage sections** (`components/community.jsx`, rendered in `app.jsx` between `SdgStrip` and `JoinSection`):
+  - `ResourcesSection` (`#resources`) — a "Read the protocol" card strip (4 cards: Litepaper, Tokenomics, Theory of Change, SDG), reusing the `.sdg-grid` class so it's 4-up desktop / 2-up mobile.
+  - `InvestorsSection` (`#investors`) — a dedicated "For investors & funders / Back impact you can prove." band with two CTAs ("Read the investor brief →" `/investors`, "Talk to the founders" mailto) and the not-an-offer disclaimer inline.
+- **Navbar:** added `Docs → #resources` and `Investors → #investors` to `navLinks` (primitives.jsx). 7 desktop nav items verified to fit with no overflow down to 890px (hamburger still takes over ≤860px).
+- **Bug caught in review:** the investor heading "…prove." with `maxWidth:720` orphaned the trailing period onto its own line (looked like a stray bullet). Fixed by removing the maxWidth and moving the period inside the gradient `<span>prove.</span>`.
+- **Verified** desktop (full + 890px) and mobile (375px): both sections render, cards/CTAs correct, 0 horizontal overflow, no console errors.

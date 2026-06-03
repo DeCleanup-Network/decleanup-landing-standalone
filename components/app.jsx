@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Nav, Hero, WhyDeCleanup, DmrvSection, HowSection, EcosystemSection, BuiltOnSection, CommunitySection, CleanupMapSection, TotalImpactSection, GlossarySection, BackedBySection, SdgStrip, JoinSection, SiteFooter, StartModal, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect, useTweaks */
+/* global React, ReactDOM, Nav, Hero, WhyDeCleanup, DmrvSection, HowSection, EcosystemSection, BuiltOnSection, CommunitySection, CleanupMapSection, TotalImpactSection, GlossarySection, BackedBySection, SdgStrip, ResourcesSection, InvestorsSection, JoinSection, SiteFooter, StartModal, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect, useTweaks */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": "dark",
@@ -234,6 +234,8 @@ function App() {
       <GlossarySection />
       <BackedBySection />
       <SdgStrip />
+      <ResourcesSection />
+      <InvestorsSection />
       <JoinSection onLaunch={() => setModal(true)} />
       <SiteFooter />
 

@@ -445,6 +445,78 @@ function BackedBySection() {
   );
 }
 
+// ---------- RESOURCES / DOCUMENTATION STRIP ----------
+function ResourcesSection() {
+  const docs = [
+    { t: "Litepaper",        d: "The full thesis — verifiable, governable, fundable impact.",   href: "litepaper.html",  tag: "v.2" },
+    { t: "Tokenomics",       d: "The dual-token model: $bDCU for action, $cDCU for proof.",      href: "tokenomics.html", tag: "$bDCU · $cDCU" },
+    { t: "Theory of Change", d: "Why cleanup stays invisible — and how DeCleanup fixes it.",     href: "toc.html",        tag: "v2.2" },
+    { t: "SDG alignment",    d: "How DeCleanup maps to five UN Sustainable Development Goals.",   href: "sdg.html",        tag: "SDG 11·12·13·14·15" },
+  ];
+  return (
+    <section className="section" id="resources" style={{ paddingTop: 0, paddingBottom: "calc(var(--section-py) * 0.6)" }}>
+      <div className="container">
+        <div style={{ border: "1px solid var(--line)", borderRadius: 14, background: "var(--bg-elev)", padding: 28 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 18, gap: 16, flexWrap: "wrap" }}>
+            <h3 className="plakat" style={{ fontSize: 28, margin: 0, letterSpacing: "0.02em" }}>
+              Read the <span className="gradient-text">protocol</span>
+            </h3>
+            <span className="meta" style={{ color: "var(--ink-faint)" }}>DOCUMENTATION</span>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }} className="sdg-grid">
+            {docs.map((doc) => (
+              <a key={doc.href} href={doc.href} style={{
+                display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 18,
+                padding: "18px 16px", background: "var(--bg)", border: "1px solid var(--line-soft)",
+                borderRadius: 10, color: "var(--ink)", textDecoration: "none", minHeight: 150,
+                transition: "border-color 0.15s ease, transform 0.15s ease",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--green)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line-soft)"; e.currentTarget.style.transform = "none"; }}>
+                <div className="mono" style={{ fontSize: 10, color: "var(--ink-faint)", letterSpacing: "0.1em", textTransform: "uppercase" }}>{doc.tag}</div>
+                <div>
+                  <div className="plakat" style={{ fontSize: 19, letterSpacing: "0.01em", marginBottom: 6 }}>{doc.t}</div>
+                  <div style={{ fontFamily: "var(--f-sans)", fontSize: 13, lineHeight: 1.4, color: "var(--ink-mute)" }}>{doc.d}</div>
+                </div>
+                <div className="meta" style={{ color: "var(--green)" }}>Read →</div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ---------- INVESTORS BAND ----------
+function InvestorsSection() {
+  return (
+    <section className="section" id="investors" style={{ paddingTop: 0 }}>
+      <div className="container">
+        <div style={{ border: "1px solid var(--line)", borderRadius: 14, background: "var(--bg-elev)", padding: "clamp(28px, 4vw, 44px)" }}>
+          <div className="meta" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+            <span style={{ width: 28, height: 1, background: "var(--green)" }}></span>
+            <span>FOR INVESTORS &amp; FUNDERS</span>
+          </div>
+          <h2 className="plakat" style={{ fontSize: "clamp(30px, 4.5vw, 50px)", margin: 0, lineHeight: 1.02, letterSpacing: "0.01em" }}>
+            Back impact you can <span className="gradient-text">prove.</span>
+          </h2>
+          <p className="serif" style={{ color: "var(--ink-mute)", fontSize: 17, lineHeight: 1.45, margin: "18px 0 0", maxWidth: 560 }}>
+            DeCleanup turns real-world cleanup into independently verifiable, on-chain impact — so climate funds, corporates and grant programs can fund outcomes they can audit, not promises. Live on Base + Celo.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
+            <a className="btn btn-primary" href="investors/">Read the investor brief →</a>
+            <a className="btn btn-ghost" href="mailto:hello@decleanup.net?subject=DeCleanup%20%E2%80%94%20investor%20intro">Talk to the founders</a>
+          </div>
+          <p className="meta" style={{ color: "var(--ink-faint)", marginTop: 20, fontSize: 10, letterSpacing: "0.04em", maxWidth: 720, lineHeight: 1.5 }}>
+            Information only — not financial advice, and not an offer or solicitation to buy or sell any token or security.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ---------- SDG STRIP (with UN CDN images, lazy-loaded per brief item 11) ----------
 function SdgStrip() {
   const UN = "https://www.un.org/sustainabledevelopment/wp-content/uploads/2019/08";

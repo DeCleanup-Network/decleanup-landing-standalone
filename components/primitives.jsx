@@ -286,6 +286,8 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
     ["Ecosystem", "#ecosystem"],
     ["Community", "#community"],
     ["Impact", "#impact"],
+    ["Docs", "#resources"],
+    ["Investors", "#investors"],
   ];
   return (
     <nav className="nav" style={{ borderBottomColor: scrolled || menuOpen ? "var(--line)" : "transparent" }}>
