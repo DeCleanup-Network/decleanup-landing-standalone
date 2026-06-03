@@ -1,7 +1,7 @@
 /* global React, ReactDOM, useTweaks, TweaksPanel, TweakSection, TweakRadio, TweakSelect,
    THESIS_LINES, MEMO_SECTIONS, ContentsRail, Masthead, CategorySection, WhyNowSection, MoatSection,
    TractionSection, BuyersSection, ComparablesSection, TokenSection, BackersSection,
-   ContactSection, DisclaimerSection, Footer */
+   ContactSection, DisclaimerSection, Footer, ContactModal */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": "dark",
@@ -62,6 +62,7 @@ function App() {
         </main>
       </div>
       <Footer />
+      <ContactModal />
 
       <TweaksPanel>
         <TweakSection label="Palette" />

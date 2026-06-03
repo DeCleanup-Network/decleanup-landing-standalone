@@ -267,7 +267,7 @@ function JoinSection({ onLaunch }) {
 }
 
 // ---------- FOOTER ----------
-function SiteFooter() {
+function SiteFooter({ onContact }) {
   return (
     <footer className="site-footer">
       <div className="container">
@@ -293,6 +293,7 @@ function SiteFooter() {
                 <a className="footer-link" href="https://x.com/DeCleanupNet" target="_blank" rel="noopener noreferrer">X / Twitter</a>
                 <a className="footer-link" href="https://farcaster.xyz/decleanupnet" target="_blank" rel="noopener noreferrer">Farcaster</a>
                 <a className="footer-link" href="https://github.com/DeCleanup-Network" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <button type="button" className="footer-link" onClick={onContact} style={{ background: "none", border: "none", padding: 0, cursor: "pointer", font: "inherit" }}>Contact founders</button>
               </div>
             </div>
           </div>
@@ -484,7 +485,7 @@ function ResourcesSection() {
 }
 
 // ---------- INVESTORS BAND ----------
-function InvestorsSection() {
+function InvestorsSection({ onContact }) {
   return (
     <section className="section" id="investors" style={{ paddingTop: 0 }}>
       <div className="container">
@@ -501,7 +502,7 @@ function InvestorsSection() {
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
             <a className="btn btn-primary" href="investors/">Read the investor brief</a>
-            <a className="btn btn-ghost" href="mailto:hello@decleanup.net?subject=DeCleanup%20%E2%80%94%20investor%20intro">Talk to the founders</a>
+            <button className="btn btn-ghost" type="button" onClick={onContact}>Talk to the founders</button>
           </div>
           <p className="meta" style={{ color: "var(--ink-faint)", marginTop: 20, fontSize: 10, letterSpacing: "0.04em", maxWidth: 720, lineHeight: 1.5 }}>
             Information only — not financial advice, and not an offer or solicitation to buy or sell any token or security.

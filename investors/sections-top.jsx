@@ -19,7 +19,7 @@ function Masthead({ thesis }) {
       <p className="masthead-thesis">{thesis}</p>
 
       <div style={{ display: "flex", gap: 10, marginTop: 30, flexWrap: "wrap" }}>
-        <a className="btn btn-primary" href={CONTACT.email}>Contact the founders</a>
+        <button className="btn btn-primary" type="button" onClick={() => window.dispatchEvent(new Event("dcu:contact"))}>Contact the founders</button>
         <a className="btn btn-ghost" href="#category">Read the thesis</a>
       </div>
 

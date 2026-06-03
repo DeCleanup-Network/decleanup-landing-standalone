@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Nav, Hero, WhyDeCleanup, DmrvSection, HowSection, EcosystemSection, BuiltOnSection, CommunitySection, CleanupMapSection, TotalImpactSection, GlossarySection, BackedBySection, SdgStrip, ResourcesSection, InvestorsSection, JoinSection, SiteFooter, StartModal, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect, useTweaks */
+/* global React, ReactDOM, Nav, Hero, WhyDeCleanup, DmrvSection, HowSection, EcosystemSection, BuiltOnSection, CommunitySection, CleanupMapSection, TotalImpactSection, GlossarySection, BackedBySection, SdgStrip, ResourcesSection, InvestorsSection, JoinSection, SiteFooter, StartModal, ContactModal, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect, useTweaks */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": "dark",
@@ -9,6 +9,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 
 function App() {
   const [modal, setModal] = React.useState(false);
+  const [contact, setContact] = React.useState(false);
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
   // Apply tweaks to <html>
@@ -235,11 +236,12 @@ function App() {
       <BackedBySection />
       <SdgStrip />
       <ResourcesSection />
-      <InvestorsSection />
+      <InvestorsSection onContact={() => setContact(true)} />
       <JoinSection onLaunch={() => setModal(true)} />
-      <SiteFooter />
+      <SiteFooter onContact={() => setContact(true)} />
 
       <StartModal open={modal} onClose={() => setModal(false)} />
+      <ContactModal open={contact} onClose={() => setContact(false)} />
 
       <TweaksPanel title="Tweaks">
         <TweakSection title="Palette">

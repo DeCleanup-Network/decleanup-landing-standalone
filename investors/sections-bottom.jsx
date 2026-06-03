@@ -197,7 +197,7 @@ function ContactSection() {
           </p>
         </div>
         <div className="contact-actions">
-          <a className="btn btn-primary" href={CONTACT.email}>Email the founders</a>
+          <button className="btn btn-primary" type="button" onClick={() => window.dispatchEvent(new Event("dcu:contact"))}>Contact the founders</button>
           <a className="btn btn-ghost" href={CONTACT.telegram} target="_blank" rel="noopener noreferrer">Reach us on Telegram</a>
           <a className="btn btn-ghost" href={CONTACT.x} target="_blank" rel="noopener noreferrer">X / Twitter</a>
         </div>
