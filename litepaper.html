@@ -426,13 +426,13 @@
           <li>↦ Farcaster integration</li>
         </ul>
       </div>
-      <div class="card" style="background:var(--bg)">
-        <div class="meta" style="color:var(--yellow);margin-bottom:14px">PHASE 2 · IN DEV</div>
-        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--ink-mute);line-height:1.5">
-          <li>↦ Celo Full dApp</li>
+      <div class="card" style="background:var(--bg);border-color:color-mix(in oklch, var(--green) 40%, transparent)">
+        <div class="meta" style="color:var(--green);margin-bottom:14px;display:flex;align-items:center;gap:8px"><span class="live-dot"></span> PHASE 2 · LIVE</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--ink);line-height:1.5">
+          <li>↦ <a href="https://dapp.decleanup.net" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">DeCleanup dApp on Celo</a></li>
           <li>↦ Impact Products v2</li>
           <li>↦ Hypercert records</li>
-          <li>↦ <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Gardens governance</a></li>
+          <li>↦ <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Gardens.fund governance</a></li>
         </ul>
       </div>
       <div class="card" style="background:var(--bg)">
@@ -460,8 +460,8 @@
 <!-- For Coordinators & Funders -->
 <section class="section">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="two-col">
-      <div class="card">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch" class="two-col paired-cta-grid">
+      <div class="card paired-cta-card">
         <div class="meta" style="color:var(--green);margin-bottom:14px">09 · FOR COORDINATORS</div>
         <h3 class="plakat" style="font-size:30px;margin:0 0 12px;letter-spacing:0.02em">Build campaigns that prove themselves</h3>
         <p style="font-size:14px;color:var(--ink-mute);margin:0 0 20px;line-height:1.6">In-person cleanups create real impact and stronger communities. Coordinating them with the DeCleanup dApp means every event produces verified, onchain records, participants get recognition and funders can support what's actually happening on the ground.</p>
@@ -470,12 +470,12 @@
           <li><span class="mono" style="font-size:12px;color:var(--ink)">↦ Submit proposals</span><br/><span style="font-size:13px;color:var(--ink-dim)">Shape network rules and priorities. Decisions happen onchain.</span></li>
           <li><span class="mono" style="font-size:12px;color:var(--ink)">↦ Apply for funding</span><br/><span style="font-size:13px;color:var(--ink-dim)">Equipment, logistics, and organizer support. Pools governed by <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">$cDCU holders on Gardens</a>.</span></li>
         </ul>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div class="paired-cta-actions">
           <a class="btn btn-primary btn-compact" href="https://t.me/decleanup" target="_blank" rel="noopener">Start coordinating</a>
           <a class="btn btn-ghost" href="mailto:support@decleanup.net">Email us</a>
         </div>
       </div>
-      <div class="card">
+      <div class="card paired-cta-card">
         <div class="meta" style="color:var(--green);margin-bottom:14px">10 · FOR FUNDERS</div>
         <h3 class="plakat" style="font-size:30px;margin:0 0 12px;letter-spacing:0.02em">Fund action, not promises</h3>
         <p style="font-size:14px;color:var(--ink-mute);margin:0 0 20px;line-height:1.6">DeCleanup Network turns cleanup action into verifiable, onchain evidence. Funders get tamper-resistant records instead of self-reported claims, reusable data for ESG and SDG reporting, and a say in how pools and priorities are set through governance.</p>
@@ -484,7 +484,7 @@
           <li><span class="mono" style="font-size:12px;color:var(--ink)">↦ Reusable data</span><br/><span style="font-size:13px;color:var(--ink-dim)">Structured for ESG, SDG, and impact accounting.</span></li>
           <li><span class="mono" style="font-size:12px;color:var(--ink)">↦ Governance voice</span><br/><span style="font-size:13px;color:var(--ink-dim)"><a href="https://celoscan.io/token/0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">$cDCU</a> holders shape pool criteria and priorities on <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Gardens</a>.</span></li>
         </ul>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div class="paired-cta-actions">
           <a class="btn btn-primary btn-compact" href="https://giveth.io/project/decentralized-cleanup-network" target="_blank" rel="noopener">Donate on Giveth</a>
           <a class="btn btn-ghost" href="https://t.me/decleanup" target="_blank" rel="noopener">Get in touch</a>
         </div>
@@ -526,6 +526,20 @@
 </footer>
 
 <style>
+/* Coordinators / Funders — equal-height cards, actions pinned to bottom */
+.paired-cta-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.paired-cta-actions {
+  margin-top: auto;
+  padding-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
 @media (max-width: 860px) {
   .two-col, .step-grid, .mission-grid { grid-template-columns: 1fr !important; }
   .nav-links { display: none; }

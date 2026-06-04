@@ -97,7 +97,7 @@ function Hero({ onLaunch }) {
                 maxWidth: 540,
                 lineHeight: 1.5,
               }}>
-                Pick up trash. Make photos. Get impact tokens and governance rights.
+                Pick up trash. Upload photos. Get impact tokens and governance rights.
               </p>
 
               <div style={{ display: "flex", gap: 12, marginTop: 28, flexWrap: "wrap" }}>
