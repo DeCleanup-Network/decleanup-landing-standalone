@@ -26,6 +26,11 @@ const CDCU_GOVERNANCE = {
 };
 
 const LINKS = {
+  support: {
+    email: "support@decleanup.net",
+    mailto: "mailto:support@decleanup.net",
+    mailtoInquiry: "mailto:support@decleanup.net?subject=DeCleanup%20Network%20inquiry",
+  },
   cDCU: {
     contract: "0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1",
     celoscan: "https://celoscan.io/token/0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1",
@@ -48,12 +53,11 @@ const GLOSSARY = {
 // Feature flag: fallback default until the live fetch resolves
 const IMPACT_LIVE = false;
 
-// Public impact API (read-only, CORS open). Returns live metrics + recent feed
-// when mainnet has indexed cleanups; otherwise `live:false` and callers fall back
-// to 2024 pilot data. Never throws — network/5xx degrade to the empty state.
+// Public impact API (read-only, CORS open). Callers show a loading state until the
+// fetch settles, then live metrics/feed or empty — never pilot placeholders.
 const IMPACT_API_BASE = "https://dapp.decleanup.net";
 function useImpactStats() {
-  const [state, setState] = useState({ live: false, metrics: null, cleanups: null });
+  const [state, setState] = useState({ loading: true, live: false, metrics: null, cleanups: null });
   useEffect(() => {
     let cancelled = false;
     const getJSON = (url) =>
@@ -66,7 +70,7 @@ function useImpactStats() {
       const metrics = global && global.metrics ? global.metrics : null;
       const items = feed && Array.isArray(feed.items) ? feed.items : null;
       const live = !!(metrics && Number(metrics.total_cleanups_verified) > 0);
-      setState({ live, metrics, cleanups: items });
+      setState({ loading: false, live, metrics, cleanups: items });
     });
     return () => { cancelled = true; };
   }, []);
@@ -479,121 +483,6 @@ function StartModal({ open, onClose }) {
   );
 }
 
-// ---------- CONTACT FORM (no backend — posts to Web3Forms, delivered to email) ----------
-// PUBLIC key, not a secret: Web3Forms access keys are designed to live in client code.
-// Get a free one for hello@decleanup.net at https://web3forms.com and paste it below.
-const WEB3FORMS_ACCESS_KEY = "PASTE_YOUR_WEB3FORMS_ACCESS_KEY";
-
-function ContactModal({ open, onClose }) {
-  const [status, setStatus] = useState("idle"); // idle | invalid | sending | success | error
-  const [f, setF] = useState({ name: "", contact: "", org: "", interest: "Investing", message: "", botcheck: "" });
-
-  useEffect(() => {
-    if (!open) return;
-    setStatus("idle");
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
-
-  if (!open) return null;
-
-  const upd = (k) => (e) => setF((s) => ({ ...s, [k]: e.target.value }));
-
-  const submit = async (e) => {
-    e.preventDefault();
-    if (f.botcheck) return;                                    // honeypot tripped → drop silently
-    if (!f.contact.trim() || !f.message.trim()) { setStatus("invalid"); return; }
-    setStatus("sending");
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: "DeCleanup — " + f.interest + " enquiry",
-          from_name: "DeCleanup website",
-          Name: f.name || "(not given)",
-          Contact: f.contact,
-          Organization: f.org || "—",
-          Interest: f.interest,
-          Message: f.message,
-        }),
-      });
-      const data = await res.json();
-      setStatus(data && data.success ? "success" : "error");
-    } catch (_) {
-      setStatus("error");
-    }
-  };
-
-  const field = {
-    width: "100%", boxSizing: "border-box", padding: "11px 13px",
-    background: "var(--bg-elev-2)", border: "1px solid var(--line)", borderRadius: 8,
-    color: "var(--ink)", fontFamily: "var(--f-sans)", fontSize: 14, outline: "none",
-  };
-  const lbl = {
-    display: "block", fontFamily: "var(--f-mono)", fontSize: 10, letterSpacing: "0.1em",
-    textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 6,
-  };
-
-  return (
-    <div className="modal-back" onClick={onClose} role="dialog" aria-modal="true" aria-label="Contact the founders">
-      <div className="modal" onClick={(e) => e.stopPropagation()} style={{ maxHeight: "calc(100vh - 48px)", overflowY: "auto" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
-          <div>
-            <div className="meta" style={{ marginBottom: 6 }}>CONTACT THE FOUNDERS</div>
-            <h2 className="plakat" style={{ fontSize: 30, margin: 0, letterSpacing: "0.01em" }}>Tell us who you are.</h2>
-          </div>
-          <button onClick={onClose} aria-label="Close" style={{ background: "transparent", border: "none", color: "var(--ink-mute)", cursor: "pointer", padding: 6, fontSize: 20 }}>×</button>
-        </div>
-
-        {status === "success" ? (
-          <div style={{ padding: "8px 0 4px" }}>
-            <p className="serif" style={{ fontSize: 18, color: "var(--ink)", margin: "0 0 8px" }}>Thanks — message received.</p>
-            <p style={{ color: "var(--ink-mute)", fontSize: 14, margin: "0 0 20px", lineHeight: 1.5 }}>We read every note and will reply at the contact you gave.</p>
-            <button className="btn btn-primary" onClick={onClose} style={{ width: "100%" }}>Done</button>
-          </div>
-        ) : (
-          <form onSubmit={submit}>
-            <input type="text" tabIndex={-1} autoComplete="off" value={f.botcheck} onChange={upd("botcheck")} aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }} />
-            <div style={{ display: "grid", gap: 14 }}>
-              <div>
-                <label style={lbl}>Name</label>
-                <input style={field} type="text" value={f.name} onChange={upd("name")} placeholder="Your name" />
-              </div>
-              <div>
-                <label style={lbl}>Contact *</label>
-                <input style={field} type="text" value={f.contact} onChange={upd("contact")} placeholder="Email or Telegram @handle" required />
-              </div>
-              <div>
-                <label style={lbl}>Organization</label>
-                <input style={field} type="text" value={f.org} onChange={upd("org")} placeholder="Fund / company (optional)" />
-              </div>
-              <div>
-                <label style={lbl}>I'm interested in</label>
-                <select style={field} value={f.interest} onChange={upd("interest")}>
-                  {["Investing", "Accelerator", "Partnership / collaboration", "Organizing a cleanup", "Community", "Other"].map((o) => <option key={o} value={o}>{o}</option>)}
-                </select>
-              </div>
-              <div>
-                <label style={lbl}>Message *</label>
-                <textarea style={{ ...field, minHeight: 96, resize: "vertical" }} value={f.message} onChange={upd("message")} placeholder="A few lines about you and what you're looking for" required />
-              </div>
-              {status === "invalid" && <div style={{ color: "#ff7a7a", fontSize: 13 }}>Please add a contact and a short message.</div>}
-              {status === "error" && <div style={{ color: "#ff7a7a", fontSize: 13 }}>Couldn't send right now — please email hello@decleanup.net.</div>}
-              <button className="btn btn-primary" type="submit" disabled={status === "sending"} style={{ width: "100%", opacity: status === "sending" ? 0.6 : 1 }}>
-                {status === "sending" ? "Sending" : "Send message"}
-              </button>
-              <p className="meta" style={{ textAlign: "center", color: "var(--ink-faint)", margin: 0 }}>Or email hello@decleanup.net</p>
-            </div>
-          </form>
-        )}
-      </div>
-    </div>
-  );
-}
-
 function ChoiceLink({ href, label, sub, tag, tagColor }) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" style={{
@@ -643,4 +532,4 @@ function SectionHead({ marker, title, lede, align = "left" }) {
   );
 }
 
-Object.assign(window, { Chip, Tag, MetaLine, Nav, StartModal, ContactModal, ChoiceLink, SectionHead, img, Term, Splitflap, RecTimestamp, BRAND, TOKENS, LINKS, CDCU_GOVERNANCE, GLOSSARY, IMPACT_LIVE, useImpactStats });
+Object.assign(window, { Chip, Tag, MetaLine, Nav, StartModal, ChoiceLink, SectionHead, img, Term, Splitflap, RecTimestamp, BRAND, TOKENS, LINKS, CDCU_GOVERNANCE, GLOSSARY, IMPACT_LIVE, useImpactStats });

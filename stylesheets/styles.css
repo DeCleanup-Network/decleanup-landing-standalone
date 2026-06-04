@@ -195,6 +195,27 @@ img { max-width: 100%; }
   border-radius: 2px;
   margin-bottom: 8px;
 }
+
+/* Impact API loading placeholders (hero KPIs + recent verifications) */
+.impact-skel {
+  display: block;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--line-soft) 0%,
+    color-mix(in oklch, var(--line) 70%, var(--bg-elev)) 50%,
+    var(--line-soft) 100%
+  );
+  background-size: 200% 100%;
+  animation: impact-skel-shimmer 1.1s ease-in-out infinite;
+}
+@keyframes impact-skel-shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .impact-skel { animation: none; opacity: 0.55; }
+}
 .serif {
   font-family: var(--f-serif);
   font-weight: 400;

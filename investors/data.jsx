@@ -8,9 +8,9 @@
 
 // Thesis-line bank (from dossier "Hero-thesis-line pattern bank").
 const THESIS_LINES = {
-  "Integrity wedge": "Every cleanup, verified by photo, geolocation, AI and an on-chain record, so funders can prove the impact they paid for.",
-  "Category bridge": "Tokenized Real-World Impact is to verified cleanup what RWA is to Treasuries: independently provable impact, on-chain, anywhere.",
-  "Contrast to crisis": "Impact markets have a trust problem. DeCleanup Network turns ground-truth cleanup into tamper-resistant, on-chain proof.",
+  "Integrity wedge": "Every cleanup, verified by photo, geolocation, AI and an onchain record, so funders can prove the impact they paid for.",
+  "Category bridge": "Tokenized Real-World Impact is to verified cleanup what RWA is to Treasuries: independently provable impact, onchain, anywhere.",
+  "Contrast to crisis": "Impact markets have a trust problem. DeCleanup Network turns ground-truth cleanup into tamper-resistant, onchain proof.",
   "Demand-led": "The verification rail for organizations that fund real-world cleanup and need independent, auditable proof of impact-per-dollar.",
 };
 
@@ -29,7 +29,7 @@ const HEADLINE_STATS = [
   },
   {
     num: "~$10B",
-    label: "DePIN sector generating ~$72M on-chain revenue, proof the on-chain rails are real infrastructure, not hype.",
+    label: "DePIN sector generating ~$72M onchain revenue, proof the onchain rails are real infrastructure, not hype.",
     src: "Messari, State of DePIN 2025",
   },
 ];
@@ -43,7 +43,7 @@ const SEGMENTS = [
     seg: "Corporate sustainability / ESG",
     buy: "Plastic credits, project sponsorship, recycled feedstock",
     verify: "Provider certificates + periodic audits",
-    wedge: "Real-time photo + geo + AI + on-chain proof of the physical cleanup event, per unit",
+    wedge: "Real-time photo + geo + AI + onchain proof of the physical cleanup event, per unit",
   },
   {
     seg: "Credit aggregators & retailers",
@@ -61,13 +61,13 @@ const SEGMENTS = [
     seg: "Climate / environmental philanthropy",
     buy: "Grants tied to impact reporting",
     verify: "Self-report + site visits",
-    wedge: "Auditable, geotagged, on-chain impact ledger",
+    wedge: "Auditable, geotagged, onchain impact ledger",
   },
   {
     seg: "Crypto-native impact buyers",
     buy: "Tokenized credits for treasury / retirement",
-    verify: "On-chain retirement bridged from off-chain registries",
-    wedge: "Born-on-chain units with ground-truth attestation, not bridged paper",
+    verify: "Onchain retirement bridged from off-chain registries",
+    wedge: "Born-onchain units with ground-truth attestation, not bridged paper",
   },
 ];
 
@@ -76,8 +76,8 @@ const COMPARABLES = [
   {
     name: "DeCleanup Network",
     dcu: true,
-    model: "On-chain verified cleanup impact + rewards on waste",
-    mrv: "photo + geo + AI + on-chain dMRV",
+    model: "Onchain verified cleanup impact + rewards on waste",
+    mrv: "photo + geo + AI + onchain dMRV",
     standard: "Live on Base + Celo",
     weak: "Early-stage; pipeline reserved",
   },
@@ -127,7 +127,7 @@ const CDCU_LINKS = {
 const RAILS = [
   {
     k: "Settlement",
-    body: "Verified cleanup impact settles natively on-chain. $bDCU on Base, $cDCU on Celo, same proof, two reward surfaces.",
+    body: "Verified cleanup impact settles natively onchain. $bDCU on Base, $cDCU on Celo, same proof, two reward surfaces.",
   },
   {
     k: "Reward",
@@ -142,7 +142,7 @@ const RAILS = [
 // Lead figures for the masthead (mix of market truth + own traction).
 const LEAD_FIGS = [
   { n: "<16%", l: "of issued carbon credits represented real reductions, the trust gap verification closes.", s: "Nature Comms · 2024" },
-  { n: "~$30B", l: "tokenized real-world assets on-chain, up ~4× in two years. tRWI rides the same rail.", s: "a16z · State of Crypto 2025" },
+  { n: "~$30B", l: "tokenized real-world assets onchain, up ~4× in two years. tRWI rides the same rail.", s: "a16z · State of Crypto 2025" },
   { n: "7 / 5", l: "photo-verified cleanup sites across five countries, audited end-to-end.", s: "DeCleanup Network pilots · 2024" },
 ];
 
@@ -173,7 +173,10 @@ const MEMO_SECTIONS = [
 ];
 
 const CONTACT = {
-  email: "mailto:hello@decleanup.net?subject=DeCleanup%20Network%20-%20investor%20intro&body=Fund%2Forg%3A%0AStage%2Ffocus%3A%0ATicket%20range%3A%0A",
+  email: "mailto:support@decleanup.net?subject=DeCleanup%20Network%20-%20investor%20intro&body=Fund%2Forg%3A%0AStage%2Ffocus%3A%0ATicket%20range%3A%0A",
+  supportEmail: "support@decleanup.net",
+  supportMailto: "mailto:support@decleanup.net",
+  inquiryMailto: "mailto:support@decleanup.net?subject=DeCleanup%20Network%20inquiry",
   telegram: "https://t.me/decentralizedcleanup",
   x: "https://x.com/DeCleanupNet",
 };

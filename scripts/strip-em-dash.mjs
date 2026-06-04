@@ -23,6 +23,10 @@ export function stripEmDash(s) {
   out = out.replace(/DMRV — /g, "DMRV · ");
   out = out.replace(/\s—\s/g, ", ");
   out = out.replace(/—/g, "-");
+  // En-dash in numeric ranges (5–10, Q1–Q2) → ASCII hyphen
+  out = out.replace(/\u2013/g, "-");
+  // Hyphenated "on-chain" in body copy → onchain
+  out = out.replace(/on-chain/gi, (m) => (m[0] === "O" ? "Onchain" : "onchain"));
   return out;
 }
 

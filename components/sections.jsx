@@ -51,10 +51,10 @@ function WhyDeCleanup() {
               THE SOLUTION
             </div>
             <h3 className="plakat" style={{ fontSize: 32, margin: "0 0 14px", color: "var(--ink)" }}>
-              Every cleanup<br/>becomes a receipt.
+              Every cleanup<br/>is logged.
             </h3>
-            <p style={{ color: "var(--ink-mute)", fontSize: 15, margin: 0 }}>
-              Pick up trash. Get paid. Get receipts.
+            <p style={{ color: "var(--ink-mute)", fontSize: 15, margin: 0, lineHeight: 1.55 }}>
+              Every log builds your record. Every record earns weight in the network. Real impact finds real support.
             </p>
           </div>
         </div>
@@ -323,16 +323,14 @@ function EcosystemSection() {
             tagColor="#0a0a0a"
             title="Full Platform"
             kicker="For organisers & NGOs"
-            body="Geolocation, impact reports and impact portfolio, governance for sponsored cleanups, coordinated campaigns."
+            body="Geolocation, impact reports and impact portfolio, coordinated campaigns for NGOs and organisers."
             features={[
               { k: "MAP",  v: "Geolocation & maps" },
               { k: "RPT",  v: "Hypercert impact reports" },
-              { k: "GOV",  v: "250 participate · 500 full" },
+              { k: "CAMP", v: "Coordinated cleanups & events" },
             ]}
             links={[
-              { label: "DeCleanup dApp", href: "https://dapp.decleanup.net" },
-              { label: "Governance on Gardens", href: LINKS.cDCU.governance },
-              { label: "$cDCU contract", href: LINKS.cDCU.celoscan },
+              { label: "Open full platform", href: "https://dapp.decleanup.net" },
             ]}
             accent="var(--yellow)"
           />

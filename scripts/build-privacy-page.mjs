@@ -7,6 +7,7 @@ import path from "path";
 import { docNav, docFooterBrand } from "./doc-nav.mjs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
+const SUPPORT_EMAIL = "support@decleanup.net";
 
 function noEmDash(s) {
   return s.replace(/\s*\u2014\s*/g, ", ").replace(/\u2014/g, "-");
@@ -328,7 +329,7 @@ ${ul([
 <div class="legal-contact-card">
   <dl class="legal-contact-grid">
     <dt>Email</dt>
-    <dd>${link("mailto:decentralizedcleanup@gmail.com", "decentralizedcleanup@gmail.com")}</dd>
+    <dd>${link(`mailto:${SUPPORT_EMAIL}`, SUPPORT_EMAIL)}</dd>
     <dt>Website</dt>
     <dd>${link("https://decleanup.net", "decleanup.net")}</dd>
     <dt>Base app</dt>

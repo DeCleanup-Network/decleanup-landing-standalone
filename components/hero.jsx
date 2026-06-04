@@ -9,28 +9,30 @@
 function Hero({ onLaunch }) {
   const impact = useImpactStats();
 
-  // Recent verified cleanups — fallback to 2024 pilot rows until the API indexes mainnet.
-  const pilotLedger = [
-    { loc: "Tokyo Bay, JP",  type: "Mixed",   date: "14.11.2024" },
-    { loc: "Osaka, JP",      type: "Mixed",   date: "02.10.2024" },
-    { loc: "Nsukka, NG",     type: "Mixed",   date: "28.08.2024" },
-    { loc: "Abuja, NG",      type: "Plastic", date: "19.07.2024" },
-    { loc: "Phangan, TH",    type: "Plastic", date: "11.06.2024" },
-  ];
   const fmtDate = (iso) => {
     const d = new Date(iso);
     if (isNaN(d.getTime())) return "";
     const p = (n) => String(n).padStart(2, "0");
     return `${p(d.getDate())}.${p(d.getMonth() + 1)}.${d.getFullYear()}`;
   };
-  // Live feed → ledger rows when present; else 2024 pilot rows.
-  const ledger = impact.cleanups && impact.cleanups.length
+  const fmtLoc = (loc) => {
+    if (!loc) return "—";
+    if (loc.placeName) return loc.placeName;
+    const label = loc.label || "";
+    return label.split(" · ")[0] || label || "—";
+  };
+  const fmtType = (types) => {
+    const t = types && types[0];
+    if (!t) return "—";
+    return t.charAt(0).toUpperCase() + t.slice(1).toLowerCase();
+  };
+  const ledger = !impact.loading && impact.cleanups && impact.cleanups.length
     ? impact.cleanups.slice(0, 5).map((it) => ({
-        loc: (it.location && it.location.label) || "—",
-        type: (it.impact && it.impact.wasteTypes && it.impact.wasteTypes[0]) || "Mixed",
+        loc: fmtLoc(it.location),
+        type: fmtType(it.impact && it.impact.wasteTypes),
         date: fmtDate(it.verifiedAt || it.submittedAt),
       }))
-    : pilotLedger;
+    : [];
   const fmtKg = (v) => (v == null ? "—" : String(Math.round(Number(v))));
 
   return (
@@ -95,7 +97,7 @@ function Hero({ onLaunch }) {
                 maxWidth: 540,
                 lineHeight: 1.5,
               }}>
-                Pick up trash. Photograph it. Get paid in $bDCU or $cDCU.
+                Pick up trash. Make photos. Get impact tokens and governance rights.
               </p>
 
               <div style={{ display: "flex", gap: 12, marginTop: 28, flexWrap: "wrap" }}>
@@ -108,8 +110,7 @@ function Hero({ onLaunch }) {
               </div>
             </div>
 
-            {/* Live network metrics — cleanups / weight removed / weight recycled.
-                Pulls from /api/impact/global; shows "—" until verifications are indexed. */}
+            {/* Live network metrics — loading skeleton, then /api/impact/global */}
             <div style={{
               marginTop: 40,
               display: "grid",
@@ -118,9 +119,9 @@ function Hero({ onLaunch }) {
               borderTop: "1px solid var(--line)",
               paddingTop: 24,
             }}>
-              <Kpi label="Cleanups verified"  value={impact.live ? String(impact.metrics.total_cleanups_verified) : "—"} sub="onchain proof"  isLive={impact.live} />
-              <Kpi label="Weight removed · kg" value={impact.live ? fmtKg(impact.metrics.total_weight_kg)        : "—"} sub="from the field" isLive={impact.live} />
-              <Kpi label="Weight recycled · kg" value={impact.live ? fmtKg(impact.metrics.total_recyclables_kg)  : "—"} sub="diverted"       isLive={impact.live} />
+              <Kpi label="Cleanups verified"   loading={impact.loading} value={impact.live ? String(impact.metrics.total_cleanups_verified) : "—"} sub="onchain proof"  isLive={impact.live} />
+              <Kpi label="Weight removed · kg" loading={impact.loading} value={impact.live ? fmtKg(impact.metrics.total_weight_kg)        : "—"} sub="from the field" isLive={impact.live} />
+              <Kpi label="Weight recycled · kg" loading={impact.loading} value={impact.live ? fmtKg(impact.metrics.total_recyclables_kg)  : "—"} sub="diverted"       isLive={impact.live} />
             </div>
           </div>
 
@@ -162,7 +163,8 @@ function Hero({ onLaunch }) {
             <div className="card rise" style={{ animationDelay: "0.2s", padding: 20, background: "var(--bg-elev)" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
                 <span className="meta" style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--ink-mute)" }}>
-                  <span className="live-dot"></span> Recent verifications
+                  {impact.loading ? null : <span className="live-dot"></span>}
+                  {impact.loading ? "Loading verifications" : "Recent verifications"}
                 </span>
                 <span className="meta">ONCHAIN · CELO</span>
               </div>
@@ -186,22 +188,43 @@ function Hero({ onLaunch }) {
                 <span style={{ textAlign: "right" }}>Date</span>
               </div>
 
-              {ledger.map((row, i) => (
-                <div key={i} style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 80px 100px",
-                  gap: 14,
-                  alignItems: "center",
-                  padding: "9px 0",
-                  borderTop: i === 0 ? "none" : "1px solid var(--line-soft)",
-                  fontFamily: "var(--f-mono)",
-                  fontSize: 11.5,
-                }}>
-                  <span style={{ color: "var(--ink)" }}>{row.loc}</span>
-                  <span style={{ color: "var(--ink-faint)" }}>{row.type}</span>
-                  <span style={{ color: "var(--green)", textAlign: "right" }}>{row.date}</span>
-                </div>
-              ))}
+              {impact.loading ? (
+                Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="ledger-row-loading" style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 80px 100px",
+                    gap: 14,
+                    alignItems: "center",
+                    padding: "9px 0",
+                    borderTop: i === 0 ? "none" : "1px solid var(--line-soft)",
+                  }} aria-hidden="true">
+                    <span className="impact-skel" style={{ height: 12, width: "72%" }} />
+                    <span className="impact-skel" style={{ height: 12, width: "55%" }} />
+                    <span className="impact-skel" style={{ height: 12, width: "70%", marginLeft: "auto" }} />
+                  </div>
+                ))
+              ) : ledger.length ? (
+                ledger.map((row, i) => (
+                  <div key={i} style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 80px 100px",
+                    gap: 14,
+                    alignItems: "center",
+                    padding: "9px 0",
+                    borderTop: i === 0 ? "none" : "1px solid var(--line-soft)",
+                    fontFamily: "var(--f-mono)",
+                    fontSize: 11.5,
+                  }}>
+                    <span style={{ color: "var(--ink)" }}>{row.loc}</span>
+                    <span style={{ color: "var(--ink-faint)" }}>{row.type}</span>
+                    <span style={{ color: "var(--green)", textAlign: "right" }}>{row.date}</span>
+                  </div>
+                ))
+              ) : (
+                <p className="mono" style={{ margin: "12px 0 0", fontSize: 11, color: "var(--ink-faint)", letterSpacing: "0.06em" }}>
+                  No onchain verifications indexed yet.
+                </p>
+              )}
 
               <a href="#impact" className="meta" style={{
                 display: "flex", justifyContent: "space-between", alignItems: "center",
@@ -219,10 +242,12 @@ function Hero({ onLaunch }) {
   );
 }
 
-function Kpi({ label, value, sub, isLive }) {
+function Kpi({ label, value, sub, isLive, loading }) {
   return (
-    <div>
-      {isLive ? (
+    <div aria-busy={loading ? "true" : undefined}>
+      {loading ? (
+        <span className="coming-eyebrow">Loading</span>
+      ) : isLive ? (
         <span style={{
           display: "inline-flex", alignItems: "center", gap: 6,
           fontFamily: "var(--f-mono)", fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase",
@@ -232,8 +257,12 @@ function Kpi({ label, value, sub, isLive }) {
       ) : (
         <span className="coming-eyebrow">Live · onchain</span>
       )}
-      <div style={{ fontSize: "clamp(34px, 4vw, 52px)", lineHeight: 0.9 }}>
-        <Splitflap value={value} />
+      <div style={{ fontSize: "clamp(34px, 4vw, 52px)", lineHeight: 0.9, minHeight: "1em" }}>
+        {loading ? (
+          <span className="impact-skel" style={{ display: "block", height: "clamp(34px, 4vw, 52px)", width: "min(100%, 96px)" }} aria-hidden="true" />
+        ) : (
+          <Splitflap value={value} />
+        )}
       </div>
       <div className="meta" style={{ marginTop: 6 }}>{label}</div>
       {sub && <div className="mono" style={{ fontSize: 10, color: "var(--ink-faint)", marginTop: 4, letterSpacing: "0.08em", textTransform: "uppercase" }}>{sub}</div>}

@@ -19,7 +19,7 @@ function Masthead({ thesis }) {
       <p className="masthead-thesis">{thesis}</p>
 
       <div style={{ display: "flex", gap: 10, marginTop: 30, flexWrap: "wrap" }}>
-        <button className="btn btn-primary" type="button" onClick={() => window.dispatchEvent(new Event("dcu:contact"))}>Contact the founders</button>
+        <a className="btn btn-primary" href={CONTACT.inquiryMailto} style={{ textDecoration: "none" }}>Email support</a>
         <a className="btn btn-ghost" href="#category">Read the thesis</a>
       </div>
 
@@ -144,20 +144,20 @@ function MoatSection() {
         num="03"
         kicker="The moat"
         title={<>Provenance over <span className="accent">perception.</span></>}
-        lede={<>Each cleanup is turned into a geotagged, timestamped proof, signed and issued natively on-chain as a Hypercert, verifiable impact on <span className="hl">waste</span>, settled across two L2s.</>}
+        lede={<>Each cleanup is turned into a geotagged, timestamped proof, signed and issued natively onchain as a Hypercert, verifiable impact on <span className="hl">waste</span>, settled across two L2s.</>}
       />
 
       <div className="moat-grid" style={{ marginTop: 8 }}>
-        <div className="moat-tile"><div className="k">No common standard</div><p className="v">Plastic credits have no worldwide standard. DeCleanup Network sets a verifiable, on-chain one.</p></div>
-        <div className="moat-tile"><div className="k">Born on-chain</div><p className="v">Native issuance with proof attached to every unit, not bridged paper credits.</p></div>
-        <div className="moat-tile"><div className="k">Audit-ready</div><p className="v">Every unit is geotagged, timestamped and independently checkable on-chain.</p></div>
+        <div className="moat-tile"><div className="k">No common standard</div><p className="v">Plastic credits have no worldwide standard. DeCleanup Network sets a verifiable, onchain one.</p></div>
+        <div className="moat-tile"><div className="k">Born onchain</div><p className="v">Native issuance with proof attached to every unit, not bridged paper credits.</p></div>
+        <div className="moat-tile"><div className="k">Audit-ready</div><p className="v">Every unit is geotagged, timestamped and independently checkable onchain.</p></div>
       </div>
 
       <a className="xref" href="https://decleanup.net/#dmrv" target="_blank" rel="noopener noreferrer">
         See the full dMRV verification flow on the main site
       </a>
       <p className="mono" style={{ fontSize: 10.5, color: "var(--ink-faint)", marginTop: 16, letterSpacing: "0.06em", lineHeight: 1.6 }}>
-        Full verification logic and on-chain issuance details are shared with serious counterparties on request.
+        Full verification logic and onchain issuance details are shared with serious counterparties on request.
       </p>
     </section>
   );

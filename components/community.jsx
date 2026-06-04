@@ -1,4 +1,4 @@
-/* global React, SectionHead, Splitflap, img */
+/* global React, SectionHead, Splitflap, img, useImpactStats, LINKS */
 // ===========================
 // Community / Total Impact / Join / Footer
 // ===========================
@@ -161,15 +161,37 @@ function CleanupMapSection() {
   );
 }
 
+const PILOT_LEDGER_ROWS = [
+  { l: "HEM Japan · events",        v: "9",  delta: "2024 · confirmed" },
+  { l: "HEM Japan · active users",  v: "12", delta: "2024 · confirmed" },
+  { l: "Pestathon · events",        v: "4",  delta: "2024 · confirmed" },
+  { l: "Pestathon · active users",  v: "9",  delta: "2024 · confirmed" },
+  { l: "Pilot partners",            v: "2",  delta: "HEM · Pestathon" },
+];
+
+function LedgerRow({ label, value, delta, valueLive, last }) {
+  return (
+    <div style={{
+      display: "grid",
+      gridTemplateColumns: "1fr auto auto",
+      padding: "20px 24px",
+      borderBottom: last ? "none" : "1px solid var(--line-soft)",
+      alignItems: "baseline",
+      gap: 16,
+    }}>
+      <span className="serif" style={{ fontSize: 22, color: "var(--ink)" }}>{label}</span>
+      <span className="plakat" style={{ fontSize: "clamp(32px, 4vw, 48px)", color: "var(--green)", textAlign: "right", letterSpacing: "0.005em" }}>{value}</span>
+      <span className="mono" style={{ fontSize: 11, color: valueLive ? "var(--green)" : "var(--ink-faint)", textAlign: "right", minWidth: 160, letterSpacing: "0.04em" }}>{delta}</span>
+    </div>
+  );
+}
+
 function TotalImpactSection() {
-  const rows = [
-    { l: "HEM Japan · events",        v: "9",   delta: "2024 · confirmed" },
-    { l: "HEM Japan · active users",  v: "12",  delta: "2024 · confirmed" },
-    { l: "Pestathon · events",        v: "4",   delta: "2024 · confirmed" },
-    { l: "Pestathon · active users",  v: "9",   delta: "2024 · confirmed" },
-    { l: "Pilot partners",            v: "2",   delta: "HEM · Pestathon" },
-    { l: "Network live counter",      v: "—",   delta: "onchain · live" },
-  ];
+  const impact = useImpactStats();
+  // Pilot rows are fixed 2024 figures; only Protocol V2 reads the public impact API.
+  const protocolV2Count = !impact.loading && impact.live && impact.metrics
+    ? String(impact.metrics.total_cleanups_verified)
+    : "—";
   return (
     <section className="section" id="impact" style={{ background: "var(--bg-elev)" }}>
       <div className="container">
@@ -183,11 +205,11 @@ function TotalImpactSection() {
             <SectionHead
               marker="06 · TOTAL IMPACT"
               title={<>The ledger,<br/>at a <span className="gradient-text">glance.</span></>}
-              lede={<>Confirmed numbers from 2024 pilots with <span className="hl">HEM Japan</span> and <span className="hl">Pestathon</span>. The live network counter goes onchain in Q4 2025. No estimates, only what's been signed.</>}
+              lede={<>Confirmed numbers from 2024 pilots with <span className="hl">HEM Japan</span> and <span className="hl">Pestathon</span>. The <span className="hl">Protocol V2 counter</span> reads from the same public impact API as the hero (verified cleanups on Celo). No estimates on pilot rows.</>}
             />
             <div className="chip">
-              <span className="dot"></span>
-              <span className="mono">PILOT FIGURES · 2024</span>
+              <span className="dot" style={impact.live ? { background: "var(--green)", boxShadow: "0 0 8px var(--green)" } : undefined}></span>
+              <span className="mono">{impact.live ? "PILOT 2024 + PROTOCOL V2 LIVE" : "PILOT FIGURES · 2024"}</span>
             </div>
           </div>
 
@@ -209,20 +231,16 @@ function TotalImpactSection() {
               <span className="meta" style={{ textAlign: "right" }}>VALUE</span>
               <span className="meta" style={{ textAlign: "right", minWidth: 160 }}>NOTE</span>
             </div>
-            {rows.map((r, i) => (
-              <div key={r.l} style={{
-                display: "grid",
-                gridTemplateColumns: "1fr auto auto",
-                padding: "20px 24px",
-                borderBottom: i === rows.length - 1 ? "none" : "1px solid var(--line-soft)",
-                alignItems: "baseline",
-                gap: 16,
-              }}>
-                <span className="serif" style={{ fontSize: 22, color: "var(--ink)" }}>{r.l}</span>
-                <span className="plakat" style={{ fontSize: "clamp(32px, 4vw, 48px)", color: "var(--green)", textAlign: "right", letterSpacing: "0.005em" }}>{r.v}</span>
-                <span className="mono" style={{ fontSize: 11, color: "var(--ink-faint)", textAlign: "right", minWidth: 160, letterSpacing: "0.04em" }}>{r.delta}</span>
-              </div>
+            {PILOT_LEDGER_ROWS.map((r) => (
+              <LedgerRow key={r.l} label={r.l} value={r.v} delta={r.delta} />
             ))}
+            <LedgerRow
+              label="Protocol V2 counter"
+              value={protocolV2Count}
+              delta={impact.live ? "verified" : "onchain · live"}
+              valueLive={impact.live}
+              last
+            />
           </div>
         </div>
       </div>
@@ -267,7 +285,7 @@ function JoinSection({ onLaunch }) {
 }
 
 // ---------- FOOTER ----------
-function SiteFooter({ onContact }) {
+function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="container">
@@ -293,7 +311,7 @@ function SiteFooter({ onContact }) {
                 <a className="footer-link" href="https://x.com/DeCleanupNet" target="_blank" rel="noopener noreferrer">X / Twitter</a>
                 <a className="footer-link" href="https://farcaster.xyz/decleanupnet" target="_blank" rel="noopener noreferrer">Farcaster</a>
                 <a className="footer-link" href="https://github.com/DeCleanup-Network" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <button type="button" className="footer-link" onClick={onContact} style={{ background: "none", border: "none", padding: 0, cursor: "pointer", font: "inherit" }}>Contact founders</button>
+                <a className="footer-link" href={LINKS.support.mailto}>{LINKS.support.email}</a>
               </div>
             </div>
           </div>
@@ -446,10 +464,10 @@ function BackedBySection() {
 // ---------- RESOURCES / DOCUMENTATION STRIP ----------
 function ResourcesSection() {
   const docs = [
-    { t: "Litepaper",        d: "The full thesis — verifiable, governable, fundable impact.",   href: "litepaper.html",  tag: "v.2" },
+    { t: "Litepaper",        d: "The full thesis: verifiable, governable, fundable impact.",   href: "litepaper.html",  tag: "v.2" },
     { t: "Tokenomics",       d: "The dual-token model: $bDCU for action, $cDCU for proof.",      href: "tokenomics.html", tag: "$bDCU · $cDCU" },
-    { t: "Theory of Change", d: "Why cleanup stays invisible — and how DeCleanup fixes it.",     href: "toc.html",        tag: "v2.2" },
-    { t: "SDG alignment",    d: "How DeCleanup maps to five UN Sustainable Development Goals.",   href: "sdg.html",        tag: "SDG 11·12·13·14·15" },
+    { t: "Theory of Change", d: "Why cleanup stays invisible, and how DeCleanup Network fixes it.",     href: "toc.html",        tag: "v2.2" },
+    { t: "SDG alignment",    d: "How DeCleanup Rewards maps to five UN Sustainable Development Goals.",   href: "sdg.html",        tag: "SDG 11·12·13·14·15" },
   ];
   return (
     <section className="section" id="resources" style={{ paddingTop: 0, paddingBottom: "calc(var(--section-py) * 0.6)" }}>
@@ -487,7 +505,7 @@ function ResourcesSection() {
 }
 
 // ---------- INVESTORS BAND ----------
-function InvestorsSection({ onContact }) {
+function InvestorsSection() {
   return (
     <section className="section" id="investors" style={{ paddingTop: 0 }}>
       <div className="container">
@@ -500,14 +518,14 @@ function InvestorsSection({ onContact }) {
             Back impact you can <span className="gradient-text">prove.</span>
           </h2>
           <p className="serif" style={{ color: "var(--ink-mute)", fontSize: 17, lineHeight: 1.45, margin: "18px 0 0", maxWidth: 560 }}>
-            DeCleanup turns real-world cleanup into independently verifiable, on-chain impact — so climate funds, corporates and grant programs can fund outcomes they can audit, not promises. Live on Base + Celo.
+            DeCleanup Network tools turn real-world cleanup into independently verifiable, onchain impact, so climate funds, corporates and grant programs can fund outcomes they can audit, not promises. Live on Base + Celo.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 28 }}>
             <a className="btn btn-primary" href="investors/">Read the investor brief</a>
-            <button className="btn btn-ghost" type="button" onClick={onContact}>Talk to the founders</button>
+            <a className="btn btn-ghost" href={LINKS.support.mailtoInquiry}>Email support</a>
           </div>
           <p className="meta" style={{ color: "var(--ink-faint)", marginTop: 20, fontSize: 10, letterSpacing: "0.04em", maxWidth: 720, lineHeight: 1.5 }}>
-            Information only — not financial advice, and not an offer or solicitation to buy or sell any token or security.
+            Information only. Not financial advice, and not an offer or solicitation to buy or sell any token or security.
           </p>
         </div>
       </div>
