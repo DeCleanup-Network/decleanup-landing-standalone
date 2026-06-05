@@ -26,6 +26,11 @@ const CDCU_GOVERNANCE = {
 };
 
 const LINKS = {
+  social: {
+    x: "https://x.com/decleanupnet",
+    farcaster: "https://farcaster.xyz/decleanupnet",
+    handle: "@decleanupnet",
+  },
   support: {
     email: "support@decleanup.net",
     mailto: "mailto:support@decleanup.net",
@@ -399,20 +404,23 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
             </a>
           ))}
           <div className="nav-mobile-divider"></div>
-          <a className="nav-mobile-link" href="litepaper.html" onClick={closeMenu}>
+          <a className="nav-mobile-link" href="/litepaper" onClick={closeMenu}>
             <span>Litepaper</span>
           </a>
-          <a className="nav-mobile-link" href="tokenomics.html" onClick={closeMenu}>
+          <a className="nav-mobile-link" href="/tokenomics" onClick={closeMenu}>
             <span>Tokenomics</span>
           </a>
-          <a className="nav-mobile-link" href="toc.html" onClick={closeMenu}>
+          <a className="nav-mobile-link" href="/toc" onClick={closeMenu}>
             <span>Theory of change</span>
           </a>
-          <a className="nav-mobile-link" href="sdg.html" onClick={closeMenu}>
+          <a className="nav-mobile-link" href="/sdg" onClick={closeMenu}>
             <span>SDG alignment</span>
           </a>
-          <a className="nav-mobile-link" href="investors/" onClick={closeMenu}>
+          <a className="nav-mobile-link" href="/investors" onClick={closeMenu}>
             <span>Investor brief</span>
+          </a>
+          <a className="nav-mobile-link" href="https://decleanup.net/userguide" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+            <span>User Guide</span>
           </a>
           <a className="nav-mobile-link" href="https://github.com/DeCleanup-Network" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
             <span>GitHub</span>

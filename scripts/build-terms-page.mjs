@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import fs from "fs";
 import path from "path";
-import { docNav, docFooterBrand } from "./doc-nav.mjs";
+import { docNav, docFooter } from "./doc-nav.mjs";
 
 const ROOT = new URL("..", import.meta.url).pathname;
 
@@ -67,7 +67,7 @@ const baseClauses = [
   clause(14, "Compliance with laws", `<p>You are solely responsible for compliance with all applicable laws in your jurisdiction, including sanctions, anti-money laundering, tax reporting, environmental regulations, data protection, and privacy laws.</p>`),
   clause(15, "Modifications and termination", `<p>We reserve the right to modify, suspend, or discontinue the Services at any time; adjust DCU point values, multipliers, or reward structures; modify staking requirements or verifier criteria; and change fees with reasonable notice. We may terminate or suspend your access immediately for breach of these Terms. Upon termination, onchain assets (Impact Products, staked tokens) remain in your wallet according to contract terms.</p>`),
   clause(16, "Changes to Terms", `<p>We will notify you of material changes by posting updated Terms at ${link("https://miniapp.decleanup.net/terms", "miniapp.decleanup.net/terms")} and updating the effective date. Continued use constitutes acceptance.</p>`),
-  clause(17, "Contact", `<p>Website: ${link("https://decleanup.net", "decleanup.net")} · ${link("https://miniapp.decleanup.net", "miniapp.decleanup.net")} · Farcaster: ${link("https://farcaster.xyz/decleanup", "@decleanup")} · Telegram: ${link("https://t.me/DecentralizedCleanup", "t.me/DecentralizedCleanup")}</p>`),
+  clause(17, "Contact", `<p>Website: ${link("https://decleanup.net", "decleanup.net")} · ${link("https://miniapp.decleanup.net", "miniapp.decleanup.net")} · Farcaster: ${link("https://farcaster.xyz/decleanupnet", "@decleanupnet")} · Telegram: ${link("https://t.me/DecentralizedCleanup", "t.me/DecentralizedCleanup")}</p>`),
 ];
 
 const celoIntro = `<p class="legal-major-scope">Section I applies to informational use of decleanup.net. This Section III governs your use of the Celo Service. If there is a conflict, this section controls.</p>`;
@@ -154,7 +154,7 @@ ${docNav({ active: "terms" })}
       <p class="meta" style="color:var(--green);margin-bottom:12px">LEGAL</p>
       <h1 class="plakat" style="font-size:clamp(40px,6vw,64px);margin:0 0 12px;letter-spacing:0.02em;line-height:0.95">TERMS OF <span style="color:var(--green)">SERVICE</span></h1>
       <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 8px;max-width:640px;line-height:1.4">Effective April 23, 2026 · DeCleanup Network</p>
-      <p class="mono" style="font-size:12px;color:var(--ink-faint);margin:0">Also see our <a href="privacy.html" class="legal-link">Privacy Policy</a>.</p>
+      <p class="mono" style="font-size:12px;color:var(--ink-faint);margin:0">Also see our <a href="/privacy" class="legal-link">Privacy Policy</a>.</p>
     </div>
   </header>
 
@@ -166,7 +166,7 @@ ${docNav({ active: "terms" })}
           <a href="#general" class="legal-link">I. General Terms</a>
           <a href="#base" class="legal-link">II. Base (Rewards)</a>
           <a href="#celo" class="legal-link">III. Celo Platform (DeCleanup dApp)</a>
-          <a href="privacy.html" class="legal-link">Privacy Policy</a>
+          <a href="/privacy" class="legal-link">Privacy Policy</a>
         </nav>
       </details>
 
@@ -178,7 +178,7 @@ ${docNav({ active: "terms" })}
           <a href="#celo" class="legal-link">III. Celo Platform (DeCleanup dApp)</a>
           <div class="legal-toc-related">
             <p class="meta">RELATED</p>
-            <a href="privacy.html" class="legal-link">Privacy Policy</a>
+            <a href="/privacy" class="legal-link">Privacy Policy</a>
           </div>
         </aside>
         <article class="legal-article">${article}</article>
@@ -187,64 +187,7 @@ ${docNav({ active: "terms" })}
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px" class="footer-grid">
-      <div>
-        ${docFooterBrand()}
-        <p class="serif" style="color:var(--ink-mute);font-size:17px;line-height:1.4;margin:0;max-width:340px">Cleanup verification protocol. Open-source. Live on Base + Celo.</p>
-        <div style="margin-top:24px">
-          <p class="meta" style="margin-bottom:10px;color:var(--ink)">Connect</p>
-          <div style="display:flex;flex-wrap:wrap;gap:18px">
-            <a class="footer-link" href="https://decleanup.net" target="_blank" rel="noopener noreferrer">Website</a>
-            <a class="footer-link" href="https://github.com/DeCleanup-Network" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a class="footer-link" href="litepaper.html">Litepaper</a>
-            <a class="footer-link" href="tokenomics.html">Tokenomics</a>
-            <a class="footer-link" href="https://x.com/DeCleanupNet" target="_blank" rel="noopener noreferrer">X</a>
-            <a class="footer-link" href="https://farcaster.xyz/decleanupnet" target="_blank" rel="noopener noreferrer">Farcaster</a>
-            <a class="footer-link" href="https://t.me/decentralizedcleanup" target="_blank" rel="noopener noreferrer">Telegram</a>
-            <a class="footer-link" href="https://giveth.io/project/decentralized-cleanup-network" target="_blank" rel="noopener noreferrer">Giveth</a>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h4 class="meta" style="margin-bottom:14px;color:var(--ink)">Resources</h4>
-        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
-          <li><a class="footer-link" href="litepaper.html">Litepaper</a></li>
-          <li><a class="footer-link" href="tokenomics.html">Tokenomics</a></li>
-          <li><a class="footer-link" href="toc.html">Theory of change</a></li>
-          <li><a class="footer-link" href="sdg.html">SDG alignment</a></li>
-          <li><a class="footer-link" href="investors/">Investor brief</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="meta" style="margin-bottom:14px;color:var(--ink)">Technical</h4>
-        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
-          <li><a class="footer-link" href="https://github.com/DeCleanup-Network" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-          <li><a class="footer-link" href="https://decleanup.net/docs" target="_blank" rel="noopener noreferrer">Dev docs</a></li>
-          <li><a class="footer-link" href="https://decleanup.net/userguide" target="_blank" rel="noopener noreferrer">User guide</a></li>
-          <li><a class="footer-link" href="terms.html" aria-current="page">Terms of service</a></li>
-          <li><a class="footer-link" href="privacy.html">Privacy policy</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="meta" style="margin-bottom:14px;color:var(--ink)">Support</h4>
-        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
-          <li><a class="footer-link" href="https://giveth.io/project/decentralized-cleanup-network" target="_blank" rel="noopener noreferrer">Donate on Giveth</a></li>
-          <li><a class="footer-link" href="https://www.crowdwalrus.xyz/campaigns/decleanupnet" target="_blank" rel="noopener noreferrer">Fund on CrowdWalrus</a></li>
-        </ul>
-      </div>
-    </div>
-    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--line);flex-wrap:wrap;gap:16px">
-      <p class="meta" style="margin:0">© 2026 DECLEANUP NETWORK · OPEN-SOURCE · MIT</p>
-      <p class="meta legal-doc-footer-links" style="margin:0">
-        ${link("https://decleanup.net/userguide", "User Guide", true)}
-        <a href="terms.html" class="legal-link" aria-current="page">Terms of Service</a>
-        ${link("privacy.html", "Privacy Policy")}
-      </p>
-    </div>
-  </div>
-</footer>
+${docFooter({ excludeHref: "/terms" })}
 </body>
 </html>`;
 

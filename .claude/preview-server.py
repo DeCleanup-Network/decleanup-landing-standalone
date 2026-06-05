@@ -28,6 +28,11 @@ class RewriteHandler(http.server.SimpleHTTPRequestHandler):
         path = self.path.split("?", 1)[0].split("#", 1)[0]
         if path in REWRITES:
             self.path = REWRITES[path]
+        elif path != "/" and not path.startswith("/public/") and "." not in os.path.basename(path):
+            # Mirror Vercel cleanUrls: /litepaper -> litepaper.html
+            candidate = path.lstrip("/") + ".html"
+            if os.path.isfile(candidate):
+                self.path = "/" + candidate
         return super().do_GET()
 
     def end_headers(self):

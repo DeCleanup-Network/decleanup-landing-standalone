@@ -178,7 +178,9 @@ const CONTACT = {
   supportMailto: "mailto:support@decleanup.net",
   inquiryMailto: "mailto:support@decleanup.net?subject=DeCleanup%20Network%20inquiry",
   telegram: "https://t.me/decentralizedcleanup",
-  x: "https://x.com/DeCleanupNet",
+  x: "https://x.com/decleanupnet",
+  farcaster: "https://farcaster.xyz/decleanupnet",
+  handle: "@decleanupnet",
 };
 
 // Backers, real public-good funders already in the brand.

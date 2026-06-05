@@ -207,7 +207,8 @@ function ContactSection() {
         <div className="contact-actions">
           <a className="btn btn-primary" href={CONTACT.inquiryMailto} style={{ textDecoration: "none" }}>Email support</a>
           <a className="btn btn-ghost" href={CONTACT.telegram} target="_blank" rel="noopener noreferrer">Reach us on Telegram</a>
-          <a className="btn btn-ghost" href={CONTACT.x} target="_blank" rel="noopener noreferrer">X / Twitter</a>
+          <a className="btn btn-ghost" href={CONTACT.x} target="_blank" rel="noopener noreferrer">X {CONTACT.handle}</a>
+          <a className="btn btn-ghost" href={CONTACT.farcaster} target="_blank" rel="noopener noreferrer">Farcaster {CONTACT.handle}</a>
         </div>
       </div>
     </section>

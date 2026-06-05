@@ -101,7 +101,8 @@ function Footer() {
           <FooterCol title="Talk to us" links={[
             ["Email support", CONTACT.email],
             ["Telegram", CONTACT.telegram],
-            ["X / Twitter", CONTACT.x],
+            [`X ${CONTACT.handle}`, CONTACT.x],
+            [`Farcaster ${CONTACT.handle}`, CONTACT.farcaster],
           ]} />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, borderTop: "1px solid var(--line)", flexWrap: "wrap", gap: 16 }}>

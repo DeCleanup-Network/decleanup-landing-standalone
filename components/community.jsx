@@ -273,8 +273,8 @@ function JoinSection({ onLaunch }) {
               Start Cleaning
             </button>
             <a className="btn btn-ghost" href="https://t.me/decentralizedcleanup" target="_blank" rel="noopener noreferrer">Telegram</a>
-            <a className="btn btn-ghost" href="https://x.com/DeCleanupNet" target="_blank" rel="noopener noreferrer">X / Twitter</a>
-            <a className="btn btn-ghost" href="https://farcaster.xyz/decleanupnet" target="_blank" rel="noopener noreferrer">Farcaster</a>
+            <a className="btn btn-ghost" href={LINKS.social.x} target="_blank" rel="noopener noreferrer">X {LINKS.social.handle}</a>
+            <a className="btn btn-ghost" href={LINKS.social.farcaster} target="_blank" rel="noopener noreferrer">Farcaster {LINKS.social.handle}</a>
           </div>
         </div>
 
@@ -308,8 +308,8 @@ function SiteFooter() {
               <div className="meta" style={{ marginBottom: 10, color: "var(--ink)" }}>Connect</div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 18 }}>
                 <a className="footer-link" href="https://t.me/decentralizedcleanup" target="_blank" rel="noopener noreferrer">Telegram</a>
-                <a className="footer-link" href="https://x.com/DeCleanupNet" target="_blank" rel="noopener noreferrer">X / Twitter</a>
-                <a className="footer-link" href="https://farcaster.xyz/decleanupnet" target="_blank" rel="noopener noreferrer">Farcaster</a>
+                <a className="footer-link" href={LINKS.social.x} target="_blank" rel="noopener noreferrer">X {LINKS.social.handle}</a>
+                <a className="footer-link" href={LINKS.social.farcaster} target="_blank" rel="noopener noreferrer">Farcaster {LINKS.social.handle}</a>
                 <a className="footer-link" href="https://github.com/DeCleanup-Network" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a className="footer-link" href={LINKS.support.mailto}>{LINKS.support.email}</a>
               </div>
@@ -317,20 +317,20 @@ function SiteFooter() {
           </div>
 
           <FooterCol title="Resources" links={[
-            ["Litepaper", "litepaper.html"],
-            ["Tokenomics", "tokenomics.html"],
-            ["Theory of change", "toc.html"],
-            ["SDG alignment", "sdg.html"],
-            ["Investor brief", "investors/"],
-            ["Terms of service", "terms.html"],
-            ["Privacy policy", "privacy.html"],
+            ["Litepaper", "/litepaper"],
+            ["Tokenomics", "/tokenomics"],
+            ["Theory of change", "/toc"],
+            ["SDG alignment", "/sdg"],
+            ["Investor brief", "/investors"],
+            ["Terms of service", "/terms"],
+            ["Privacy policy", "/privacy"],
             ["Publications", "https://paragraph.com/@decleanupnet"],
           ]} />
           <FooterCol title="Support" links={[
             ["$cDCU governance (Gardens)", LINKS.cDCU.governance],
             ["Donate on Giveth", "https://giveth.io/project/decentralized-cleanup-network"],
             ["Fund on CrowdWalrus", "https://www.crowdwalrus.xyz/campaigns/decleanupnet"],
-            ["Trade $DCU on Uniswap", "https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x30171b7014c02229497CdE6745DD3aD821F12b07"],
+            ["Trade $bDCU on Uniswap", "https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x30171b7014c02229497CdE6745DD3aD821F12b07"],
           ]} />
         </div>
 
@@ -351,7 +351,7 @@ function SiteFooter() {
         </div>
 
         <p className="meta" style={{ color: "var(--ink-faint)", marginTop: 16, lineHeight: 1.5, fontSize: 10, letterSpacing: "0.04em", maxWidth: 920 }}>
-          Nothing on this site is financial, investment, tax, or legal advice, or an offer or solicitation to buy or sell any token or security. $DCU is a utility and reward token tied to verified cleanup activity; availability and features may vary by jurisdiction. Do your own research.
+          Nothing on this site is financial, investment, tax, or legal advice, or an offer or solicitation to buy or sell any token or security. $bDCU and $cDCU are network tokens tied to verified cleanup activity; in-app DCU points track participation. Availability and features may vary by jurisdiction. Do your own research.
         </p>
       </div>
     </footer>
@@ -464,10 +464,10 @@ function BackedBySection() {
 // ---------- RESOURCES / DOCUMENTATION STRIP ----------
 function ResourcesSection() {
   const docs = [
-    { t: "Litepaper",        d: "The full thesis: verifiable, governable, fundable impact.",   href: "litepaper.html",  tag: "v.2" },
-    { t: "Tokenomics",       d: "The dual-token model: $bDCU for action, $cDCU for proof.",      href: "tokenomics.html", tag: "$bDCU · $cDCU" },
-    { t: "Theory of Change", d: "Why cleanup stays invisible, and how DeCleanup Network fixes it.",     href: "toc.html",        tag: "v2.2" },
-    { t: "SDG alignment",    d: "How DeCleanup Rewards maps to five UN Sustainable Development Goals.",   href: "sdg.html",        tag: "SDG 11·12·13·14·15" },
+    { t: "Litepaper",        d: "The full thesis: verifiable, governable, fundable impact.",   href: "/litepaper",  tag: "v.2" },
+    { t: "Tokenomics",       d: "The dual-token model: $bDCU for action, $cDCU for proof.",      href: "/tokenomics", tag: "$bDCU · $cDCU" },
+    { t: "Theory of Change", d: "Why cleanup stays invisible, and how DeCleanup Network fixes it.",     href: "/toc",        tag: "v2.2" },
+    { t: "SDG alignment",    d: "How DeCleanup Rewards maps to five UN Sustainable Development Goals.",   href: "/sdg",        tag: "SDG 11·12·13·14·15" },
   ];
   return (
     <section className="section" id="resources" style={{ paddingTop: 0, paddingBottom: "calc(var(--section-py) * 0.6)" }}>
@@ -556,7 +556,7 @@ function SdgStrip() {
             <h3 className="plakat" style={{ fontSize: 28, margin: 0, letterSpacing: "0.02em" }}>
               Aligned with the United Nations <span className="gradient-text">SDGs</span>
             </h3>
-            <a className="meta" href="sdg.html" style={{ color: "var(--ink)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <a className="meta" href="/sdg" style={{ color: "var(--ink)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8 }}>
               FULL ALIGNMENT BRIEF
             </a>
           </div>
