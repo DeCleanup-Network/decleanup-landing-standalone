@@ -309,18 +309,17 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
   const closeMenu = () => setMenuOpen(false);
   const isDark = palette !== "kraft";
   const navLinks = [
-    ["What", "#what"],
-    ["How", "#how"],
-    ["Ecosystem", "#ecosystem"],
-    ["Community", "#community"],
-    ["Impact", "#impact"],
-    ["Docs", "#resources"],
-    ["Investors", "#investors"],
+    ["Home", "/"],
+    ["Litepaper", "/litepaper"],
+    ["Tokenomics", "/tokenomics"],
+    ["Theory of Change", "/toc"],
+    ["SDG", "/sdg"],
+    ["Investors", "/investors"],
   ];
   return (
     <nav className="nav" style={{ borderBottomColor: scrolled || menuOpen ? "var(--line)" : "transparent" }}>
       <div className="nav-inner">
-        <a href="#top" onClick={(e) => { triggerLogo(e); closeMenu(); }} className="brand-lockup" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "var(--ink)" }}>
+        <a href="/" onClick={(e) => { triggerLogo(e); closeMenu(); }} className="brand-lockup" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "var(--ink)" }}>
           <img
             key={logoSpin}
             src={img("public/brand/logo-icon.png")}
@@ -337,6 +336,7 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
           {navLinks.map(([label, href]) => (
             <a key={href} className="nav-link" href={href}>{label}</a>
           ))}
+          <a className="nav-link" href="https://decleanup.net/userguide" target="_blank" rel="noopener noreferrer">User Guide</a>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <button
@@ -370,8 +370,8 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
             )}
           </button>
           <button className="btn btn-primary btn-compact nav-cta" onClick={onLaunch}>
-            <span className="nav-cta-full">Start Cleaning</span>
-            <span className="nav-cta-short">Start</span>
+            <span className="nav-cta-full">Launch App</span>
+            <span className="nav-cta-short">Launch</span>
           </button>
           {/* Mobile hamburger — hidden >860px via CSS */}
           <button
@@ -403,27 +403,8 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
               <span>{label}</span>
             </a>
           ))}
-          <div className="nav-mobile-divider"></div>
-          <a className="nav-mobile-link" href="/litepaper" onClick={closeMenu}>
-            <span>Litepaper</span>
-          </a>
-          <a className="nav-mobile-link" href="/tokenomics" onClick={closeMenu}>
-            <span>Tokenomics</span>
-          </a>
-          <a className="nav-mobile-link" href="/toc" onClick={closeMenu}>
-            <span>Theory of change</span>
-          </a>
-          <a className="nav-mobile-link" href="/sdg" onClick={closeMenu}>
-            <span>SDG alignment</span>
-          </a>
-          <a className="nav-mobile-link" href="/investors" onClick={closeMenu}>
-            <span>Investor brief</span>
-          </a>
           <a className="nav-mobile-link" href="https://decleanup.net/userguide" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
             <span>User Guide</span>
-          </a>
-          <a className="nav-mobile-link" href="https://github.com/DeCleanup-Network" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
-            <span>GitHub</span>
           </a>
         </div>
         <div className="nav-mobile-foot">
@@ -432,7 +413,7 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
             style={{ width: "100%", marginBottom: 14 }}
             onClick={() => { closeMenu(); onLaunch(); }}
           >
-            Start Cleaning
+            Launch App
           </button>
           <span className="meta">DECLEANUP NETWORK · OPEN-SOURCE · MIT</span>
         </div>

@@ -11,6 +11,11 @@ function App() {
   const [modal, setModal] = React.useState(false);
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
+  // Hide static SEO fallback once React is live.
+  React.useEffect(() => {
+    document.documentElement.classList.add("js-enabled");
+  }, []);
+
   // Apply tweaks to <html>
   React.useEffect(() => {
     const r = document.documentElement;

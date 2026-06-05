@@ -50,7 +50,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
 
-<link rel="stylesheet" href="styles.css?v=20260604m" />
+<link rel="stylesheet" href="styles.css?v=20260605b" />
 
 <!-- Preload LCP hero image -->
 <link rel="preload" as="image" href="/public/testimonial1.jpg" fetchpriority="high" />
@@ -103,28 +103,67 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
-<noscript>
-  <main style="max-width:720px;margin:0 auto;padding:96px 24px 48px;font-family:system-ui,sans-serif;color:#e8e8e8;background:#0a0a0a">
-    <h1 style="font-size:2.5rem;line-height:1.05;margin:0 0 16px">DeCleanup Network</h1>
-    <p style="font-size:1.25rem;line-height:1.5;color:#a8a8a8;margin:0 0 24px">Clean Local. Prove Global. Pick up trash. Upload photos. Get impact tokens and governance rights.</p>
-    <p style="font-size:0.95rem;line-height:1.6;color:#888;margin:0 0 32px">Open-source cleanup verification on Base and Celo. 13 pilot events across Japan, Nigeria, and Thailand in 2024.</p>
-    <nav style="display:flex;flex-wrap:wrap;gap:12px;font-size:0.85rem">
-      <a href="/litepaper">Litepaper</a>
-      <a href="/tokenomics">Tokenomics</a>
-      <a href="/toc">Theory of Change</a>
-      <a href="/sdg">SDG</a>
-      <a href="/investors">Investors</a>
-    </nav>
-  </main>
-</noscript>
+<main id="static-fallback" style="font-family:system-ui,sans-serif;color:#e8e8e8;background:#0a0a0a;min-height:100vh">
+  <header style="position:sticky;top:0;z-index:10;border-bottom:1px solid #222;background:#0a0a0a">
+    <div style="max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <a href="/" style="color:#e8e8e8;text-decoration:none;font-weight:700">DeCleanup.Net</a>
+      <nav style="display:flex;flex-wrap:wrap;gap:14px;font-size:0.8rem">
+        <a href="/">Home</a><a href="/litepaper">Litepaper</a><a href="/tokenomics">Tokenomics</a>
+        <a href="/toc">Theory of Change</a><a href="/sdg">SDG</a><a href="/investors">Investors</a>
+        <a href="https://decleanup.net/userguide">User Guide</a>
+      </nav>
+      <a href="https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards" style="background:#58B12F;color:#0a0a0a;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:0.75rem;font-weight:700">Launch App</a>
+    </div>
+  </header>
+  <div style="max-width:900px;margin:0 auto;padding:48px 24px 80px">
+    <h1 style="font-size:clamp(2.2rem,6vw,3.5rem);line-height:1.05;margin:0 0 16px">Clean Local. Prove Global.</h1>
+    <p style="font-size:1.2rem;line-height:1.5;color:#a8a8a8;margin:0 0 20px">Pick up trash. Upload photos. Get impact tokens and governance rights.</p>
+    <p style="font-size:0.95rem;line-height:1.6;color:#888;margin:0 0 28px">Open-source cleanup verification on Base and Celo. DMRV turns real-world cleanups into independently verifiable onchain impact.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px">
+      <a href="https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards" style="background:#58B12F;color:#0a0a0a;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600">Start on Base</a>
+      <a href="https://dapp.decleanup.net" style="border:1px solid #444;color:#e8e8e8;padding:12px 20px;border-radius:8px;text-decoration:none">Try Celo dApp</a>
+    </div>
+    <h2 style="font-size:1.1rem;letter-spacing:0.08em;color:#58B12F;margin:0 0 16px">HOW IT WORKS</h2>
+    <ol style="margin:0 0 40px;padding-left:1.2rem;line-height:1.7;color:#bbb">
+      <li><strong>Capture</strong> — geotagged before/after photos in under 60 seconds</li>
+      <li><strong>Verify</strong> — AI + community review validates evidence</li>
+      <li><strong>Onchain</strong> — permanent impact record on Base or Celo</li>
+      <li><strong>Earn</strong> — $bDCU on Base, $cDCU reputation and governance on Celo</li>
+    </ol>
+    <h2 style="font-size:1.1rem;letter-spacing:0.08em;color:#58B12F;margin:0 0 16px">TWO PLATFORMS</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:40px">
+      <div style="border:1px solid #333;border-radius:12px;padding:20px">
+        <h3 style="margin:0 0 8px">Mini App · Base</h3>
+        <p style="margin:0 0 12px;color:#999;font-size:0.9rem">Lightweight entry via Farcaster or the Base app. Photo logging, quick verification, $bDCU rewards.</p>
+        <a href="https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards">Open on Farcaster</a>
+      </div>
+      <div style="border:1px solid #333;border-radius:12px;padding:20px">
+        <h3 style="margin:0 0 8px">Full Platform · Celo</h3>
+        <p style="margin:0 0 12px;color:#999;font-size:0.9rem">NGO-grade events, maps, Hypercerts, and Gardens governance. Live at dapp.decleanup.net.</p>
+        <a href="https://dapp.decleanup.net">Start on Celo</a>
+      </div>
+    </div>
+    <h2 style="font-size:1.1rem;letter-spacing:0.08em;color:#58B12F;margin:0 0 12px">TOKENS</h2>
+    <p style="margin:0 0 24px;line-height:1.6;color:#bbb"><strong>$bDCU</strong> rewards verified action on Base. <strong>$cDCU</strong> is reputation and governance on Celo (250 to participate, 500 for full governance). <a href="/tokenomics">Read tokenomics</a>.</p>
+    <h2 style="font-size:1.1rem;letter-spacing:0.08em;color:#58B12F;margin:0 0 12px">BACKED BY</h2>
+    <p style="margin:0 0 40px;color:#888;font-size:0.9rem">Ethereum for the World · Giveth · Gitcoin · Octant · OnlyDust</p>
+    <footer style="border-top:1px solid #333;padding-top:24px;font-size:0.75rem;color:#666;display:flex;flex-wrap:wrap;gap:16px">
+      <span>© 2026 DECLEANUP NETWORK</span>
+      <a href="/litepaper">LITEPAPER</a><a href="/toc">THEORY OF CHANGE</a><a href="/sdg">SDG</a>
+      <a href="/investors">INVESTOR BRIEF</a><a href="/terms">TERMS</a><a href="/privacy">PRIVACY</a>
+      <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960">GOVERNANCE</a>
+    </footer>
+  </div>
+</main>
+<noscript><style>html.js-enabled #static-fallback{display:block!important}</style></noscript>
 <div id="root"></div>
 
 <script type="text/babel" src="tweaks-panel.jsx?v=20260603e"></script>
-<script type="text/babel" src="primitives.jsx?v=20260605a"></script>
+<script type="text/babel" src="primitives.jsx?v=20260605b"></script>
 <script type="text/babel" src="hero.jsx?v=20260604o"></script>
 <script type="text/babel" src="sections.jsx?v=20260604l"></script>
 <script type="text/babel" src="community.jsx?v=20260605a"></script>
-<script type="text/babel" src="app.jsx?v=20260604f"></script>
+<script type="text/babel" src="app.jsx?v=20260605b"></script>
 
 </body>
 </html>

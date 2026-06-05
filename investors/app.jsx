@@ -13,6 +13,10 @@ function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [active, setActive] = React.useState("category");
 
+  React.useEffect(() => {
+    document.documentElement.classList.add("js-enabled");
+  }, []);
+
   // Apply palette + density to <html> so CSS vars switch.
   React.useEffect(() => {
     const root = document.documentElement;
