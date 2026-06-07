@@ -22,6 +22,7 @@ const FOOTER_LINKS = [
   ["THEORY OF CHANGE", "/toc"],
   ["SDG", "/sdg"],
   ["INVESTOR BRIEF", "/investors"],
+  ["DEV DOCS", "/docs"],
   ["TERMS", "/terms"],
   ["PRIVACY", "/privacy"],
   ["GOVERNANCE", GOVERNANCE_URL, true],

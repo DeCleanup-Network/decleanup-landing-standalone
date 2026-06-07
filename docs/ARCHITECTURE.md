@@ -31,6 +31,7 @@ one command (`vercel --prod`) from this folder.
 - **`public/`** — images, logos and brand assets.
 - **`vercel.json`** — tells Vercel how to serve the files (clean URLs, caching, security).
 - **`docs/`** — this file plus the decision log and the known-issues list.
+- **`docs/developer/`** — integrator docs: [README.md](./developer/README.md), [COMMON.md](./developer/COMMON.md), [CELO.md](./developer/CELO.md), [BASE.md](./developer/BASE.md). Served at https://decleanup.net/docs when linked from the site.
 - **`pages/`, `v1/`** — older snapshots, kept for reference, **not** part of the live site.
 - **`terms.html`, `privacy.html`** — legal subpages (static HTML + `stylesheets/legal.css`). Privacy merges notices from the Base mini app and Celo dApp repos into one canonical page on decleanup.net.
 - **`scripts/build-terms-page.mjs`** — generates `terms.html` (scannable layout + consolidated legal copy).

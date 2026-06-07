@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0a0a0a" />
+<title>Developer docs · DeCleanup Network</title>
+<meta name="description" content="Developer reference for DeCleanup on Celo and Base: contracts, APIs, env vars, integration boundaries." />
+<link rel="canonical" href="https://decleanup.net/docs" />
+<link rel="stylesheet" href="/styles.css" />
+<style>
+  .docs-wrap { max-width: 720px; margin: 0 auto; padding: 120px 24px 80px; }
+  .docs-card { display: block; border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; margin-bottom: 12px; text-decoration: none; color: var(--ink); transition: border-color 0.15s; }
+  .docs-card:hover { border-color: var(--green); }
+  .docs-card h2 { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.08em; color: var(--green); margin: 0 0 8px; text-transform: uppercase; }
+  .docs-card p { margin: 0; font-size: 14px; color: var(--ink-mute); line-height: 1.55; }
+  .docs-card .meta { margin-top: 10px; font-size: 11px; color: var(--ink-faint); font-family: var(--f-mono); }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a href="/" class="brand-lockup" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)">
+      <img src="/public/brand/logo-icon.png" alt="" width="30" height="30" style="border-radius:7px" />
+      <span class="plakat" style="font-size:22px">DeCleanup<span style="color:var(--ink-faint)">.Net</span></span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/litepaper">Litepaper</a>
+      <a class="nav-link" href="/tokenomics">Tokenomics</a>
+      <a class="nav-link" href="/toc">Theory of Change</a>
+      <a class="nav-link" href="/sdg">SDG</a>
+      <a class="nav-link" href="/investors">Investors</a>
+      <a class="nav-link" href="https://decleanup.net/userguide" target="_blank" rel="noopener noreferrer">User Guide</a>
+    </div>
+    <a class="btn btn-primary btn-mono nav-cta" href="/" style="min-height:38px;padding:0 18px;font-size:11px;text-decoration:none">Back to home</a>
+  </div>
+</nav>
+
+<main class="docs-wrap">
+  <p class="meta" style="color:var(--green);margin-bottom:12px">DEVELOPER</p>
+  <h1 class="plakat" style="font-size:clamp(36px,6vw,56px);margin:0 0 12px;line-height:0.95">Integrator <span style="color:var(--green)">reference</span></h1>
+  <p class="serif" style="font-size:18px;color:var(--ink-mute);margin:0 0 32px;line-height:1.45">Contracts, APIs, env vars, and integration rules for Celo and Base. Markdown sources live in the repo under <code style="font-family:var(--f-mono);font-size:13px">docs/developer/</code>.</p>
+
+  <a class="docs-card" href="https://github.com/DeCleanup-Network/decleanup-landing-standalone/blob/main/docs/developer/README.md" target="_blank" rel="noopener noreferrer">
+    <h2>Start here</h2>
+    <p>Index of chain guides, quick links, and how to navigate the docs.</p>
+    <div class="meta">README.md</div>
+  </a>
+
+  <a class="docs-card" href="https://github.com/DeCleanup-Network/decleanup-landing-standalone/blob/main/docs/developer/COMMON.md" target="_blank" rel="noopener noreferrer">
+    <h2>Common concepts</h2>
+    <p>Shared product loop, DCU vs tokens, IPFS, verification, public impact API, security boundaries.</p>
+    <div class="meta">COMMON.md · both chains</div>
+  </a>
+
+  <a class="docs-card" href="https://github.com/DeCleanup-Network/decleanup-landing-standalone/blob/main/docs/developer/CELO.md" target="_blank" rel="noopener noreferrer">
+    <h2>Celo · Full dapp</h2>
+    <p>Mainnet contracts, ClaimVault, public impact API, Supabase feed, deployment — dapp.decleanup.net</p>
+    <div class="meta">CELO.md · decleanup-main-celo</div>
+  </a>
+
+  <a class="docs-card" href="https://github.com/DeCleanup-Network/decleanup-landing-standalone/blob/main/docs/developer/BASE.md" target="_blank" rel="noopener noreferrer">
+    <h2>Base · Mini app</h2>
+    <p>UUPS proxies, PointsRewardDistributor, $bDCU, Farcaster manifest — miniapp.decleanup.net</p>
+    <div class="meta">BASE.md · Farcaster-Mini-App</div>
+  </a>
+
+  <p class="mono" style="font-size:12px;color:var(--ink-faint);margin-top:28px;line-height:1.6">Support: <a href="mailto:support@decleanup.net" style="color:var(--green);text-decoration:none">support@decleanup.net</a></p>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <div class="meta">© 2026 DECLEANUP NETWORK · OPEN-SOURCE · MIT</div>
+      <div class="meta" style="display:flex;gap:24px;flex-wrap:wrap">
+        <a href="/litepaper" style="color:var(--ink-mute);text-decoration:none">LITEPAPER</a>
+        <a href="/toc" style="color:var(--ink-mute);text-decoration:none">THEORY OF CHANGE</a>
+        <a href="/terms" style="color:var(--ink-mute);text-decoration:none">TERMS</a>
+        <a href="/privacy" style="color:var(--ink-mute);text-decoration:none">PRIVACY</a>
+        <a href="/docs" style="color:var(--ink-mute);text-decoration:none">DEV DOCS</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

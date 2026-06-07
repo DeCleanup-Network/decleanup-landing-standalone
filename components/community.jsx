@@ -322,6 +322,7 @@ function SiteFooter() {
             ["Theory of change", "/toc"],
             ["SDG alignment", "/sdg"],
             ["Investor brief", "/investors"],
+            ["Dev docs", "/docs"],
             ["Terms of service", "/terms"],
             ["Privacy policy", "/privacy"],
             ["Publications", "https://paragraph.com/@decleanupnet"],

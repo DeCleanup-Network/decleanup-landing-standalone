@@ -93,6 +93,7 @@ function Footer() {
             ["Tokenomics", "https://decleanup.net/tokenomics"],
             ["Theory of change", "https://decleanup.net/toc"],
             ["SDG alignment", "https://decleanup.net/sdg"],
+            ["Developer docs", "https://decleanup.net/docs"],
             ["$cDCU governance (Gardens)", "https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960"],
             ["Terms of service", "https://decleanup.net/terms"],
             ["Privacy policy", "https://decleanup.net/privacy"],
