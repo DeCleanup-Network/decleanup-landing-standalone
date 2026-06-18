@@ -493,3 +493,6 @@ footer.site-footer { border-top: 1px solid var(--line-soft); padding: 72px 0 40p
 /* Editorial ledes use Instrument Serif — give it a touch more size/leading to read as the landing's serif voice */
 .masthead-thesis { line-height: 1.32; }
 .memo-lede, .sec-lede { line-height: 1.36; }
+
+/* Crawler / no-JS fallback — hidden when JS runs (js-enabled set synchronously in <head>) */
+html.js-enabled #static-fallback { display: none !important; }

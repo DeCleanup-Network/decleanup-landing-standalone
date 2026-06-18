@@ -1351,7 +1351,7 @@ footer.site-footer {
 }
 @keyframes navScrimIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* Crawler / no-JS fallback — hidden once React adds .js-enabled on <html> */
+/* Crawler / no-JS fallback — hidden when JS runs (js-enabled set synchronously in <head>) */
 html.js-enabled #static-fallback { display: none !important; }
 
 @media (max-width: 860px) {
