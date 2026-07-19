@@ -138,14 +138,14 @@
           <span class="chain-pill base">Base</span>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:20px">
-          <div style="padding:16px;border-right:1px solid var(--line)">
+        <div class="token-stats" style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:20px">
+          <div style="padding:16px;border-right:1px solid var(--line);min-width:0">
             <div class="meta" style="color:var(--ink-faint);margin-bottom:6px">TOTAL SUPPLY</div>
-            <div class="plakat" style="font-size:28px;letter-spacing:0.02em">1,000,000,000</div>
+            <div class="plakat token-stat-val" style="font-size:28px;letter-spacing:0.02em">1,000,000,000</div>
           </div>
-          <div style="padding:16px">
+          <div style="padding:16px;min-width:0">
             <div class="meta" style="color:var(--ink-faint);margin-bottom:6px">TYPE</div>
-            <div class="plakat" style="font-size:28px;letter-spacing:0.02em">Liquid ERC-20</div>
+            <div class="plakat token-stat-val" style="font-size:28px;letter-spacing:0.02em">Liquid ERC-20</div>
           </div>
         </div>
 
@@ -188,14 +188,14 @@
           <span class="chain-pill celo">Celo</span>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:20px">
-          <div style="padding:16px;border-right:1px solid var(--line)">
+        <div class="token-stats" style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:20px">
+          <div style="padding:16px;border-right:1px solid var(--line);min-width:0">
             <div class="meta" style="color:var(--ink-faint);margin-bottom:6px">MAX SUPPLY</div>
-            <div class="plakat" style="font-size:28px;letter-spacing:0.02em">10,000,000</div>
+            <div class="plakat token-stat-val" style="font-size:28px;letter-spacing:0.02em">10,000,000</div>
           </div>
-          <div style="padding:16px">
+          <div style="padding:16px;min-width:0">
             <div class="meta" style="color:var(--ink-faint);margin-bottom:6px">TYPE</div>
-            <div class="plakat" style="font-size:28px;letter-spacing:0.02em">Reputation</div>
+            <div class="plakat token-stat-val" style="font-size:28px;letter-spacing:0.02em">Reputation</div>
           </div>
         </div>
 
@@ -381,9 +381,21 @@
 }
 .lc-num { color: var(--ink-faint); font-size: 14px; min-width: 24px; }
 .lc-row { display: flex; gap: 14px; align-items: flex-start; }
+.token-stats { min-width: 0; }
+.token-stat-val { overflow-wrap: anywhere; word-break: break-word; line-height: 1.05; }
 @media (max-width: 860px) {
   .two-col, .step-grid { grid-template-columns: 1fr !important; }
+  .two-col > *, .card { min-width: 0; max-width: 100%; }
+  .card { padding: 20px; }
+  .token-stats { grid-template-columns: 1fr !important; }
+  .token-stats > div { border-right: none !important; border-bottom: 1px solid var(--line); }
+  .token-stats > div:last-child { border-bottom: none; }
+  .token-stat-val { font-size: 24px !important; }
   .nav-links { display: none; }
+}
+@media (max-width: 480px) {
+  .card { padding: 16px; }
+  .token-stat-val { font-size: 22px !important; }
 }
 </style>
 

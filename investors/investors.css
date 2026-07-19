@@ -345,8 +345,15 @@ footer.site-footer { border-top: 1px solid var(--line-soft); padding: 72px 0 40p
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .two-col.lean { grid-template-columns: 1fr 1.1fr; }
 .two-col.dmrv { grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: center; }
-@media (max-width: 1024px) { .two-col, .two-col.lean, .two-col.dmrv { grid-template-columns: 1fr; gap: 36px; } }
-@media (max-width: 640px) { .container, .wide { padding: 0 16px; } }
+@media (max-width: 1024px) {
+  .two-col, .two-col.lean, .two-col.dmrv { grid-template-columns: 1fr; gap: 36px; }
+  .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+}
+@media (max-width: 640px) {
+  .container, .wide { padding: 0 16px; }
+  footer.site-footer { padding: 48px 0 32px; }
+  footer.site-footer .meta { overflow-wrap: anywhere; }
+}
 
 /* ============================================
    INVESTOR MEMO — dossier layout

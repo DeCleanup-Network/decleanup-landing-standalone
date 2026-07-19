@@ -76,17 +76,12 @@ function Footer() {
   return (
     <footer className="site-footer">
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr", gap: 40, marginBottom: 44 }} className="footer-grid">
-          <div>
-            <div className="brand-lockup" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
-              <img src={img("public/brand/logo-icon.png")} alt="" className="logo-icon" width={36} height={36} style={{ display: "block", borderRadius: 8 }} />
-              <img src={img("public/brand/logo-wordmark.png")} alt="DeCleanup Network" className="logo-wordmark" height={24} style={{ width: "auto" }} />
-              <span className="plakat logo-wordmark-text" style={{ fontSize: 26, letterSpacing: "0.01em" }}>DeCleanup<span style={{ color: "var(--ink-faint)" }}>.Net</span></span>
-            </div>
-            <p className="serif" style={{ color: "var(--ink-mute)", fontSize: 16, lineHeight: 1.45, margin: 0, maxWidth: 380 }}>
-              This memo is a companion to the public protocol. For how cleanups become verified impact, see the main site.
-            </p>
-          </div>
+        <div className="brand-lockup" style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 28 }}>
+          <img src={img("public/brand/logo-icon.png")} alt="" className="logo-icon" width={36} height={36} style={{ display: "block", borderRadius: 8 }} />
+          <img src={img("public/brand/logo-wordmark.png")} alt="DeCleanup Network" className="logo-wordmark" height={24} style={{ width: "auto" }} />
+          <span className="plakat logo-wordmark-text" style={{ fontSize: 26, letterSpacing: "0.01em" }}>DeCleanup<span style={{ color: "var(--ink-faint)" }}>.Net</span></span>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginBottom: 44 }} className="footer-grid">
           <FooterCol title="Protocol" links={[
             ["Main site", "https://decleanup.net"],
             ["Litepaper", "https://decleanup.net/litepaper"],
