@@ -301,7 +301,7 @@ function SiteFooter() {
               <img src={img("public/brand/logo-wordmark.png")} alt="DeCleanup Network" className="logo-wordmark" height={24} style={{ width: "auto" }} />
               <span className="plakat logo-wordmark-text" style={{ fontSize: 28, letterSpacing: "0.02em" }}>DeCleanup<span style={{ color: "var(--ink-faint)" }}>.Net</span></span>
             </div>
-            <p className="serif" style={{ color: "var(--ink-mute)", fontSize: 17, lineHeight: 1.4, margin: 0, maxWidth: 340 }}>
+            <p style={{ color: "var(--ink-mute)", fontFamily: "var(--f-sans)", fontSize: 14, lineHeight: 1.5, margin: 0, maxWidth: 340 }}>
               DeCleanup Network: open-source cleanup verification. DeCleanup Rewards on Base and the DeCleanup dApp on Celo.
             </p>
             <div style={{ marginTop: 24 }}>

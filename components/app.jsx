@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Nav, Hero, WhyDeCleanup, DmrvSection, HowSection, EcosystemSection, BuiltOnSection, CommunitySection, CleanupMapSection, TotalImpactSection, GlossarySection, BackedBySection, SdgStrip, ResourcesSection, InvestorsSection, JoinSection, SiteFooter, StartModal, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect, useTweaks */
+/* global React, ReactDOM, Nav, Hero, PartnershipAd, WhyDeCleanup, DmrvSection, HowSection, EcosystemSection, BuiltOnSection, CommunitySection, CleanupMapSection, TotalImpactSection, GlossarySection, BackedBySection, SdgStrip, ResourcesSection, InvestorsSection, JoinSection, SiteFooter, StartModal, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect, useTweaks */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": "dark",
@@ -228,6 +228,7 @@ function App() {
     <>
       <Nav onLaunch={() => setModal(true)} palette={t.palette} onTogglePalette={togglePalette} />
       <Hero onLaunch={() => setModal(true)} />
+      <PartnershipAd />
       <WhyDeCleanup />
       <DmrvSection />
       <HowSection onLaunch={() => setModal(true)} />

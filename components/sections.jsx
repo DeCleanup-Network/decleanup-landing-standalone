@@ -1,9 +1,34 @@
-/* global React, SectionHead, Chip, Term, TOKENS */
+/* global React, SectionHead, Chip, Term, TOKENS, img */
 // ===========================
 // Middle sections v.2 — Why / DMRV / How / Ecosystem / Built On
 // Items addressed: 07 (em-dash + onchain), 08 (DeCleanup Network + multiline hl),
 //   09 (DMRV step 04 stacked + $cDCU), 10 (chain pill badges), NEW Built On
 // ===========================
+
+// ---------- PARTNERSHIP AD (between hero and why) ----------
+function PartnershipAd() {
+  return (
+    <aside className="partnership-ad" aria-label="Global Cleanup Games partnership">
+      <div className="container partnership-ad-inner">
+        <a
+          className="partnership-ad-link"
+          href="https://globalcleanupgames.org/untitled-176"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src={img("public/ads/global-cleanup-games.jpg")}
+            alt="Global Cleanup Games x DeCleanup Network — Partnership live. Earn bonus $cDCU, amount set by leaderboard rank."
+            width={1024}
+            height={487}
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+      </div>
+    </aside>
+  );
+}
 
 // ---------- WHY DECLEANUP EXISTS ----------
 function WhyDeCleanup() {
@@ -507,4 +532,4 @@ function BuiltOnLogo({ file, fileDark, name }) {
   );
 }
 
-Object.assign(window, { WhyDeCleanup, DmrvSection, HowSection, EcosystemSection, BuiltOnSection });
+Object.assign(window, { PartnershipAd, WhyDeCleanup, DmrvSection, HowSection, EcosystemSection, BuiltOnSection });
