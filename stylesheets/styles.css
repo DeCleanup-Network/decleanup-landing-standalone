@@ -1360,26 +1360,45 @@ footer.site-footer {
   justify-content: center;
 }
 .partnership-ad-link {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
   width: min(100%, 560px);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: #000;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+  transition: transform 0.2s ease;
 }
 .partnership-ad-link:hover {
-  border-color: color-mix(in oklch, var(--green) 55%, transparent);
   transform: translateY(-1px);
 }
 .partnership-ad-link img {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #000;
+  transition: border-color 0.2s ease;
+}
+.partnership-ad-link:hover img {
+  border-color: color-mix(in oklch, var(--green) 55%, transparent);
+}
+.partnership-ad-cta {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  text-align: center;
+  transition: color 0.15s ease;
+}
+.partnership-ad-link:hover .partnership-ad-cta {
+  color: var(--green-hover);
 }
 @media (max-width: 640px) {
   .partnership-ad { padding: 4px 0 0; }
-  .partnership-ad-link { width: min(100%, 420px); border-radius: 10px; }
+  .partnership-ad-link { width: min(100%, 420px); gap: 10px; }
+  .partnership-ad-link img { border-radius: 10px; }
 }
 
 /* Crawler / no-JS fallback — hidden when JS runs (js-enabled set synchronously in <head>) */

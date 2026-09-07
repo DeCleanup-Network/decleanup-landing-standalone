@@ -24,6 +24,7 @@ function PartnershipAd() {
             loading="lazy"
             decoding="async"
           />
+          <span className="partnership-ad-cta">Click here to find out more</span>
         </a>
       </div>
     </aside>
