@@ -18,7 +18,7 @@ function PartnershipAd() {
         >
           <img
             src={img("public/ads/global-cleanup-games.jpg")}
-            alt="Global Cleanup Games x DeCleanup Network — Partnership live. Earn bonus $cDCU, amount set by leaderboard rank."
+            alt="Global Cleanup Games x DeCleanup Network · Partnership live. Earn bonus $cDCU, amount set by leaderboard rank."
             width={1024}
             height={487}
             loading="lazy"

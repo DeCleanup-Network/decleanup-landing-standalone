@@ -12,7 +12,7 @@ const NAV_LINKS = [
   ["Investors", "/investors", "investors"],
 ];
 
-const USER_GUIDE_URL = "https://decleanup.net/userguide";
+const USER_GUIDE_URL = "/userguide";
 
 const GOVERNANCE_URL =
   "https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960";
@@ -53,7 +53,7 @@ export function docNav({ active = null, homeHref = "/" } = {}) {
     ${docBrandLockup(homeHref)}
     <div class="nav-links">
 ${linkHtml}
-      <a class="nav-link" href="${USER_GUIDE_URL}" target="_blank" rel="noopener noreferrer">User Guide</a>
+      <a class="nav-link" href="${USER_GUIDE_URL}">User Guide</a>
     </div>
     <a class="btn btn-primary btn-mono nav-cta" href="${homeHref}" style="min-height:38px;padding:0 18px;font-size:11px;text-decoration:none">Back to home</a>
   </div>

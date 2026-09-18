@@ -9,8 +9,10 @@
     { "source": "/primitives.jsx", "destination": "/components/primitives.jsx" },
     { "source": "/sections.jsx", "destination": "/components/sections.jsx" },
     { "source": "/tweaks-panel.jsx", "destination": "/components/tweaks-panel.jsx" },
+    { "source": "/userguide.jsx", "destination": "/components/userguide.jsx" },
     { "source": "/styles.css", "destination": "/stylesheets/styles.css" },
-    { "source": "/legal.css", "destination": "/stylesheets/legal.css" }
+    { "source": "/legal.css", "destination": "/stylesheets/legal.css" },
+    { "source": "/userguide", "destination": "/userguide.html" }
   ],
   "headers": [
     {

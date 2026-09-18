@@ -107,6 +107,14 @@ function Hero({ onLaunch }) {
                 <a className="btn btn-ghost" href="#how">
                   How It Works
                 </a>
+                <a
+                  className="btn btn-ghost"
+                  href="https://dapp.decleanup.net/sponsor"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Fund current campaigns
+                </a>
               </div>
             </div>
 

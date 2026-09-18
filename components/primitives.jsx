@@ -336,7 +336,7 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
           {navLinks.map(([label, href]) => (
             <a key={href} className="nav-link" href={href}>{label}</a>
           ))}
-          <a className="nav-link" href="https://decleanup.net/userguide" target="_blank" rel="noopener noreferrer">User Guide</a>
+          <a className="nav-link" href="/userguide">User Guide</a>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <button
@@ -403,7 +403,7 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
               <span>{label}</span>
             </a>
           ))}
-          <a className="nav-mobile-link" href="https://decleanup.net/userguide" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+          <a className="nav-mobile-link" href="/userguide" onClick={closeMenu}>
             <span>User Guide</span>
           </a>
         </div>

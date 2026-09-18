@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0a0a0a" />
+<meta name="color-scheme" content="dark light" />
+
+<title>User Guide · DeCleanup Network</title>
+<meta name="description" content="Step-by-step guide for volunteers, coordinators, and verifiers on the DeCleanup Network dApp. Install, submit cleanups, claim $cDCU, and apply for funding." />
+<meta name="author" content="DeCleanup Network" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<link rel="canonical" href="https://decleanup.net/userguide" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="DeCleanup Network" />
+<meta property="og:title" content="User Guide · DeCleanup Network" />
+<meta property="og:description" content="Card-by-card guide: volunteer, coordinator, and verifier flows on DeCleanup Network." />
+<meta property="og:url" content="https://decleanup.net/userguide" />
+<meta property="og:image" content="https://decleanup.net/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@decleanupnet" />
+<meta name="twitter:title" content="User Guide · DeCleanup Network" />
+<meta name="twitter:description" content="Card-by-card guide for volunteers, coordinators, and verifiers." />
+<meta name="twitter:image" content="https://decleanup.net/og-image.jpg" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://decleanup.net/userguide#webpage",
+      "url": "https://decleanup.net/userguide",
+      "name": "User Guide · DeCleanup Network",
+      "description": "Step-by-step guide for volunteers, coordinators, and verifiers on the DeCleanup Network dApp.",
+      "isPartOf": { "@id": "https://decleanup.net/#website" },
+      "about": { "@id": "https://decleanup.net/#organization" },
+      "primaryImageOfPage": "https://decleanup.net/og-image.jpg",
+      "inLanguage": "en",
+      "breadcrumb": { "@id": "https://decleanup.net/userguide#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://decleanup.net/userguide#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://decleanup.net/" },
+        { "@type": "ListItem", "position": 2, "name": "User Guide", "item": "https://decleanup.net/userguide" }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css" />
+<link rel="stylesheet" href="styles.css" />
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<style>
+/* User guide layout - uses site tokens from styles.css */
+.ug-app { max-width: 720px; margin: 0 auto; }
+.ug-roles {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 16px;
+}
+.ug-role-pill {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+}
+.ug-role-pill.is-active {
+  color: var(--ink);
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+.ug-role-pill.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.ug-soon {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--bg);
+  background: var(--ink-faint);
+  border-radius: 999px;
+  padding: 2px 6px;
+}
+.ug-progress {
+  width: 100%;
+  height: 3px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+.ug-progress-fill {
+  height: 100%;
+  background: var(--green);
+  transition: width 0.25s ease;
+}
+.ug-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ug-card, .ug-path-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+}
+.ug-path-card {
+  background: transparent;
+}
+.ug-card-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.ug-card-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--green-soft);
+  color: var(--green);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  line-height: 1;
+}
+.ug-card-body { min-width: 0; flex: 1; }
+.ug-card-action {
+  margin: 0 0 4px;
+  font-family: var(--f-plakat);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.ug-card-context {
+  margin: 0;
+  font-family: var(--f-plakat);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-mute);
+  line-height: 1.45;
+}
+.ug-card-cta { margin-top: 10px; }
+.ug-link, .ug-link-btn {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.ug-link:hover, .ug-link-btn:hover { text-decoration: underline; color: var(--green-hover); }
+.ug-link-btn.is-active { text-decoration: underline; }
+.ug-expand-btn {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--green);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.ug-expand-btn:hover { background: var(--green-hover); }
+.ug-expand-btn.is-open { outline: 2px solid color-mix(in oklch, var(--green) 40%, transparent); outline-offset: 2px; }
+.ug-callout, .ug-intro {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 2px solid var(--green);
+  background: color-mix(in oklch, var(--green) 8%, transparent);
+  font-family: var(--f-plakat);
+  font-size: 12px;
+  color: var(--ink-mute);
+  line-height: 1.4;
+}
+.ug-intro { margin: 0 0 4px; }
+.ug-inline-tip {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: var(--bg-elev-2);
+  font-family: var(--f-plakat);
+  font-size: 12px;
+  color: var(--ink-mute);
+  line-height: 1.45;
+}
+.ug-subflow {
+  margin: 4px 0 8px;
+  padding-left: 16px;
+  border-left: 2px solid var(--green);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ug-paths {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+.ug-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ug-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: var(--bg-elev);
+}
+.ug-hash {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--green);
+  letter-spacing: 0.02em;
+}
+.ug-rewards {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-elev);
+  overflow: hidden;
+}
+.ug-rewards-scroll { overflow-x: auto; }
+.ug-rewards table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.ug-rewards th, .ug-rewards td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line-soft);
+  white-space: nowrap;
+}
+.ug-rewards th { color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.1em; }
+.ug-rewards td { color: var(--ink-mute); }
+.ug-rewards tr:last-child td { border-bottom: none; }
+
+/* Tooltip */
+.ug-tip { position: relative; display: inline; }
+.ug-tip-trigger {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: help;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--green);
+  text-underline-offset: 3px;
+}
+.ug-tip-pop {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  width: max-content;
+  max-width: 240px;
+  padding: 10px 12px;
+  background: var(--bg-elev-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: var(--f-plakat);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-mute);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  pointer-events: none;
+}
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+}
+@media (max-width: 640px) {
+  .ug-paths { grid-template-columns: 1fr; }
+}
+@media (max-width: 360px) {
+  .ug-tip-pop {
+    left: 0;
+    right: 0;
+    bottom: auto;
+    top: calc(100% + 8px);
+    transform: none;
+    width: auto;
+    max-width: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a href="/" class="brand-lockup" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)">
+      <img src="public/brand/logo-icon.png" alt="" class="logo-icon" width="30" height="30" style="display:block;border-radius:7px" />
+      <img src="public/brand/logo-wordmark.png" alt="DeCleanup Network" class="logo-wordmark" height="20" style="width:auto" />
+      <span class="plakat logo-wordmark-text" style="font-size:22px;letter-spacing:0.02em">DeCleanup<span style="color:var(--ink-faint)">.Net</span></span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link" href="/litepaper">Litepaper</a>
+      <a class="nav-link" href="/tokenomics">Tokenomics</a>
+      <a class="nav-link" href="/toc">Theory of Change</a>
+      <a class="nav-link" href="/sdg">SDG</a>
+      <a class="nav-link" href="/investors">Investors</a>
+      <a class="nav-link" href="/userguide" style="color:var(--ink)">User Guide</a>
+    </div>
+    <a class="btn btn-primary btn-mono nav-cta" href="/" style="min-height:38px;padding:0 18px;font-size:11px;text-decoration:none">Back to home</a>
+  </div>
+</nav>
+
+<section style="padding-top:96px;border-bottom:1px solid var(--line-soft)">
+  <div class="wide" style="display:flex;justify-content:space-between;align-items:center;padding:10px 24px;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)">
+    <span class="meta" style="display:flex;align-items:center;gap:10px"><span class="live-dot"></span> User Guide</span>
+    <span class="meta" style="color:var(--ink-faint)">DAPP · VOLUNTEER · COORDINATOR · VERIFIER</span>
+    <span class="meta">REF · DECLEANUP.NET</span>
+  </div>
+</section>
+
+<section class="section" style="padding-top:48px;padding-bottom:24px">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px;display:flex;align-items:center;gap:12px">
+      <span style="width:32px;height:1px;background:var(--green)"></span>
+      <span>USER GUIDE · v.1</span>
+    </div>
+    <h1 class="plakat" style="font-size:clamp(40px, 7vw, 88px);margin:0;line-height:0.9;letter-spacing:0.005em">
+      One action<br/>
+      <span style="color:var(--green)">per card</span>.
+    </h1>
+    <p style="font-family:var(--f-plakat);font-size:clamp(16px, 2vw, 20px);color:var(--ink-mute);margin:28px 0 0;max-width:560px;line-height:1.4">
+      Pick your role. Follow the cards. Tap underlined terms for a one-line definition.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;padding-bottom:80px">
+  <div class="container">
+    <div id="userguide-root"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <div class="meta">© 2026 DECLEANUP NETWORK · OPEN-SOURCE · MIT</div>
+      <div class="meta" style="display:flex;gap:24px;flex-wrap:wrap">
+        <a href="/litepaper" style="color:var(--ink-mute);text-decoration:none">LITEPAPER</a>
+        <a href="/toc" style="color:var(--ink-mute);text-decoration:none">THEORY OF CHANGE</a>
+        <a href="/sdg" style="color:var(--ink-mute);text-decoration:none">SDG</a>
+        <a href="/investors" style="color:var(--ink-mute);text-decoration:none">INVESTOR BRIEF</a>
+        <a href="/docs" style="color:var(--ink-mute);text-decoration:none">DEV DOCS</a>
+        <a href="/terms" style="color:var(--ink-mute);text-decoration:none">TERMS</a>
+        <a href="/privacy" style="color:var(--ink-mute);text-decoration:none">PRIVACY</a>
+        <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener" style="color:var(--ink-mute);text-decoration:none">GOVERNANCE</a>
+        <span style="color:var(--ink-faint)">BUILT ON CELO + BASE</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/babel" src="/userguide.jsx?v=20260911a"></script>
+</body>
+</html>
