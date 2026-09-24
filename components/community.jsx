@@ -265,7 +265,7 @@ function JoinSection({ onLaunch }) {
             Onchain forever.
           </h2>
           <p className="serif" style={{ fontSize: "clamp(18px, 1.7vw, 22px)", color: "var(--ink-mute)", margin: "28px auto 0", maxWidth: 580, lineHeight: 1.4 }}>
-            Same network. Pick your door.
+            One app. Base or Celo — pick your network.
           </p>
 
           <div style={{ display: "flex", justifyContent: "center", gap: 12, marginTop: 36, flexWrap: "wrap" }}>
@@ -274,7 +274,6 @@ function JoinSection({ onLaunch }) {
             </button>
             <a className="btn btn-ghost" href="https://t.me/decentralizedcleanup" target="_blank" rel="noopener noreferrer">Telegram</a>
             <a className="btn btn-ghost" href={LINKS.social.x} target="_blank" rel="noopener noreferrer">X {LINKS.social.handle}</a>
-            <a className="btn btn-ghost" href={LINKS.social.farcaster} target="_blank" rel="noopener noreferrer">Farcaster {LINKS.social.handle}</a>
           </div>
         </div>
 
@@ -322,6 +321,7 @@ function SiteFooter() {
             ["Theory of change", "/toc"],
             ["SDG alignment", "/sdg"],
             ["Investor brief", "/investors"],
+            ["User guide", "/#guide"],
             ["Dev docs", "/docs"],
             ["Terms of service", "/terms"],
             ["Privacy policy", "/privacy"],
@@ -368,7 +368,13 @@ function FooterCol({ title, links }) {
           <li key={label}>
             <a href={href} className="footer-link"
             target={href.startsWith("http") ? "_blank" : undefined}
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+            {...(href === "/#guide" ? { "data-guide-picker": true, onClick: (e) => {
+              if (typeof window.DeCleanupOpenGuidePicker === "function") {
+                e.preventDefault();
+                window.DeCleanupOpenGuidePicker();
+              }
+            }} : {})}>
               {label}
             </a>
           </li>

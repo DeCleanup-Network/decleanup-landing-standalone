@@ -311,8 +311,8 @@ function EcosystemSection() {
       <div className="container">
         <SectionHead
           marker="04 · THE ECOSYSTEM"
-          title={<>One protocol.<br/><span className="gradient-text">Two doors.</span></>}
-          lede={<>Same proof, two chains. <span className="hl">Base</span> for one-tap logging in Farcaster. <span className="hl">Celo</span> for NGO-grade events.</>}
+          title={<>One app.<br/><span className="gradient-text">Two networks.</span></>}
+          lede={<>Same DeCleanup app on both chains. <span className="hl">Base</span> for the simple cleanup path and $bDCU. <span className="hl">Celo</span> for governance, funding, and impact reporting.</>}
         />
 
         <div style={{
@@ -326,17 +326,16 @@ function EcosystemSection() {
             chainLabel="L2"
             tag="BASE"
             tagBg="#0052FF"
-            title="Mini App"
-            kicker="Lightweight entry"
-            body="The fastest way for individuals to log a cleanup. Built on Farcaster or the Base app."
+            title="Base"
+            kicker="Simple cleanup path"
+            body="Log cleanups, get verified, earn $bDCU. Fast entry for individuals."
             features={[
               { k: "PHOTO", v: "Photo-based logging" },
               { k: "VRFY",  v: "Quick verification" },
               { k: "$bDCU", v: "Token rewards" },
             ]}
             links={[
-              { label: "Open on Farcaster", href: "https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards" },
-              { label: "Open on Base app",  href: "https://base.app/app/miniapp.decleanup.net" },
+              { label: "Open on Base", href: "https://dapp.decleanup.net/?chain=base" },
             ]}
             accent="#0052FF"
           />
@@ -347,16 +346,16 @@ function EcosystemSection() {
             tag="CELO"
             tagBg="#FAFF00"
             tagColor="#0a0a0a"
-            title="Full Platform"
-            kicker="For organisers & NGOs"
-            body="Geolocation, impact reports and impact portfolio, coordinated campaigns for NGOs and organisers."
+            title="Celo"
+            kicker="Full participation"
+            body="Geolocation, impact reports, Hypercerts, coordinated campaigns, and Gardens governance."
             features={[
               { k: "MAP",  v: "Geolocation & maps" },
               { k: "RPT",  v: "Hypercert impact reports" },
-              { k: "CAMP", v: "Coordinated cleanups & events" },
+              { k: "GOV",  v: "Governance & funding" },
             ]}
             links={[
-              { label: "Open full platform", href: "https://dapp.decleanup.net" },
+              { label: "Open on Celo", href: "https://dapp.decleanup.net/?chain=celo" },
             ]}
             accent="var(--yellow)"
           />

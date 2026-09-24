@@ -48,7 +48,7 @@ const GLOSSARY = {
   "Field Ledger": "A live, onchain record of cleanup events that have been verified by the DeCleanup Network. Each entry includes location, timestamp, and proof of work.",
   "Protocol V2":  "The second version of DeCleanup Network's verification and reward protocol. V2 adds dual-chain support (Base + Celo), Hypercert-based impact reports, and onchain governance.",
   "DMRV":         "Digital Monitoring, Reporting, and Verification. The system that turns a real-world cleanup action into a tamper-proof digital record.",
-  "$bDCU":        "The Base network reward token earned by completing verified cleanups through DeCleanup Rewards on Farcaster or the Base app.",
+  "$bDCU":        "The Base network reward token earned by completing verified cleanups in the DeCleanup app on Base.",
   "$cDCU":        "The Celo proof token (contract 0x34d6…9bfc1) earned through verified cleanups on the DeCleanup dApp. Holders vote on funding via Gardens on Celo.",
   "Hypercert":    "An onchain impact certificate that records a contributor's verified environmental work. Permanent, transferable proof of cleanup participation.",
   "onchain":      "Data or transactions recorded directly on a blockchain. One word, no hyphen.",
@@ -280,7 +280,7 @@ function MetaLine({ label, value, mono }) {
 }
 
 // Nav
-function Nav({ onLaunch, palette, onTogglePalette }) {
+function Nav({ onLaunch, onGuide, palette, onTogglePalette }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [logoSpin, setLogoSpin] = useState(0);
@@ -307,6 +307,10 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
     };
   }, [menuOpen]);
   const closeMenu = () => setMenuOpen(false);
+  const openGuide = () => {
+    closeMenu();
+    if (onGuide) onGuide();
+  };
   const isDark = palette !== "kraft";
   const navLinks = [
     ["Home", "/"],
@@ -336,7 +340,9 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
           {navLinks.map(([label, href]) => (
             <a key={href} className="nav-link" href={href}>{label}</a>
           ))}
-          <a className="nav-link" href="/userguide">User Guide</a>
+          <button type="button" className="nav-link" onClick={openGuide} style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+            User Guide
+          </button>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <button
@@ -403,9 +409,9 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
               <span>{label}</span>
             </a>
           ))}
-          <a className="nav-mobile-link" href="/userguide" onClick={closeMenu}>
+          <button type="button" className="nav-mobile-link" onClick={openGuide} style={{ width: "100%", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}>
             <span>User Guide</span>
-          </a>
+          </button>
         </div>
         <div className="nav-mobile-foot">
           <button
@@ -424,7 +430,7 @@ function Nav({ onLaunch, palette, onTogglePalette }) {
   );
 }
 
-// Modal — "Where do you want to start?"
+// Modal — Launch / Start Cleaning: one dApp, pick Base or Celo
 function StartModal({ open, onClose }) {
   useEffect(() => {
     if (!open) return;
@@ -434,47 +440,170 @@ function StartModal({ open, onClose }) {
   }, [open, onClose]);
   if (!open) return null;
   return (
-    <div className="modal-back" onClick={onClose} role="dialog" aria-modal="true">
+    <div className="modal-back" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="start-modal-title">
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
           <div>
-            <div className="meta" style={{ marginBottom: 6 }}>STEP 01 · CHOOSE ENTRY POINT</div>
-            <h2 className="plakat" style={{ fontSize: 32, margin: 0, letterSpacing: "0.01em" }}>Where do you want to start?</h2>
+            <div className="meta" style={{ marginBottom: 6 }}>DECLEANUP · ONE APP</div>
+            <h2 id="start-modal-title" className="plakat" style={{ fontSize: 32, margin: 0, letterSpacing: "0.01em" }}>Where do you want to clean?</h2>
           </div>
           <button onClick={onClose} aria-label="Close" style={{ background: "transparent", border: "none", color: "var(--ink-mute)", cursor: "pointer", padding: 6, fontSize: 20 }}>×</button>
         </div>
-        <p className="serif" style={{ color: "var(--ink-mute)", fontSize: 17, marginTop: 12, marginBottom: 20 }}>
-          Same protocol. Pick whichever fits your context.
+        <p style={{ fontFamily: "var(--f-sans)", color: "var(--ink-mute)", fontSize: 15, marginTop: 12, marginBottom: 22, lineHeight: 1.45 }}>
+          One app at dapp.decleanup.net — pick the network that fits you.
         </p>
-        <div style={{ display: "grid", gap: 10 }}>
-          <ChoiceLink
-            href="https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards"
-            label="DeCleanup Rewards"
-            sub="Farcaster mini app · log a cleanup in under a minute"
-            tag="BASE" tagColor="#0052FF"
+        <div className="start-modal-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+          <NetworkChoice
+            href="https://dapp.decleanup.net/?chain=base"
+            logo="public/base-mark.svg"
+            name="Base"
+            accent="#0052FF"
+            points={["Simple cleanup path", "Photo verify · earn $bDCU"]}
           />
-          <ChoiceLink
-            href="https://base.app/app/miniapp.decleanup.net"
-            label="DeCleanup Rewards"
-            sub="Base app · same rewards on Base"
-            tag="BASE" tagColor="#0052FF"
-          />
-          <ChoiceLink
-            href="https://dapp.decleanup.net"
-            label="DeCleanup dApp"
-            sub="Celo platform for organisers, NGOs & geolocated events"
-            tag="CELO" tagColor="#FAFF00"
+          <NetworkChoice
+            href="https://dapp.decleanup.net/?chain=celo"
+            logo="public/celo-mark.svg"
+            name="Celo"
+            accent="#FAFF00"
+            points={["Full participation", "Maps · Hypercerts · governance"]}
           />
         </div>
-        <p className="meta" style={{ marginTop: 20, textAlign: "center" }}>OPENS IN A NEW TAB</p>
+        <p className="meta" style={{ marginTop: 20, textAlign: "center" }}>OPENS DAPP.DECLEANUP.NET</p>
       </div>
     </div>
   );
 }
 
-function ChoiceLink({ href, label, sub, tag, tagColor }) {
+function NetworkChoice({ href, logo, name, accent, points }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" style={{
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="network-choice"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 14,
+        padding: "18px 16px",
+        border: "1px solid var(--line)",
+        borderRadius: 12,
+        color: "var(--ink)",
+        textDecoration: "none",
+        background: "var(--bg-elev-2)",
+        transition: "border-color 0.15s, background 0.15s",
+        position: "relative",
+        overflow: "hidden",
+        minHeight: 148,
+      }}
+      onMouseEnter={(e) => { e.currentTarget.style.borderColor = accent; }}
+      onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line)"; }}
+    >
+      <div style={{
+        position: "absolute", top: 0, right: 0,
+        width: 88, height: 88,
+        background: `linear-gradient(225deg, ${accent} 0%, transparent 65%)`,
+        opacity: 0.18,
+        pointerEvents: "none",
+      }} />
+      <div style={{ display: "flex", alignItems: "center", gap: 10, position: "relative" }}>
+        <span style={{
+          width: 36, height: 36, borderRadius: 8,
+          background: accent,
+          display: "inline-flex", alignItems: "center", justifyContent: "center",
+          flexShrink: 0,
+        }}>
+          <img
+            src={img(logo)}
+            alt=""
+            width={20}
+            height={20}
+            style={{
+              display: "block",
+              filter: name === "Celo" ? "brightness(0)" : "brightness(0) invert(1)",
+            }}
+            onError={(e) => { e.currentTarget.style.display = "none"; }}
+          />
+        </span>
+        <div style={{ fontWeight: 700, fontSize: 18, letterSpacing: "0.01em" }}>{name}</div>
+      </div>
+      <ul style={{
+        margin: 0, padding: 0, listStyle: "none",
+        display: "flex", flexDirection: "column", gap: 6,
+        position: "relative",
+      }}>
+        {points.map((p) => (
+          <li key={p} style={{
+            fontFamily: "var(--f-sans)",
+            fontSize: 13,
+            color: "var(--ink-mute)",
+            lineHeight: 1.35,
+          }}>{p}</li>
+        ))}
+      </ul>
+      <div style={{
+        marginTop: "auto",
+        fontFamily: "var(--f-mono)",
+        fontSize: 10,
+        letterSpacing: "0.14em",
+        color: "var(--ink-dim)",
+        position: "relative",
+      }}>OPEN →</div>
+    </a>
+  );
+}
+
+// Modal — User Guide chain picker (Base mini flow vs Celo full dApp)
+function GuideModal({ open, onClose }) {
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+  if (!open) return null;
+  return (
+    <div className="modal-back" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="guide-modal-title">
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
+          <div>
+            <div className="meta" style={{ marginBottom: 6 }}>USER GUIDE · CHOOSE CHAIN</div>
+            <h2 id="guide-modal-title" className="plakat" style={{ fontSize: 32, margin: 0, letterSpacing: "0.01em" }}>Which guide do you need?</h2>
+          </div>
+          <button onClick={onClose} aria-label="Close" style={{ background: "transparent", border: "none", color: "var(--ink-mute)", cursor: "pointer", padding: 6, fontSize: 20 }}>×</button>
+        </div>
+        <p style={{ fontFamily: "var(--f-sans)", color: "var(--ink-mute)", fontSize: 15, marginTop: 12, marginBottom: 20, lineHeight: 1.45 }}>
+          Base is the simple submission flow and token rewards. Celo is the full app: governance, funding, and impact reporting.
+        </p>
+        <div style={{ display: "grid", gap: 10 }}>
+          <ChoiceLink
+            href="/public/guides/base.html"
+            label="Base guide"
+            sub="Simple submission flow and token rewards"
+            tag="BASE" tagColor="#0052FF"
+            external={false}
+          />
+          <ChoiceLink
+            href="/public/guides/celo.html"
+            label="Celo guide"
+            sub="Full features: governance, funding, and impact reporting"
+            tag="CELO" tagColor="#FAFF00"
+            external={false}
+          />
+        </div>
+        <p className="meta" style={{ marginTop: 20, textAlign: "center" }}>OPENS THE MATCHING GUIDE</p>
+      </div>
+    </div>
+  );
+}
+
+function ChoiceLink({ href, label, sub, tag, tagColor, external = true }) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      style={{
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "14px 16px",
       border: "1px solid var(--line)",
@@ -521,4 +650,4 @@ function SectionHead({ marker, title, lede, align = "left" }) {
   );
 }
 
-Object.assign(window, { Chip, Tag, MetaLine, Nav, StartModal, ChoiceLink, SectionHead, img, Term, Splitflap, RecTimestamp, BRAND, TOKENS, LINKS, CDCU_GOVERNANCE, GLOSSARY, IMPACT_LIVE, useImpactStats });
+Object.assign(window, { Chip, Tag, MetaLine, Nav, StartModal, GuideModal, ChoiceLink, SectionHead, img, Term, Splitflap, RecTimestamp, BRAND, TOKENS, LINKS, CDCU_GOVERNANCE, GLOSSARY, IMPACT_LIVE, useImpactStats });

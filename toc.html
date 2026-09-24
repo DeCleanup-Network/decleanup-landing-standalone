@@ -69,7 +69,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
 
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=20260924c" />
 </head>
 <body>
 
@@ -87,7 +87,7 @@
       <a class="nav-link" href="/toc" style="color:var(--ink)">Theory of Change</a>
       <a class="nav-link" href="/sdg">SDG</a>
       <a class="nav-link" href="/investors">Investors</a>
-      <a class="nav-link" href="/userguide">User Guide</a>
+      <a class="nav-link" href="/#guide" data-guide-picker>User Guide</a>
     </div>
     <a class="btn btn-primary btn-mono nav-cta" href="/" style="min-height:38px;padding:0 18px;font-size:11px;text-decoration:none">Back to home</a>
   </div>
@@ -516,17 +516,51 @@
 
 <footer class="site-footer">
   <div class="container">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+    <div class="brand-lockup" style="display:flex;align-items:center;gap:12px;margin-bottom:28px">
+          <img src="public/brand/logo-icon.png" alt="" class="logo-icon" width="36" height="36" style="display:block;border-radius:8px" />
+          <img src="public/brand/logo-wordmark.png" alt="DeCleanup Network" class="logo-wordmark" height="24" style="width:auto" />
+          <span class="plakat logo-wordmark-text" style="font-size:28px;letter-spacing:0.02em">DeCleanup<span style="color:var(--ink-faint)">.Net</span></span>
+        </div>
+    <div class="footer-acc">
+      <details class="footer-acc-card" open>
+        <summary class="footer-acc-summary">Connect</summary>
+        <ul class="footer-acc-list">
+          <li><a class="footer-link" href="https://t.me/decentralizedcleanup" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+          <li><a class="footer-link" href="https://x.com/decleanupnet" target="_blank" rel="noopener noreferrer">X @decleanupnet</a></li>
+          <li><a class="footer-link" href="https://farcaster.xyz/decleanupnet" target="_blank" rel="noopener noreferrer">Farcaster @decleanupnet</a></li>
+          <li><a class="footer-link" href="https://github.com/DeCleanup-Network" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a class="footer-link" href="mailto:support@decleanup.net">support@decleanup.net</a></li>
+        </ul>
+      </details>
+      <details class="footer-acc-card" open>
+        <summary class="footer-acc-summary">Resources</summary>
+        <ul class="footer-acc-list">
+          <li><a class="footer-link" href="/litepaper">Litepaper</a></li>
+          <li><a class="footer-link" href="/tokenomics">Tokenomics</a></li>
+          <li><a class="footer-link" href="/toc">Theory of change</a></li>
+          <li><a class="footer-link" href="/sdg">SDG alignment</a></li>
+          <li><a class="footer-link" href="/investors">Investor brief</a></li>
+          <li><a class="footer-link" href="/#guide" data-guide-picker>User guide</a></li>
+          <li><a class="footer-link" href="/docs">Dev docs</a></li>
+          <li><a class="footer-link" href="/terms">Terms of service</a></li>
+          <li><a class="footer-link" href="/privacy">Privacy policy</a></li>
+          <li><a class="footer-link" href="https://paragraph.com/@decleanupnet" target="_blank" rel="noopener noreferrer">Publications</a></li>
+        </ul>
+      </details>
+      <details class="footer-acc-card" open>
+        <summary class="footer-acc-summary">Support</summary>
+        <ul class="footer-acc-list">
+          <li><a class="footer-link" href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener noreferrer">$cDCU governance (Gardens)</a></li>
+          <li><a class="footer-link" href="https://giveth.io/project/decentralized-cleanup-network" target="_blank" rel="noopener noreferrer">Donate on Giveth</a></li>
+          <li><a class="footer-link" href="https://www.crowdwalrus.xyz/campaigns/decleanupnet" target="_blank" rel="noopener noreferrer">Fund on CrowdWalrus</a></li>
+          <li><a class="footer-link" href="https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x30171b7014c02229497CdE6745DD3aD821F12b07" target="_blank" rel="noopener noreferrer">Trade $bDCU on Uniswap</a></li>
+        </ul>
+      </details>
+    </div>
+    <div class="footer-acc-meta">
       <div class="meta">© 2026 DECLEANUP NETWORK · OPEN-SOURCE · MIT</div>
-      <div class="meta" style="display:flex;gap:24px;flex-wrap:wrap">
-        <a href="/litepaper" style="color:var(--ink-mute);text-decoration:none">LITEPAPER</a>
-        <a href="/tokenomics" style="color:var(--ink-mute);text-decoration:none">TOKENOMICS</a>
-        <a href="/sdg" style="color:var(--ink-mute);text-decoration:none">SDG</a>
-        <a href="/investors" style="color:var(--ink-mute);text-decoration:none">INVESTOR BRIEF</a>
-        <a href="/terms" style="color:var(--ink-mute);text-decoration:none">TERMS</a>
-        <a href="/privacy" style="color:var(--ink-mute);text-decoration:none">PRIVACY</a>
-        <a href="/docs" style="color:var(--ink-mute);text-decoration:none">DEV DOCS</a>
-        <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener" style="color:var(--ink-mute);text-decoration:none">GOVERNANCE</a>
+      <div class="meta" style="display:flex;gap:20px;flex-wrap:wrap">
+        <span>SDG 11 · 12 · 13 · 14 · 15</span>
         <span style="color:var(--ink-faint)">BUILT ON CELO + BASE</span>
       </div>
     </div>
@@ -590,5 +624,6 @@
 }
 </style>
 
+  <script src="/public/guide-picker.js" defer></script>
 </body>
 </html>

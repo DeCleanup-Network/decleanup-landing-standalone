@@ -6,7 +6,7 @@
 //   06 (ledger 3 cols + DD.MM.YYYY), 07 (em-dash + onchain)
 // ===========================
 
-function Hero({ onLaunch }) {
+function Hero({ onLaunch, onGuide }) {
   const impact = useImpactStats();
 
   const fmtDate = (iso) => {
@@ -104,9 +104,9 @@ function Hero({ onLaunch }) {
                 <button className="btn btn-primary" onClick={onLaunch}>
                   Start Cleaning
                 </button>
-                <a className="btn btn-ghost" href="#how">
+                <button type="button" className="btn btn-ghost" onClick={onGuide}>
                   How It Works
-                </a>
+                </button>
                 <a
                   className="btn btn-ghost"
                   href="https://dapp.decleanup.net/sponsor"

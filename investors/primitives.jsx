@@ -81,27 +81,33 @@ function Footer() {
           <img src={img("public/brand/logo-wordmark.png")} alt="DeCleanup Network" className="logo-wordmark" height={24} style={{ width: "auto" }} />
           <span className="plakat logo-wordmark-text" style={{ fontSize: 26, letterSpacing: "0.01em" }}>DeCleanup<span style={{ color: "var(--ink-faint)" }}>.Net</span></span>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginBottom: 44 }} className="footer-grid">
-          <FooterCol title="Protocol" links={[
+        <div className="footer-acc">
+          <FooterAcc title="Connect" links={[
+            ["Telegram", CONTACT.telegram],
+            [`X ${CONTACT.handle}`, CONTACT.x],
+            [`Farcaster ${CONTACT.handle}`, CONTACT.farcaster],
+            ["GitHub", "https://github.com/DeCleanup-Network"],
+            ["Email support", CONTACT.email],
+          ]} />
+          <FooterAcc title="Resources" links={[
             ["Main site", "https://decleanup.net"],
             ["Litepaper", "https://decleanup.net/litepaper"],
             ["Tokenomics", "https://decleanup.net/tokenomics"],
             ["Theory of change", "https://decleanup.net/toc"],
             ["SDG alignment", "https://decleanup.net/sdg"],
+            ["User guide", "https://decleanup.net/#guide"],
             ["Developer docs", "https://decleanup.net/docs"],
-            ["$cDCU governance (Gardens)", "https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960"],
             ["Terms of service", "https://decleanup.net/terms"],
             ["Privacy policy", "https://decleanup.net/privacy"],
-            ["GitHub", "https://github.com/DeCleanup-Network"],
           ]} />
-          <FooterCol title="Talk to us" links={[
-            ["Email support", CONTACT.email],
-            ["Telegram", CONTACT.telegram],
-            [`X ${CONTACT.handle}`, CONTACT.x],
-            [`Farcaster ${CONTACT.handle}`, CONTACT.farcaster],
+          <FooterAcc title="Support" links={[
+            ["$cDCU governance (Gardens)", "https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960"],
+            ["Donate on Giveth", "https://giveth.io/project/decentralized-cleanup-network"],
+            ["Fund on CrowdWalrus", "https://www.crowdwalrus.xyz/campaigns/decleanupnet"],
+            ["Trade $bDCU on Uniswap", "https://app.uniswap.org/swap?chain=base&inputCurrency=ETH&outputCurrency=0x30171b7014c02229497CdE6745DD3aD821F12b07"],
           ]} />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 24, borderTop: "1px solid var(--line)", flexWrap: "wrap", gap: 16 }}>
+        <div className="footer-acc-meta">
           <div className="meta">© 2026 DECLEANUP NETWORK · OPEN-SOURCE · INFORMATION ONLY</div>
           <div className="meta" style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
             <span>SDG 11 · 12 · 13 · 14 · 15</span>
@@ -110,6 +116,21 @@ function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterAcc({ title, links }) {
+  return (
+    <details className="footer-acc-card" open>
+      <summary className="footer-acc-summary">{title}</summary>
+      <ul className="footer-acc-list">
+        {links.map(([label, href]) => (
+          <li key={label}>
+            <a href={href} className="footer-link" target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </details>
   );
 }
 

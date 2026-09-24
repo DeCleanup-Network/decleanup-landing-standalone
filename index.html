@@ -51,7 +51,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
 
-<link rel="stylesheet" href="styles.css?v=20260907a" />
+<link rel="stylesheet" href="styles.css?v=20260924g" />
 
 <!-- Preload LCP hero image -->
 <link rel="preload" as="image" href="/public/testimonial1.jpg" fetchpriority="high" />
@@ -111,9 +111,9 @@
       <nav style="display:flex;flex-wrap:wrap;gap:14px;font-size:0.8rem">
         <a href="/">Home</a><a href="/litepaper">Litepaper</a><a href="/tokenomics">Tokenomics</a>
         <a href="/toc">Theory of Change</a><a href="/sdg">SDG</a><a href="/investors">Investors</a>
-        <a href="/userguide">User Guide</a>
+        <a href="/#guide" data-guide-picker>User Guide</a>
       </nav>
-      <a href="https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards" style="background:#58B12F;color:#0a0a0a;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:0.75rem;font-weight:700">Launch App</a>
+      <a href="https://dapp.decleanup.net/?chain=base" style="background:#58B12F;color:#0a0a0a;padding:8px 16px;border-radius:8px;text-decoration:none;font-size:0.75rem;font-weight:700">Launch App</a>
     </div>
   </header>
   <div style="max-width:900px;margin:0 auto;padding:48px 24px 80px">
@@ -121,8 +121,8 @@
     <p style="font-size:1.2rem;line-height:1.5;color:#a8a8a8;margin:0 0 20px">Pick up trash. Upload photos. Get impact tokens and governance rights.</p>
     <p style="font-size:0.95rem;line-height:1.6;color:#888;margin:0 0 28px">Open-source cleanup verification on Base and Celo. DMRV turns real-world cleanups into independently verifiable onchain impact.</p>
     <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px">
-      <a href="https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards" style="background:#58B12F;color:#0a0a0a;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600">Start on Base</a>
-      <a href="https://dapp.decleanup.net" style="border:1px solid #444;color:#e8e8e8;padding:12px 20px;border-radius:8px;text-decoration:none">Try Celo dApp</a>
+      <a href="https://dapp.decleanup.net/?chain=base" style="background:#58B12F;color:#0a0a0a;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600">Open on Base</a>
+      <a href="https://dapp.decleanup.net/?chain=celo" style="border:1px solid #444;color:#e8e8e8;padding:12px 20px;border-radius:8px;text-decoration:none">Open on Celo</a>
       <a href="https://dapp.decleanup.net/sponsor" style="border:1px solid #444;color:#e8e8e8;padding:12px 20px;border-radius:8px;text-decoration:none">Fund current campaigns</a>
     </div>
     <h2 style="font-size:1.1rem;letter-spacing:0.08em;color:#58B12F;margin:0 0 16px">HOW IT WORKS</h2>
@@ -135,14 +135,14 @@
     <h2 style="font-size:1.1rem;letter-spacing:0.08em;color:#58B12F;margin:0 0 16px">TWO PLATFORMS</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:40px">
       <div style="border:1px solid #333;border-radius:12px;padding:20px">
-        <h3 style="margin:0 0 8px">Mini App · Base</h3>
-        <p style="margin:0 0 12px;color:#999;font-size:0.9rem">Lightweight entry via Farcaster or the Base app. Photo logging, quick verification, $bDCU rewards.</p>
-        <a href="https://farcaster.xyz/miniapps/SfsGBDcHpuSA/decleanup-rewards">Open on Farcaster</a>
+        <h3 style="margin:0 0 8px">Base</h3>
+        <p style="margin:0 0 12px;color:#999;font-size:0.9rem">Simple cleanup path. Photo logging, verification, $bDCU rewards.</p>
+        <a href="https://dapp.decleanup.net/?chain=base">Open on Base</a>
       </div>
       <div style="border:1px solid #333;border-radius:12px;padding:20px">
-        <h3 style="margin:0 0 8px">Full Platform · Celo</h3>
-        <p style="margin:0 0 12px;color:#999;font-size:0.9rem">NGO-grade events, maps, Hypercerts, and Gardens governance. Live at dapp.decleanup.net.</p>
-        <a href="https://dapp.decleanup.net">Start on Celo</a>
+        <h3 style="margin:0 0 8px">Celo</h3>
+        <p style="margin:0 0 12px;color:#999;font-size:0.9rem">Full app: events, maps, Hypercerts, Gardens governance. Live at dapp.decleanup.net.</p>
+        <a href="https://dapp.decleanup.net/?chain=celo">Open on Celo</a>
       </div>
     </div>
     <h2 style="font-size:1.1rem;letter-spacing:0.08em;color:#58B12F;margin:0 0 12px">TOKENS</h2>
@@ -160,11 +160,12 @@
 <div id="root"></div>
 
 <script type="text/babel" src="tweaks-panel.jsx?v=20260603e"></script>
-<script type="text/babel" src="primitives.jsx?v=20260605b"></script>
-<script type="text/babel" src="hero.jsx?v=20260918a"></script>
-<script type="text/babel" src="sections.jsx?v=20260918a"></script>
-<script type="text/babel" src="community.jsx?v=20260821a"></script>
-<script type="text/babel" src="app.jsx?v=20260821a"></script>
+<script type="text/babel" src="primitives.jsx?v=20260924h"></script>
+<script type="text/babel" src="hero.jsx?v=20260924i"></script>
+<script type="text/babel" src="sections.jsx?v=20260924g"></script>
+<script type="text/babel" src="community.jsx?v=20260924h"></script>
+<script type="text/babel" src="app.jsx?v=20260924i"></script>
 
+  <script src="/public/guide-picker.js" defer></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Nav, Hero, PartnershipAd, WhyDeCleanup, DmrvSection, HowSection, EcosystemSection, BuiltOnSection, CommunitySection, CleanupMapSection, TotalImpactSection, GlossarySection, BackedBySection, SdgStrip, ResourcesSection, InvestorsSection, JoinSection, SiteFooter, StartModal, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect, useTweaks */
+/* global React, ReactDOM, Nav, Hero, PartnershipAd, WhyDeCleanup, DmrvSection, HowSection, EcosystemSection, BuiltOnSection, CommunitySection, CleanupMapSection, TotalImpactSection, GlossarySection, BackedBySection, SdgStrip, ResourcesSection, InvestorsSection, JoinSection, SiteFooter, StartModal, GuideModal, TweaksPanel, TweakSection, TweakRadio, TweakColor, TweakSelect, useTweaks */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": "dark",
@@ -9,12 +9,38 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 
 function App() {
   const [modal, setModal] = React.useState(false);
+  const [guideModal, setGuideModal] = React.useState(false);
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
   // Hide static SEO fallback once React is live.
   React.useEffect(() => {
     document.documentElement.classList.add("js-enabled");
   }, []);
+
+  // Open guide picker from /#guide (used by static doc pages + deep links).
+  React.useEffect(() => {
+    const syncHash = () => {
+      if ((window.location.hash || "").toLowerCase() === "#guide") {
+        setGuideModal(true);
+      }
+    };
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, []);
+
+  const openGuide = () => {
+    setGuideModal(true);
+    if ((window.location.hash || "").toLowerCase() !== "#guide") {
+      history.replaceState(null, "", "#guide");
+    }
+  };
+  const closeGuide = () => {
+    setGuideModal(false);
+    if ((window.location.hash || "").toLowerCase() === "#guide") {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+  };
 
   // Apply tweaks to <html>
   React.useEffect(() => {
@@ -226,8 +252,13 @@ function App() {
 
   return (
     <>
-      <Nav onLaunch={() => setModal(true)} palette={t.palette} onTogglePalette={togglePalette} />
-      <Hero onLaunch={() => setModal(true)} />
+      <Nav
+        onLaunch={() => setModal(true)}
+        onGuide={openGuide}
+        palette={t.palette}
+        onTogglePalette={togglePalette}
+      />
+      <Hero onLaunch={() => setModal(true)} onGuide={openGuide} />
       <PartnershipAd />
       <WhyDeCleanup />
       <DmrvSection />
@@ -246,6 +277,7 @@ function App() {
       <SiteFooter />
 
       <StartModal open={modal} onClose={() => setModal(false)} />
+      <GuideModal open={guideModal} onClose={closeGuide} />
 
       <TweaksPanel title="Tweaks">
         <TweakSection title="Palette">
