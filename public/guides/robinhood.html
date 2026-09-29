@@ -4,8 +4,8 @@
   <script src="/public/guides/guide-theme.js"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>User Guide on Base</title>
-  <meta name="description" content="Simple cleanup on Base: sign in, submit proof, get verified, earn $bDCU." />
+  <title>User Guide on Robinhood Chain</title>
+  <meta name="description" content="Testnet cleanup on Robinhood Chain: connect wallet, submit proof, earn demo $rDCU and tRWI." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -20,6 +20,7 @@
       --green-hover: #4a9626;
       --green-soft: color-mix(in srgb, #58b12f 18%, transparent);
       --yellow: #faff00;
+      --rh: #CCFF00;
       --line: rgba(255, 255, 255, 0.1);
       --line-soft: rgba(255, 255, 255, 0.06);
       --bg-elev: #141414;
@@ -76,6 +77,7 @@
       max-width: 48rem;
       margin: 0 auto;
       padding: 2rem 1rem 2rem;
+      min-width: 0;
     }
 
     @media (min-width: 640px) {
@@ -86,14 +88,14 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      margin: -2rem -1rem 2.5rem;
+      margin: -2rem -1rem 1.5rem;
       padding: 1rem 1rem;
       background: var(--background);
       border-bottom: 1px solid var(--white-08);
     }
 
     @media (min-width: 640px) {
-      .progress-wrap { margin: -3rem -1.5rem 2.5rem; padding: 1rem 1.5rem; }
+      .progress-wrap { margin: -3rem -1.5rem 1.5rem; padding: 1rem 1.5rem; }
     }
 
     .progress-meta {
@@ -104,23 +106,17 @@
       margin-bottom: 0.5rem;
     }
 
-    .progress-label {
+    .progress-label,
+    .progress-count {
       font-family: var(--font-mono);
       font-size: 12px;
       font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--white-60);
     }
 
-    .progress-count {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--green);
-    }
+    .progress-label { color: var(--white-60); }
+    .progress-count { color: var(--green); letter-spacing: 0.08em; }
 
     .progress-track {
       height: 0.5rem;
@@ -189,24 +185,6 @@
       flex-wrap: wrap;
     }
 
-    .chain-mark {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.35em;
-      height: 1.35em;
-      border-radius: 0.35em;
-      background: #0052FF;
-      flex-shrink: 0;
-    }
-
-    .chain-mark img {
-      width: 0.72em;
-      height: 0.72em;
-      display: block;
-      filter: brightness(0) invert(1);
-    }
-
     .lede {
       margin: 0.75rem 0 1.5rem;
       max-width: 42rem;
@@ -227,6 +205,175 @@
 
     .lede a:hover {
       color: color-mix(in srgb, var(--green) 90%, white);
+    }
+
+    .chain-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.35em;
+      height: 1.35em;
+      border-radius: 0.35em;
+      background: var(--rh);
+      flex-shrink: 0;
+    }
+
+    .chain-mark img {
+      width: 0.78em;
+      height: 0.78em;
+      display: block;
+    }
+
+    .network-card {
+      margin-bottom: 2rem;
+      border: 1px solid var(--white-08);
+      background: var(--bg-elev);
+      border-radius: var(--radius-xl);
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    @media (min-width: 640px) {
+      .network-card { padding: 1.25rem; }
+    }
+
+    .network-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .network-card-head h2 {
+      margin: 0;
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .badge-testnet {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+      background: var(--rh);
+      color: #0a0a0a;
+      font-weight: 700;
+    }
+
+    .net-grid {
+      display: grid;
+      gap: 0.65rem;
+      margin: 0;
+    }
+
+    .net-row {
+      display: grid;
+      grid-template-columns: 6.5rem 1fr;
+      gap: 0.5rem 0.75rem;
+      align-items: start;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--white-08);
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--background) 45%, transparent);
+    }
+
+    @media (min-width: 640px) {
+      .net-row { grid-template-columns: 7.5rem 1fr; }
+    }
+
+    .net-row dt {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white-50);
+      padding-top: 0.15rem;
+    }
+
+    .net-row dd {
+      margin: 0;
+      font-size: var(--text-small);
+      line-height: 1.45;
+      color: var(--foreground);
+      word-break: break-all;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .net-row dd a {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .net-row dd a:hover {
+      color: color-mix(in srgb, var(--green) 90%, white);
+    }
+
+    .net-note {
+      margin: 1rem 0 0;
+      font-size: var(--text-small);
+      line-height: 1.55;
+      color: var(--white-60);
+    }
+
+    .net-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .mm-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0.625rem 1.15rem;
+      border: 1px solid var(--rh);
+      border-radius: var(--radius-lg);
+      background: var(--rh);
+      color: #0a0a0a;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .mm-btn:hover {
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--rh) 18%, transparent);
+    }
+
+    .mm-btn:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--rh) 40%, transparent);
+      outline-offset: 2px;
+    }
+
+    .faucet-line {
+      margin: 1rem 0 0;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid color-mix(in srgb, var(--rh) 28%, transparent);
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--rh) 6%, transparent);
+      font-size: var(--text-small);
+      line-height: 1.55;
+      color: var(--white-60);
+    }
+
+    .faucet-line a {
+      color: var(--rh);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 600;
     }
 
     .steps { display: flex; flex-direction: column; gap: 2rem; }
@@ -338,44 +485,29 @@
 
     .step.is-open .step-body { display: block; padding-top: 1.25rem; }
 
-    .option-grid,
-    .reward-grid {
+    .body-copy {
+      margin: 0;
+      font-size: var(--text-small);
+      line-height: 1.625;
+      color: var(--white-60);
+    }
+
+    .body-copy + .body-copy { margin-top: 0.75rem; }
+
+    .option-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1rem;
     }
 
-    @media (min-width: 640px) {
-      .option-grid,
-      .reward-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (min-width: 720px) {
-      .reward-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    .reward-grid { gap: 0.75rem; }
-
-    .option-card,
-    .reward-card {
+    .option-card {
       border-radius: var(--radius-xl);
       padding: 1rem;
-    }
-
-    .option-card.recommended {
-      border: 1px solid color-mix(in srgb, var(--green) 35%, transparent);
-      background: color-mix(in srgb, var(--green) 5%, transparent);
     }
 
     .option-card.alt {
       border: 1px solid var(--white-08);
       background: color-mix(in srgb, var(--background) 40%, transparent);
-    }
-
-    .reward-card {
-      border: 1px solid var(--white-08);
-      background: color-mix(in srgb, var(--background) 50%, transparent);
-      border-radius: var(--radius-lg);
     }
 
     .card-head {
@@ -391,10 +523,9 @@
       flex-shrink: 0;
     }
 
-    .card-icon.green { color: var(--green); }
-    .card-icon.muted { color: rgba(255, 255, 255, 0.7); }
+    .card-icon.muted { color: var(--white-50); }
 
-    .card-title {
+    .option-card .card-title {
       margin: 0;
       font-family: var(--font-heading);
       font-size: var(--text-body);
@@ -402,77 +533,15 @@
       color: var(--foreground);
     }
 
-    .card-copy {
+    .option-card .card-copy {
       margin: 0;
       font-size: var(--text-small);
       line-height: 1.625;
       color: var(--white-60);
     }
-
-    .reward-card .card-title {
-      margin-bottom: 0.375rem;
-      font-size: var(--text-small);
-      color: var(--green);
-    }
-
-    .reward-card .card-copy { font-size: var(--text-xs); }
-
-    .checklist {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .check-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      min-height: 44px;
-      margin: 0;
-      padding: 0.75rem;
-      border: 1px solid var(--white-08);
-      background: color-mix(in srgb, var(--background) 40%, transparent);
-      border-radius: var(--radius-lg);
-      cursor: pointer;
-    }
-
-    .check-item:has(input:checked) {
-      border-color: color-mix(in srgb, var(--green) 35%, transparent);
-      background: color-mix(in srgb, var(--green) 5%, transparent);
-    }
-
-    .check-item input {
-      margin-top: 0.125rem;
-      width: 1rem;
-      height: 1rem;
-      flex-shrink: 0;
-      accent-color: var(--green);
-    }
-
-    .check-item span {
-      font-size: var(--text-small);
-      line-height: 1.625;
-      color: var(--white-60);
-    }
-
-    .form-link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      margin-top: 1.25rem;
-      color: var(--green);
-      font-size: var(--text-small);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    .form-link:hover { color: color-mix(in srgb, var(--green) 90%, white); }
 
     .gas-expand {
-      margin-top: 0.85rem;
+      margin-top: 1rem;
       border: 1px solid color-mix(in srgb, var(--green) 25%, transparent);
       background: color-mix(in srgb, var(--green) 5%, transparent);
       border-radius: var(--radius-lg);
@@ -552,6 +621,154 @@
       line-height: 1.55;
       color: var(--white-60);
     }
+
+    .reward-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 640px) {
+      .reward-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .reward-card {
+      border: 1px solid var(--white-08);
+      background: color-mix(in srgb, var(--background) 50%, transparent);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+    }
+
+    .reward-card .card-title {
+      margin: 0 0 0.375rem;
+      font-family: var(--font-heading);
+      font-size: var(--text-small);
+      font-weight: 600;
+      color: var(--green);
+    }
+
+    .reward-card .card-copy {
+      margin: 0;
+      font-size: var(--text-xs);
+      line-height: 1.625;
+      color: var(--white-60);
+    }
+
+    .term-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-family: var(--font-heading);
+      font-size: var(--text-small);
+      font-weight: 600;
+      color: var(--green);
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    .term-btn:hover { color: color-mix(in srgb, var(--green) 90%, white); }
+
+    .term-q {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 9999px;
+      border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .checklist {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      min-height: 44px;
+      margin: 0;
+      padding: 0.75rem;
+      border: 1px solid var(--white-08);
+      background: color-mix(in srgb, var(--background) 40%, transparent);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+    }
+
+    .check-item:has(input:checked) {
+      border-color: color-mix(in srgb, var(--green) 35%, transparent);
+      background: color-mix(in srgb, var(--green) 5%, transparent);
+    }
+
+    .check-item input {
+      margin-top: 0.125rem;
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+      accent-color: var(--green);
+    }
+
+    .check-item span {
+      font-size: var(--text-small);
+      line-height: 1.625;
+      color: var(--white-60);
+    }
+
+    .tip-box {
+      margin-top: 1.25rem;
+      border-radius: var(--radius-lg);
+      padding: 0.75rem 1rem;
+      font-size: var(--text-small);
+      line-height: 1.625;
+      border: 1px solid color-mix(in srgb, var(--green) 25%, transparent);
+      background: color-mix(in srgb, var(--green) 5%, transparent);
+      color: var(--white-60);
+    }
+
+    .tip-box strong { color: var(--foreground); }
+
+    .form-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      margin-top: 1.25rem;
+      color: var(--green);
+      font-size: var(--text-small);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .form-link:hover { color: color-mix(in srgb, var(--green) 90%, white); }
+
+    .explorer-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      margin-top: 0.75rem;
+      color: var(--green);
+      font-size: var(--text-small);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .explorer-link:hover { color: color-mix(in srgb, var(--green) 90%, white); }
 
     .complete-btn {
       display: inline-flex;
@@ -646,55 +863,6 @@
       text-transform: uppercase;
     }
 
-    .term-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      font: inherit;
-      font-family: var(--font-heading);
-      font-size: var(--text-small);
-      font-weight: 600;
-      color: var(--green);
-      cursor: pointer;
-      text-decoration: underline;
-      text-decoration-style: dotted;
-      text-underline-offset: 3px;
-    }
-
-    .term-btn:hover { color: color-mix(in srgb, var(--green) 90%, white); }
-
-    .term-q {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 1rem;
-      height: 1rem;
-      border-radius: 9999px;
-      border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
-      font-family: var(--font-mono);
-      font-size: 9px;
-      font-weight: 700;
-      color: var(--green);
-      text-decoration: none;
-    }
-
-    .explorer-link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      margin-top: 0.75rem;
-      color: var(--green);
-      font-size: var(--text-small);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    .explorer-link:hover { color: color-mix(in srgb, var(--green) 90%, white); }
-
     .modal-back {
       position: fixed;
       inset: 0;
@@ -767,41 +935,41 @@
     </div>
 
     <div class="brand-row">
-      <a class="logo-link" href="https://dapp.decleanup.net/?chain=base" aria-label="DeCleanup Rewards home">
+      <a class="logo-link" href="https://dapp.decleanup.net/?chain=robinhood" aria-label="DeCleanup Rewards home">
         <img class="logo" src="https://dapp.decleanup.net/logo.png" alt="DeCleanup Network" />
       </a>
       <div class="brand-copy">
-        <p class="brand-kicker">Simple cleanup path</p>
+        <p class="brand-kicker">Testnet experiment</p>
         <h1 class="brand-title">
           <span class="chain-mark" aria-hidden="true">
-            <img src="/public/base-mark.svg" alt="" width="16" height="16" />
+            <img src="/public/robinhood-feather.svg" alt="" width="16" height="16" />
           </span>
-          Base
+          Robinhood Chain
         </h1>
       </div>
     </div>
     <p class="lede">
-      Log cleanups, earn DCU, and claim $bDCU at
-      <a href="https://dapp.decleanup.net/?chain=base">dapp.decleanup.net</a>.
+      Log cleanups, earn DCU and demo $rDCU, and level up tRWI at
+      <a href="https://dapp.decleanup.net/?chain=robinhood">dapp.decleanup.net</a>.
     </p>
 
     <section class="network-card" aria-labelledby="network-card-title">
       <div class="network-card-head">
         <h2 id="network-card-title">Network details</h2>
-        <span class="badge-chain is-base">Mainnet</span>
+        <span class="badge-testnet">Testnet</span>
       </div>
       <dl class="net-grid">
         <div class="net-row">
           <dt>Network</dt>
-          <dd>Base</dd>
+          <dd>Robinhood Chain Testnet</dd>
         </div>
         <div class="net-row">
           <dt>Chain ID</dt>
-          <dd>8453</dd>
+          <dd>46630</dd>
         </div>
         <div class="net-row">
           <dt>RPC URL</dt>
-          <dd>https://mainnet.base.org</dd>
+          <dd>https://rpc.testnet.chain.robinhood.com</dd>
         </div>
         <div class="net-row">
           <dt>Currency</dt>
@@ -809,12 +977,12 @@
         </div>
         <div class="net-row">
           <dt>Explorer</dt>
-          <dd><a href="https://basescan.org" target="_blank" rel="noopener noreferrer">basescan.org</a></dd>
+          <dd><a href="https://explorer.testnet.chain.robinhood.com" target="_blank" rel="noopener noreferrer">explorer.testnet.chain.robinhood.com</a></dd>
         </div>
       </dl>
       <p class="net-note">The app adds this network automatically when you connect. If it does not, add it manually using the details above.</p>
       <div class="net-actions">
-        <button type="button" class="mm-btn is-base" id="add-metamask">Add to MetaMask</button>
+        <button type="button" class="mm-btn" id="add-metamask">Add to MetaMask</button>
       </div>
     </section>
 
@@ -822,7 +990,7 @@
       <section class="step is-open" data-step="0" id="step-1">
         <button class="step-toggle" type="button" aria-expanded="true" aria-controls="step-1-body" id="step-1-toggle">
           <span class="step-num" aria-hidden="true">1</span>
-          <span class="step-title">Step 1: Sign in</span>
+          <span class="step-title">Step 1: Connect your wallet</span>
           <span class="step-done-chip">Done</span>
           <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="m6 9 6 6 6-6" />
@@ -830,16 +998,6 @@
         </button>
         <div class="step-body" id="step-1-body" role="region" aria-labelledby="step-1-toggle">
           <div class="option-grid">
-            <article class="option-card recommended">
-              <div class="card-head">
-                <svg class="card-icon green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <rect width="20" height="16" x="2" y="4" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-                <h3 class="card-title">Email or Google</h3>
-              </div>
-              <p class="card-copy">We create a Base smart account, gas covered for routine transactions when Pimlico is active.</p>
-            </article>
             <article class="option-card alt">
               <div class="card-head">
                 <svg class="card-icon muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -848,27 +1006,15 @@
                 </svg>
                 <h3 class="card-title">Connect your wallet</h3>
               </div>
-              <p class="card-copy">MetaMask or WalletConnect on Base, small ETH fee per transaction.</p>
-              <details class="gas-expand" id="gas-eth">
+              <p class="card-copy">MetaMask or any WalletConnect-compatible wallet on Robinhood Chain testnet (chain ID 46630). Confirm the network before signing. Small testnet ETH balance needed for gas.</p>
+              <details class="gas-expand">
                 <summary>How to get ETH</summary>
                 <div class="gas-expand-body">
                   <div class="gas-option">
-                    <p class="gas-option-label">Cheapest and fastest</p>
-                    <p>Bridge ETH from Ethereum mainnet to Base via the <a href="https://bridge.base.org" target="_blank" rel="noopener noreferrer">official Base bridge</a> or <a href="https://superbridge.app" target="_blank" rel="noopener noreferrer">Superbridge</a>.</p>
+                    <p class="gas-option-label">Free faucet</p>
+                    <p>Get testnet ETH at <a href="https://faucet.testnet.chain.robinhood.com" target="_blank" rel="noopener noreferrer">faucet.testnet.chain.robinhood.com</a>. Use the same wallet address you connect in the app.</p>
                   </div>
-                  <div class="gas-option">
-                    <p class="gas-option-label">Already have crypto elsewhere</p>
-                    <p>Bridge from any chain via <a href="https://app.squidrouter.com" target="_blank" rel="noopener noreferrer">Squid Router</a> or <a href="https://jumper.exchange" target="_blank" rel="noopener noreferrer">Jumper</a>. Both support Base directly.</p>
-                  </div>
-                  <div class="gas-option">
-                    <p class="gas-option-label">Starting from cash</p>
-                    <p>Buy ETH on <a href="https://coinbase.com" target="_blank" rel="noopener noreferrer">Coinbase</a> and withdraw directly to Base network. Coinbase supports Base withdrawals natively with no bridge step. Or use <a href="https://transak.com" target="_blank" rel="noopener noreferrer">Transak</a> for card to ETH on Base in one step.</p>
-                  </div>
-                  <div class="gas-option">
-                    <p class="gas-option-label">Already have ETH on another chain</p>
-                    <p>Swap and bridge in one step via <a href="https://stargate.finance" target="_blank" rel="noopener noreferrer">Stargate</a> or <a href="https://relay.link" target="_blank" rel="noopener noreferrer">Relay</a>.</p>
-                  </div>
-                  <p class="gas-note">Base gas fees are very low. A small amount of ETH covers many transactions.</p>
+                  <p class="gas-note">Testnet gas fees are tiny. A small faucet drip covers many transactions.</p>
                 </div>
               </details>
             </article>
@@ -897,23 +1043,26 @@
             <li>
               <label class="check-item">
                 <input type="checkbox" data-check="1" />
-                <span>Allow location access when prompted - required for geotagging. If it fails: enable Location Services, allow the browser, allow this site. Coordinates can also be entered manually.</span>
+                <span>Allow location access when prompted - required for geotagging. If it fails: enable Location Services, allow the browser, allow this site. You can also enter coordinates manually.</span>
               </label>
             </li>
             <li>
               <label class="check-item">
                 <input type="checkbox" data-check="2" />
-                <span>Submit the cleanup form</span>
+                <span>Submit the impact form and recyclables form (optional)</span>
               </label>
             </li>
             <li>
               <label class="check-item">
                 <input type="checkbox" data-check="3" />
-                <span>Wait for verifier review and approval - a trained community verifier attests onchain</span>
+                <span>Wait for a community verifier to review and approve your submission onchain</span>
               </label>
             </li>
           </ul>
-          <a class="form-link" href="https://dapp.decleanup.net/?chain=base" target="_blank" rel="noopener noreferrer">Open app →</a>
+          <a class="form-link" href="https://dapp.decleanup.net/?chain=robinhood" target="_blank" rel="noopener noreferrer">Open app →</a>
+          <div class="tip-box">
+            <strong>Tip:</strong> iPhone users - avoid HEIC format. Use JPEG or enable "Most Compatible" in Settings &gt; Camera &gt; Formats.
+          </div>
           <div>
             <button class="complete-btn" type="button" data-complete="1">Mark complete</button>
           </div>
@@ -941,11 +1090,11 @@
             </article>
             <article class="reward-card">
               <h3 class="card-title">
-                <button type="button" class="term-btn" data-term="bdcu" aria-haspopup="dialog">
-                  $bDCU <span class="term-q" aria-hidden="true">?</span>
+                <button type="button" class="term-btn" data-term="rdcu" aria-haspopup="dialog">
+                  $rDCU <span class="term-q" aria-hidden="true">?</span>
                 </button>
               </h3>
-              <p class="card-copy">The Base action token. Claimable when eligible, tradable.</p>
+              <p class="card-copy">Demo ERC-20 reward token on Robinhood Chain testnet. Earned after your cleanup is verified.</p>
             </article>
             <article class="reward-card">
               <h3 class="card-title">
@@ -953,10 +1102,10 @@
                   tRWI <span class="term-q" aria-hidden="true">?</span>
                 </button>
               </h3>
-              <p class="card-copy">Your cleanup level on Base. Levels up with each verified event. Claim from the dashboard after verification is done.</p>
+              <p class="card-copy">Your onchain cleanup level on Robinhood Chain testnet. Levels up with each verified event. Claim from the dashboard after verification is done.</p>
             </article>
           </div>
-          <a class="explorer-link" href="https://basescan.org" target="_blank" rel="noopener noreferrer">View transactions at basescan.org</a>
+          <a class="explorer-link" href="https://explorer.testnet.chain.robinhood.com" target="_blank" rel="noopener noreferrer">View transactions at explorer.testnet.chain.robinhood.com</a>
           <div>
             <button class="complete-btn" type="button" data-complete="2">Mark complete</button>
           </div>
@@ -965,7 +1114,7 @@
 
       <div class="done-banner" id="done-banner" role="status" hidden>
         <h2>Guide complete</h2>
-        <p>You are set up on Base. Submit cleanups, get verified, earn DCU and $bDCU, and level up your tRWI.</p>
+        <p>You are set up on Robinhood Chain testnet. Submit cleanups, get verified, earn DCU and $rDCU, and level up your tRWI.</p>
       </div>
     </div>
 
@@ -995,7 +1144,39 @@
 
   <script>
     (function () {
-      var STORAGE_KEY = "decleanup-base-guide-v2";
+      var STORAGE_KEY = "decleanup-robinhood-guide-v2";
+      var RH_CHAIN = {
+        chainId: "0xb626",
+        chainName: "Robinhood Chain Testnet",
+        nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
+        rpcUrls: ["https://rpc.testnet.chain.robinhood.com"],
+        blockExplorerUrls: ["https://explorer.testnet.chain.robinhood.com"]
+      };
+
+      var TERMS = {
+        dcu: {
+          title: "DCU points",
+          body: "DCU are your onchain participation points. You earn them from verified cleanups and related actions in the app. Your DCU total ranks you on the leaderboard.",
+          breakdown: [
+            ["Verified cleanup (level)", "10 DCU"],
+            ["Streak", "1 DCU"],
+            ["Referral (both parties)", "3 DCU each"],
+            ["Impact report (verified)", "5 DCU"],
+            ["Recyclables report (verified)", "5 DCU"],
+            ["Verifier activity", "1 DCU"]
+          ],
+          note: "Higher DCU means a higher leaderboard position on Robinhood Chain testnet."
+        },
+        rdcu: {
+          title: "$rDCU",
+          body: "Demo ERC-20 token on Robinhood Chain testnet. Earned automatically after a verified cleanup. This is a testnet reward token - not the mainnet $cDCU governance token and not connected to ClaimVault. It shows the reward flow works on this chain."
+        },
+        trwi: {
+          title: "tRWI - tokenized Real-World Impact",
+          body: "Your onchain cleanup level represented as an NFT. Each verified cleanup can advance your level. tRWI is the onchain record of your cumulative verified environmental work - what funders and marketplaces like Regen Bazaar read when you want to monetize your impact."
+        }
+      };
+
       var steps = Array.prototype.slice.call(document.querySelectorAll(".step"));
       var checks = Array.prototype.slice.call(document.querySelectorAll("[data-check]"));
       var completeBtns = Array.prototype.slice.call(document.querySelectorAll("[data-complete]"));
@@ -1006,28 +1187,6 @@
       var termTitle = document.getElementById("term-modal-title");
       var termBody = document.getElementById("term-modal-body");
       var termClose = document.getElementById("term-modal-close");
-
-      var TERMS = {
-        dcu: {
-          title: "DCU points",
-          body: "DCU are your onchain participation points. You earn them from verified cleanups and related actions in the app. Your DCU total ranks you on the leaderboard.",
-          breakdown: [
-            ["Verified cleanup (level)", "10 DCU"],
-            ["Streak", "1 DCU"],
-            ["Referral (both parties)", "3 DCU each"],
-            ["Verifier activity", "1 DCU"]
-          ],
-          note: "On Base, Level 3 and at least 30 DCU unlock $bDCU claims."
-        },
-        bdcu: {
-          title: "$bDCU",
-          body: "The Base action token. Claimable from the dashboard when you meet eligibility (tRWI Level 3 and at least 30 DCU). Liquid and tradable on Base."
-        },
-        trwi: {
-          title: "tRWI - tokenized Real-World Impact",
-          body: "Your onchain cleanup level represented as an NFT. Each verified cleanup can advance your level. tRWI is the onchain record of your cumulative verified environmental work - what funders and marketplaces like Regen Bazaar read when you want to monetize your impact."
-        }
-      };
 
       var state = {
         completed: [false, false, false],
@@ -1113,19 +1272,11 @@
         });
       });
 
-      var BASE_CHAIN = {
-        chainId: "0x2105",
-        chainName: "Base",
-        nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
-        rpcUrls: ["https://mainnet.base.org"],
-        blockExplorerUrls: ["https://basescan.org"]
-      };
-
       document.getElementById("add-metamask").addEventListener("click", function () {
         if (!window.ethereum || typeof window.ethereum.request !== "function") return;
         window.ethereum.request({
           method: "wallet_addEthereumChain",
-          params: [BASE_CHAIN]
+          params: [RH_CHAIN]
         }).catch(function () {});
       });
 

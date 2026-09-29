@@ -125,7 +125,7 @@ ${ul([
   "<strong>Wallet:</strong> public wallet address when you connect. We do not receive private keys.",
   "<strong>Referrals:</strong> referral relationships when you use or share referral links.",
   "<strong>Farcaster / Base Mini App context:</strong> when opened inside a Farcaster or Base client, we may receive your Farcaster ID (FID), username, display name, profile picture URL, and mini-app context from the host, not your Farcaster or wallet private keys.",
-  "<strong>Onchain data on Base:</strong> wallet addresses, submission and verification records, DCU points, $bDCU claims, Impact Product NFTs, staking and verifier status, transaction hashes (public on the network).",
+  "<strong>Onchain data on Base:</strong> wallet addresses, submission and verification records, DCU points, $bDCU claims, tRWI NFTs, staking and verifier status, transaction hashes (public on the network).",
   "<strong>Device and browser:</strong> browser and OS data needed to run the app.",
   "<strong>Local storage:</strong> pending cleanup IDs, onboarding progress, verifier session flags (functional only, not for advertising).",
   "<strong>Security:</strong> bot detection and abuse prevention (for example Vercel Bot ID) where enabled.",
@@ -222,7 +222,7 @@ ${ul([
   "You may sign in with MetaMask, WalletConnect, or an embedded smart account (Google or email). External wallets are self-custody; embedded keys are generated and encrypted on your device.",
   "Optional passkeys can gate unlock on your device; we store credential identifiers, not biometrics.",
   "Verifier onboarding and similar features may store application data in our database (for example Supabase).",
-  "Smart contracts you approve may include Submission, reward managers, Impact Product NFTs, and $cDCU / ClaimVault; interactions are public on Celo.",
+  "Smart contracts you approve may include Submission, reward managers, tRWI NFTs, and $cDCU / ClaimVault; interactions are public on Celo.",
   "Always verify the network shown in your wallet before signing (testnet vs mainnet).",
 ])}`,
     "legal-section--product-divider"

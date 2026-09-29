@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="dark light" />
 
 <title>Tokenomics · DeCleanup Network</title>
-<meta name="description" content="The dual-token model powering the transition from local cleanup action to verified global impact. Two tokens: one for action, one for proof." />
+<meta name="description" content="Network tokens for DeCleanup Rewards: $cDCU on Celo (Claim Vault), $bDCU on Base (simple path), $rDCU on Robinhood testnet (experiment only)." />
 <meta name="author" content="DeCleanup Network" />
 <meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://decleanup.net/tokenomics" />
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="DeCleanup Network" />
 <meta property="og:title" content="Tokenomics · DeCleanup Network" />
-<meta property="og:description" content="The dual-token model powering the transition from local cleanup action to verified global impact. One token for action, one for proof." />
+<meta property="og:description" content="Canonical $cDCU design on Celo, $bDCU on Base, and a Robinhood testnet experiment. One dApp at dapp.decleanup.net." />
 <meta property="og:url" content="https://decleanup.net/tokenomics" />
 <meta property="og:image" content="https://decleanup.net/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@decleanupnet" />
 <meta name="twitter:title" content="Tokenomics · DeCleanup Network" />
-<meta name="twitter:description" content="The dual-token model: one token for action, one for proof." />
+<meta name="twitter:description" content="Canonical $cDCU on Celo, $bDCU on Base, $rDCU testnet experiment only." />
 <meta name="twitter:image" content="https://decleanup.net/og-image.jpg" />
 
 <!-- Favicons -->
@@ -46,7 +46,7 @@
       "@id": "https://decleanup.net/tokenomics#webpage",
       "url": "https://decleanup.net/tokenomics",
       "name": "Tokenomics · DeCleanup Network",
-      "description": "The dual-token model powering the transition from local cleanup action to verified global impact.",
+      "description": "Canonical $cDCU Claim Vault design on Celo, $bDCU on Base, and $rDCU as a Robinhood testnet experiment.",
       "isPartOf": { "@id": "https://decleanup.net/#website" },
       "about": { "@id": "https://decleanup.net/#organization" },
       "primaryImageOfPage": "https://decleanup.net/og-image.jpg",
@@ -69,7 +69,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
 
-<link rel="stylesheet" href="styles.css?v=20260924c" />
+<link rel="stylesheet" href="styles.css?v=20260927a" />
 </head>
 <body>
 
@@ -97,7 +97,7 @@
 <section style="padding-top:96px;border-bottom:1px solid var(--line-soft)">
   <div class="wide" style="display:flex;justify-content:space-between;align-items:center;padding:10px 24px;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)">
     <span class="meta" style="display:flex;align-items:center;gap:10px"><span class="live-dot"></span> Tokenomics</span>
-    <span class="meta" style="color:var(--ink-faint)">DUAL-TOKEN MODEL · $bDCU + $cDCU · BASE + CELO</span>
+    <span class="meta" style="color:var(--ink-faint)">$cDCU · $bDCU · MULTICHAIN · ONE APP</span>
     <span class="meta">REF · DECLEANUP.NET</span>
   </div>
 </section>
@@ -110,13 +110,41 @@
       <span>TOKENOMICS · NETWORK TOKENS</span>
     </div>
     <h1 class="plakat" style="font-size:clamp(46px, 8vw, 116px);margin:0;line-height:0.88;letter-spacing:0.005em">
-      Two tokens.<br/>
+      Two production tokens.<br/>
       One for <span style="color:var(--green)">action</span>.<br/>
       One for <span style="color:var(--yellow)">proof</span>.
     </h1>
     <p class="serif" style="font-size:clamp(20px, 2vw, 26px);color:var(--ink-mute);margin:clamp(44px,6vw,72px) 0 0;max-width:780px;line-height:1.4">
-      DeCleanup Network runs on two tokens with distinct roles. <span class="hl">$bDCU rewards participation. $cDCU represents verified impact</span> and unlocks <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--yellow-soft)">governance on Gardens</a>. Together they connect fast, liquid incentives on Base to long-term reputation and coordination on Celo.
+      DeCleanup Rewards is <span class="hl">one dApp</span> at dapp.decleanup.net. <span class="hl">$bDCU rewards the Base simple path. $cDCU is the Celo proof token</span>, minted via Claim Vault from DCU points, and unlocks <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-decoration-color:var(--yellow-soft)">governance on Gardens</a>. DCU points are participation scores; the ERC-20s are separate assets on different chains.
     </p>
+  </div>
+</section>
+
+<!-- Networks -->
+<section class="section" style="padding-top:40px">
+  <div class="container">
+    <div class="meta" style="margin-bottom:18px">NETWORKS</div>
+    <h2 class="plakat" style="font-size:clamp(28px,4vw,44px);margin:0 0 14px;letter-spacing:0.02em">Same loop. Different depth.</h2>
+    <p class="serif" style="font-size:18px;color:var(--ink-mute);margin:0 0 32px;max-width:640px;line-height:1.4">
+      Submit proof → verify → tRWI → chain token. tRWI is the UI name on every path; on-chain contracts may still use legacy ImpactProduct names.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="step-grid">
+      <div class="card">
+        <span class="chain-pill celo" style="margin-bottom:14px">Celo · 42220</span>
+        <h3 class="plakat" style="font-size:22px;margin:0 0 10px;letter-spacing:0.02em">$cDCU</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">Earned via DCU points + Claim Vault (mint-on-claim). Canonical economic design and governance. Gas: CELO.</p>
+      </div>
+      <div class="card">
+        <span class="chain-pill base" style="margin-bottom:14px">Base · 8453</span>
+        <h3 class="plakat" style="font-size:22px;margin:0 0 10px;letter-spacing:0.02em">$bDCU</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">Earned on the simple cleanup path. Not governance unless converted later (planned / on request). Gas: ETH.</p>
+      </div>
+      <div class="card">
+        <span class="chain-pill" style="margin-bottom:14px">Robinhood · 46630</span>
+        <h3 class="plakat" style="font-size:22px;margin:0 0 10px;letter-spacing:0.02em">$rDCU</h3>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">Testnet experiment only. Demo ERC-20 so the loop is visible — community verify, no AI scan. Not a mainnet asset — no production supply or Claim Vault rules.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -149,8 +177,8 @@
           </div>
         </div>
 
-        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 14px;line-height:1.6">$bDCU is earned through action and traded freely, the entry point for anyone joining the network. No prior knowledge required, no long-term lock-up to get started.</p>
-        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 24px;line-height:1.6">Fair launch through Clanker with <span class="hl">no pre-mine, no team allocation, no investor distribution</span>. Every token in circulation was acquired on the open market.</p>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 14px;line-height:1.6">$bDCU is earned on the <span class="hl">Base simple cleanup path</span> inside dapp.decleanup.net and traded freely. Entry point for anyone joining — no prior knowledge required, no long-term lock-up to get started.</p>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 24px;line-height:1.6">Fair launch through Clanker with <span class="hl">no pre-mine, no team allocation, no investor distribution</span>. Every token in circulation was acquired on the open market. Not governance unless converted to $cDCU later (planned / on request).</p>
 
         <div class="meta" style="color:var(--green);margin-bottom:16px">ALLOCATION BREAKDOWN</div>
         <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px">
@@ -164,8 +192,9 @@
           </div>
         </div>
         <div class="mono" style="font-size:11px;color:var(--ink-dim);line-height:1.7;border-top:1px dashed var(--line);padding-top:14px;margin-bottom:20px">
-          Earn from: mini app cleanups, streaks, referrals<br/>
-          Vault: deflationary burns, ecosystem rewards
+          Earn from: Base simple-path cleanups, streaks, referrals<br/>
+          Vault: deflationary burns, ecosystem rewards<br/>
+          No Claim Vault · no Gardens on Base
         </div>
 
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
@@ -182,7 +211,7 @@
             <img src="public/token-icon.png" alt="$cDCU token" style="width:44px;height:44px;border-radius:50%;filter:hue-rotate(40deg) saturate(1.4)" />
             <div>
               <div class="plakat" style="font-size:32px;letter-spacing:0.02em">$cDCU</div>
-              <div class="meta" style="color:var(--ink-faint)">PROOF TOKEN</div>
+              <div class="meta" style="color:var(--ink-faint)">PROOF TOKEN · CLAIM VAULT</div>
             </div>
           </div>
           <span class="chain-pill celo">Celo</span>
@@ -199,8 +228,8 @@
           </div>
         </div>
 
-        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 14px;line-height:1.6">$cDCU cannot be purchased on market. It is issued through <span class="hl">verified environmental action</span> on either Base or Celo, keeping governance in the hands of people who have actually contributed.</p>
-        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 24px;line-height:1.6">Earn directly on the Celo full platform, or bridge your verified impact from the Base mini app. Simple, fast, non-transferable reputation.</p>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 14px;line-height:1.6">$cDCU cannot be purchased on market. It is the <span class="hl">Celo ERC-20 minted via Claim Vault</span> from DCU points (mint-on-claim — not minted at verify), so governance stays with people who have actually contributed on Celo.</p>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0 0 24px;line-height:1.6">This page’s allocation and thresholds (~10M max supply, 250 / 500 governance) are the <span class="hl">canonical economic design</span>. Do not confuse with testnet demo mint rules on other chains.</p>
 
         <div class="meta" style="color:var(--green);margin-bottom:16px">ALLOCATION BREAKDOWN</div>
         <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px">
@@ -234,6 +263,7 @@
           </div>
         </div>
         <div class="mono" style="font-size:11px;color:var(--ink-dim);line-height:1.7;border-top:1px dashed var(--line);padding-top:14px;margin-bottom:20px">
+          Mint: Claim Vault from DCU points (mint-on-claim)<br/>
           250 $cDCU unlocks governance participation<br/>
           500 $cDCU unlocks full governance participation<br/>
           Organizers earn match for participants in events
@@ -243,6 +273,14 @@
         </div>
         <a class="mono" href="https://celoscan.io/token/0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1" target="_blank" rel="noopener" style="font-size:11px;color:var(--green);text-decoration:none;letter-spacing:0.04em;word-break:break-all">Contract (Celo): 0x34d66e95...9bfc1</a>
       </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="meta" style="color:var(--ink-faint);margin-bottom:12px">EXPERIMENT · NOT PRODUCTION TOKENOMICS</div>
+      <h3 class="plakat" style="font-size:22px;margin:0 0 10px;letter-spacing:0.02em">$rDCU · Robinhood Chain testnet</h3>
+      <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">
+        Demo ERC-20 on chain ID 46630 so the cleanup loop is visible on testnet. Unlike $cDCU, demo $rDCU can mint when an action settles (verify, streak, referral, tRWI claim, and similar). This is <span class="hl">not Claim Vault</span>, not $cDCU, and not a mainnet listing. No AI verification, Hypercerts, supply schedule, airdrops, or governance on Robinhood.
+      </p>
     </div>
   </div>
 </section>
@@ -254,12 +292,12 @@
   <div class="container">
     <div class="meta" style="margin-bottom:18px">UTILITY</div>
     <h2 class="plakat" style="font-size:clamp(34px,5vw,56px);margin:0 0 14px;letter-spacing:0.02em">Impact Ecosystem</h2>
-    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:560px;line-height:1.4">The infrastructure powered by our dual-token system.</p>
+    <p class="serif" style="font-size:20px;color:var(--ink-mute);margin:0 0 40px;max-width:560px;line-height:1.4">Infrastructure around the production tokens — deepest on Celo.</p>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" class="step-grid">
       <div class="card">
-        <div class="meta" style="color:var(--green);margin-bottom:12px">IMPACT PRODUCTS</div>
-        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">Dynamic NFTs that evolve with your history. Build a portable environmental reputation that travels across ecosystems, not locked to any platform.</p>
+        <div class="meta" style="color:var(--green);margin-bottom:12px">tRWI</div>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">Dynamic NFT that levels with your cleanup history on each chain. Portable reputation — not locked to a single host app.</p>
       </div>
       <div class="card">
         <div class="meta" style="color:var(--green);margin-bottom:12px">VERIFIER NETWORK</div>
@@ -267,7 +305,7 @@
       </div>
       <div class="card">
         <div class="meta" style="color:var(--green);margin-bottom:12px">HYPERCERTS</div>
-        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">Permanent ERC-1155 impact certificates minted every 10 cleanups. Usable for grant applications, ESG reporting, and onchain identity.</p>
+        <p style="font-size:14px;color:var(--ink-mute);margin:0;line-height:1.6">Permanent impact certificates on the Celo full path (Hypercerts hub). Usable for grant applications, ESG reporting, and onchain identity. Not part of the Base simple path.</p>
       </div>
     </div>
   </div>
@@ -283,19 +321,19 @@
       <div class="card" style="background:var(--bg)">
         <div class="meta" style="color:var(--ink);margin-bottom:20px">$bDCU PATH · ACTION</div>
         <div style="display:flex;flex-direction:column;gap:18px">
-          <div class="lc-row"><span class="lc-num">01</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Earn</div><div style="font-size:13px;color:var(--ink-dim)">Via Base mini app cleanups and community streaks.</div></div></div>
-          <div class="lc-row"><span class="lc-num">02</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Stake</div><div style="font-size:13px;color:var(--ink-dim)">To access verifier roles and earn accuracy rewards.</div></div></div>
+          <div class="lc-row"><span class="lc-num">01</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Earn</div><div style="font-size:13px;color:var(--ink-dim)">Via Base simple-path cleanups and community streaks in the dApp.</div></div></div>
+          <div class="lc-row"><span class="lc-num">02</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Claim tRWI</div><div style="font-size:13px;color:var(--ink-dim)">tRWI levels stay on Base.</div></div></div>
           <div class="lc-row"><span class="lc-num">03</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Trade</div><div style="font-size:13px;color:var(--ink-dim)">On Base DEXes for instant liquidity.</div></div></div>
-          <div class="lc-row"><span class="lc-num">04</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Burn</div><div style="font-size:13px;color:var(--ink-dim)">Future option to upgrade reputation directly.</div></div></div>
+          <div class="lc-row"><span class="lc-num">04</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Convert</div><div style="font-size:13px;color:var(--ink-dim)">Optional later: $bDCU → $cDCU for Celo governance (planned / on request).</div></div></div>
         </div>
       </div>
       <div class="card" style="background:var(--bg)">
         <div class="meta" style="color:var(--green);margin-bottom:20px">$cDCU PATH · PROOF</div>
         <div style="display:flex;flex-direction:column;gap:18px">
-          <div class="lc-row"><span class="lc-num" style="color:var(--green)">01</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Claim</div><div style="font-size:13px;color:var(--ink-dim)">After every 5 verified cleanups on Base.</div></div></div>
-          <div class="lc-row"><span class="lc-num" style="color:var(--green)">02</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Stake</div><div style="font-size:13px;color:var(--ink-dim)">250 $cDCU unlocks governance participation; 500 unlocks full participation and verifier power.</div></div></div>
-          <div class="lc-row"><span class="lc-num" style="color:var(--green)">03</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Build</div><div style="font-size:13px;color:var(--ink-dim)">An onchain CV via Impact Products and Hypercerts.</div></div></div>
-          <div class="lc-row"><span class="lc-num" style="color:var(--green)">04</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Vote</div><div style="font-size:13px;color:var(--ink-dim)">On <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Gardens</a> proposals to distribute funding.</div></div></div>
+          <div class="lc-row"><span class="lc-num" style="color:var(--green)">01</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Earn points</div><div style="font-size:13px;color:var(--ink-dim)">DCU points from verified cleanups on the Celo full path.</div></div></div>
+          <div class="lc-row"><span class="lc-num" style="color:var(--green)">02</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Claim</div><div style="font-size:13px;color:var(--ink-dim)">Mint $cDCU via Claim Vault (mint-on-claim).</div></div></div>
+          <div class="lc-row"><span class="lc-num" style="color:var(--green)">03</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Build</div><div style="font-size:13px;color:var(--ink-dim)">tRWI levels + Hypercerts hub on Celo.</div></div></div>
+          <div class="lc-row"><span class="lc-num" style="color:var(--green)">04</span><div><div class="mono" style="font-size:13px;color:var(--ink)">Vote</div><div style="font-size:13px;color:var(--ink-dim)">250 / 500 thresholds on <a href="https://app.gardens.fund/gardens/42220/0x6068dfc4f2aeca09d8d5845896f3aa76d0fe6960" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none">Gardens</a>.</div></div></div>
         </div>
       </div>
     </div>
@@ -339,7 +377,8 @@
       "Every cleanup becomes a verified onchain action. Every actor becomes part of a global coordination network."
     </p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px">
-      <a class="btn btn-primary" href="/litepaper">Read Litepaper</a>
+      <a class="btn btn-primary" href="https://dapp.decleanup.net" target="_blank" rel="noopener">Open the dApp</a>
+      <a class="btn btn-ghost" href="/litepaper">Read Litepaper</a>
       <a class="btn btn-ghost" href="/">Back to Home</a>
     </div>
   </div>
@@ -392,7 +431,7 @@
       <div class="meta">© 2026 DECLEANUP NETWORK · OPEN-SOURCE · MIT</div>
       <div class="meta" style="display:flex;gap:20px;flex-wrap:wrap">
         <span>SDG 11 · 12 · 13 · 14 · 15</span>
-        <span style="color:var(--ink-faint)">BUILT ON CELO + BASE</span>
+        <span style="color:var(--ink-faint)">ONE APP · CELO + BASE</span>
       </div>
     </div>
   </div>
@@ -433,6 +472,6 @@
 }
 </style>
 
-  <script src="/public/guide-picker.js" defer></script>
+  <script src="/public/guide-picker.js?v=20260929g" defer></script>
 </body>
 </html>

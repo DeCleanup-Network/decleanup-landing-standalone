@@ -5,6 +5,7 @@
 (function () {
   var BASE_GUIDE = "/public/guides/base.html";
   var CELO_GUIDE = "/public/guides/celo.html";
+  var ROBINHOOD_GUIDE = "/public/guides/robinhood.html";
 
   function close(root) {
     if (root && root.parentNode) root.parentNode.removeChild(root);
@@ -29,18 +30,29 @@
           '<button type="button" data-guide-close aria-label="Close" style="background:transparent;border:none;color:var(--ink-mute);cursor:pointer;padding:6px;font-size:20px">×</button>' +
         "</div>" +
         '<p style="font-family:var(--f-sans);color:var(--ink-mute);font-size:15px;margin:12px 0 20px;line-height:1.45">' +
-          "Base is the simple submission flow and token rewards. Celo is the full app: governance, funding, and impact reporting." +
+          "Base is the simple path. Celo is full participation. Robinhood Chain is a testnet experiment." +
         "</p>" +
         '<div style="display:grid;gap:10px">' +
           '<a href="' + BASE_GUIDE + '" class="guide-pick" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border:1px solid var(--line);border-radius:10px;color:var(--ink);text-decoration:none;background:var(--bg-elev-2)">' +
             "<div><div style=\"font-weight:600;font-size:14px\">Base guide</div>" +
-            '<div style="color:var(--ink-dim);font-size:12px;margin-top:2px">Simple submission flow and token rewards</div></div>' +
-            '<div style="font-family:var(--f-mono);font-size:9px;letter-spacing:0.16em;padding:3px 6px;border-radius:3px;background:#0052FF;color:#0a0a0a;font-weight:700">BASE</div>' +
+            '<div style="color:var(--ink-dim);font-size:12px;margin-top:2px">Simple submission · community verify · tokens and level</div></div>' +
+            '<span style="width:32px;height:32px;border-radius:8px;background:#0052FF;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">' +
+              '<img src="/public/base-mark.svg" alt="" width="20" height="20" style="display:block;object-fit:contain;filter:brightness(0) invert(1)" />' +
+            "</span>" +
           "</a>" +
           '<a href="' + CELO_GUIDE + '" class="guide-pick" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border:1px solid var(--line);border-radius:10px;color:var(--ink);text-decoration:none;background:var(--bg-elev-2)">' +
             "<div><div style=\"font-weight:600;font-size:14px\">Celo guide</div>" +
-            '<div style="color:var(--ink-dim);font-size:12px;margin-top:2px">Full features: governance, funding, and impact reporting</div></div>' +
-            '<div style="font-family:var(--f-mono);font-size:9px;letter-spacing:0.16em;padding:3px 6px;border-radius:3px;background:#FAFF00;color:#0a0a0a;font-weight:700">CELO</div>' +
+            '<div style="color:var(--ink-dim);font-size:12px;margin-top:2px">Full app · AI and human verify · Hypercerts · governance</div></div>' +
+            '<span style="width:32px;height:32px;border-radius:8px;background:#FAFF00;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">' +
+              '<img src="/public/celo-mark.svg" alt="" width="20" height="20" style="display:block;object-fit:contain;filter:none" />' +
+            "</span>" +
+          "</a>" +
+          '<a href="' + ROBINHOOD_GUIDE + '" class="guide-pick" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border:1px solid var(--line);border-radius:10px;color:var(--ink);text-decoration:none;background:var(--bg-elev-2)">' +
+            "<div><div style=\"font-weight:600;font-size:14px\">Robinhood Chain guide</div>" +
+            '<div style="color:var(--ink-dim);font-size:12px;margin-top:2px">Testnet experiment · community verify · demo $rDCU</div></div>' +
+            '<span style="width:32px;height:32px;border-radius:8px;background:#CCFF00;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">' +
+              '<img src="/public/robinhood-feather.svg" alt="" width="20" height="20" style="display:block;object-fit:contain;filter:none" />' +
+            "</span>" +
           "</a>" +
         "</div>" +
         '<p class="meta" style="margin-top:20px;text-align:center">OPENS THE MATCHING GUIDE</p>' +

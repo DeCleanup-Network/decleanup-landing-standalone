@@ -46,7 +46,7 @@ Connect / sign in → Submit cleanup (photos + GPS → IPFS)
                  → Pending on verification contract
                  → Human verifier approves/rejects
                  → DCU participation points accrue
-                 → Impact Product NFT level (optional path)
+                 → tRWI level (optional path)
                  → Hypercert bundle (Celo optional path)
                  → Claim chain ERC-20 when eligible
 ```
@@ -82,7 +82,7 @@ POST /api/cdcu/claim-request    → server signs EIP-712 payload
 User tx: ClaimVault.claim(...)  → vault mints $cDCU
 ```
 
-**Base claim pattern:** onchain read of points + Impact Product level → user tx on `PointsRewardDistributor` (see [BASE.md § Rewards & rules](./BASE.md#rewards--rules)).
+**Base claim pattern:** onchain read of points + tRWI level → user tx on `PointsRewardDistributor` (see [BASE.md § Rewards & rules](./BASE.md#rewards--rules)).
 
 Exact thresholds and multipliers are chain-doc specific.
 
@@ -106,7 +106,7 @@ Impact report JSON on Celo can gate which photos appear on the public feed (perm
 - **Optional (Celo):** Telegram notifier for new submissions (`TELEGRAM_VERIFIER_BOT.md` in Celo repo).
 - **Optional (Celo):** VPS-hosted ML pre-screen — does not replace human approval.
 
-Approve → DCU accrual paths fire; user can claim Impact Product from dashboard.
+Approve → DCU accrual paths fire; user can claim tRWI from dashboard.
 
 ---
 

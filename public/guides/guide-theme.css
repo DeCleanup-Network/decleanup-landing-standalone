@@ -1,0 +1,272 @@
+/* Guide pages — kraft (light) / dark palette, matching styles.css main site tokens.
+   Applied when <html data-palette="kraft|dark"> is set from localStorage (decleanup-palette). */
+:root[data-palette="dark"] {
+  color-scheme: dark;
+}
+
+:root[data-palette="kraft"] {
+  color-scheme: light;
+  --background: #F4F1EB;
+  --foreground: #181816;
+  --bg-elev: #EAE5DC;
+  --bg-elev-2: #DFD9CC;
+  --line: rgba(20, 20, 20, 0.18);
+  --line-soft: rgba(20, 20, 20, 0.10);
+  --ink-dim: #6E6E6B;
+  --gray-medium: #D2CCC0;
+  --white-60: #4A4A47;
+  --white-50: #6E6E6B;
+  --white-70: #4A4A47;
+  --white-08: rgba(20, 20, 20, 0.10);
+  --white-03: rgba(20, 20, 20, 0.04);
+  --white-04: rgba(20, 20, 20, 0.06);
+  --yellow: color-mix(in oklch, #FAFF00 55%, #6B6500);
+  --yellow-soft: color-mix(in oklch, #FAFF00 22%, transparent);
+}
+
+[data-palette="kraft"] body::before {
+  background: radial-gradient(
+    60vw 80vh at 20% 0%,
+    color-mix(in oklch, var(--green) 10%, transparent) 0%,
+    transparent 70%
+  );
+}
+
+[data-palette="kraft"] .card-icon.muted {
+  color: rgba(24, 24, 22, 0.55);
+}
+
+[data-palette="kraft"] .modal-back {
+  background: color-mix(in oklch, #181816 45%, transparent);
+}
+
+[data-palette="kraft"] .progress-wrap {
+  background: var(--background);
+  border-bottom-color: var(--white-08);
+}
+
+[data-palette="kraft"] .complete-btn {
+  color: #0a0a0a;
+}
+
+[data-palette="kraft"] .step.is-complete .step-num {
+  color: #0a0a0a;
+}
+
+/* Shared network info card (Base / Celo / Robinhood guides) */
+.network-card {
+  margin-bottom: 2rem;
+  border: 1px solid var(--white-08);
+  background: var(--bg-elev);
+  border-radius: var(--radius-xl, 0.875rem);
+  padding: 1rem;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .network-card { padding: 1.25rem; }
+}
+
+.network-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.network-card-head h2 {
+  margin: 0;
+  font-family: var(--font-heading, "Space Grotesk", "Inter", sans-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.badge-chain {
+  font-family: var(--font-mono, "Space Mono", monospace);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-weight: 700;
+  color: #0a0a0a;
+}
+
+.badge-chain.is-base { background: #0052FF; color: #fff; }
+.badge-chain.is-celo { background: #FAFF00; }
+.badge-chain.is-robinhood { background: #CCFF00; }
+
+.net-grid {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+}
+
+.net-row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0.5rem 0.75rem;
+  align-items: start;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--white-08);
+  border-radius: var(--radius-lg, 0.625rem);
+  background: color-mix(in srgb, var(--background) 45%, transparent);
+}
+
+@media (min-width: 640px) {
+  .net-row { grid-template-columns: 7.5rem 1fr; }
+}
+
+.net-row dt {
+  margin: 0;
+  font-family: var(--font-mono, "Space Mono", monospace);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-50);
+  padding-top: 0.15rem;
+}
+
+.net-row dd {
+  margin: 0;
+  line-height: 1.45;
+  color: var(--foreground);
+  word-break: break-all;
+  font-family: var(--font-mono, "Space Mono", monospace);
+  font-size: 12px;
+}
+
+.net-row dd a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.net-row dd a:hover {
+  color: color-mix(in srgb, var(--green) 90%, white);
+}
+
+.net-note {
+  margin: 1rem 0 0;
+  font-size: var(--text-small, 0.875rem);
+  line-height: 1.55;
+  color: var(--white-60);
+}
+
+.net-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.mm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.625rem 1.15rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg, 0.625rem);
+  font-family: var(--font-mono, "Space Mono", monospace);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #0a0a0a;
+}
+
+.mm-btn.is-base {
+  background: #0052FF;
+  border-color: #0052FF;
+  color: #fff;
+}
+
+.mm-btn.is-celo {
+  background: #FAFF00;
+  border-color: #FAFF00;
+}
+
+.mm-btn.is-robinhood {
+  background: #CCFF00;
+  border-color: #CCFF00;
+}
+
+.mm-btn:hover {
+  box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.mm-btn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--green) 40%, transparent);
+  outline-offset: 2px;
+}
+
+.fund-line {
+  margin: 1rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--green) 28%, transparent);
+  border-radius: var(--radius-lg, 0.625rem);
+  background: color-mix(in srgb, var(--green) 6%, transparent);
+  font-size: var(--text-small, 0.875rem);
+  line-height: 1.55;
+  color: var(--white-60);
+}
+
+.modal-body {
+  margin: 0;
+}
+
+.modal-body > p {
+  margin: 0;
+  font-size: var(--text-small, 0.875rem);
+  line-height: 1.5;
+  color: var(--white-60, rgba(255, 255, 255, 0.78));
+}
+
+.modal-body > p + p,
+.modal-body > p + .term-breakdown {
+  margin-top: 0.75rem;
+}
+
+.term-breakdown {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.term-breakdown li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--white-08, rgba(255, 255, 255, 0.08));
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--background, #0a0a0a) 40%, transparent);
+  font-size: var(--text-xs, 0.75rem);
+  line-height: 1.4;
+  color: var(--white-60, rgba(255, 255, 255, 0.78));
+}
+
+.term-breakdown li strong {
+  flex-shrink: 0;
+  font-family: var(--font-mono, "Space Mono", monospace);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green, #58b12f);
+  letter-spacing: 0.02em;
+}
+
+.term-note {
+  margin: 0.75rem 0 0;
+  font-size: var(--text-xs, 0.75rem);
+  line-height: 1.5;
+  color: var(--white-50, rgba(255, 255, 255, 0.68));
+}

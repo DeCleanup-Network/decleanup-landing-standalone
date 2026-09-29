@@ -65,8 +65,8 @@ if __name__ == "__main__":
     os.chdir(root)
     sys.stderr.write(f"cwd={os.getcwd()}\n")
     sys.stderr.write(f"userguide.html exists={os.path.isfile('userguide.html')}\n")
-    with Server(("127.0.0.1", PORT), RewriteHandler) as httpd:
-        sys.stderr.write(f"Serving DCU on http://localhost:{PORT}\n")
-        sys.stderr.write(f"User guide: http://localhost:{PORT}/userguide\n")
+    with Server(("0.0.0.0", PORT), RewriteHandler) as httpd:
+        sys.stderr.write(f"Serving DCU on http://127.0.0.1:{PORT}  (also http://localhost:{PORT})\n")
+        sys.stderr.write(f"User guide: http://127.0.0.1:{PORT}/userguide\n")
         sys.stderr.flush()
         httpd.serve_forever()

@@ -41,7 +41,7 @@ Master reference for integrators, contributors, and operators on **Celo mainnet*
 2. Submit cleanups with before/after photos, GPS, and optional impact/recyclables forms (IPFS).
 3. Get verified by human verifiers (optional ML pre-screen on VPS).
 4. Earn **DCU** participation points on-chain (`DCURewardManager`).
-5. Mint **Impact Product** levels and optionally **Hypercerts**.
+5. Mint **tRWI** levels and optionally **Hypercerts**.
 6. Claim **`$cDCU` (`cDCU`)** ERC-20 via **ClaimVault** when eligible (signed backend authorization).
 
 External marketing sites (e.g. [decleanup.net](https://decleanup.net)) consume **read-only** impact APIs from this dapp. They do not submit cleanups or mint tokens directly.
@@ -92,7 +92,7 @@ Verify on Celoscan before integrating. Core trio is in `deployed_addresses.json`
 |----------|---------|------|
 | **Submission** | [`0x2f3654f0ad8117c41185c589dcd0ea22522fe5af`](https://celoscan.io/address/0x2f3654f0ad8117c41185c589dcd0ea22522fe5af) | Cleanup lifecycle: IPFS hashes, lat/lng (microdegrees), pending → approved/rejected, referrals, recyclables |
 | **DCURewardManager** | [`0x1936270b066ebadedc2d84f4ce3b488729d1d638`](https://celoscan.io/address/0x1936270b066ebadedc2d84f4ce3b488729d1d638) | **DCU** ledger: `totalEarned`, per-action buckets. Does **not** mint ERC-20 |
-| **ImpactProductNFT** | [`0x97fa526fba91f01b5a4e0f25c71751e474cb6f45`](https://celoscan.io/address/0x97fa526fba91f01b5a4e0f25c71751e474cb6f45) | Impact Product NFT levels after verified cleanups |
+| **ImpactProductNFT** | [`0x97fa526fba91f01b5a4e0f25c71751e474cb6f45`](https://celoscan.io/address/0x97fa526fba91f01b5a4e0f25c71751e474cb6f45) | tRWI levels after verified cleanups |
 | **CDCUToken (`$cDCU`)** | [`0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1`](https://celoscan.io/address/0x34d66e9552e9dc23a24eca13bb1f8f71f4b9bfc1) | ERC-20, 18 decimals, 10M max supply; only **ClaimVault** may `mint` |
 | **ClaimVault** | [`0x4f69a1170c8799b5bc1587275b2e7da5a8406ff0`](https://celoscan.io/address/0x4f69a1170c8799b5bc1587275b2e7da5a8406ff0) | EIP-712 signed claims, nonces, category caps, calls `CDCUToken.mint` |
 
@@ -183,9 +183,9 @@ User (dapp) → GET /api/cdcu/eligibility
 
 1. Verifiers at `/verifier` (role on Submission contract).
 2. Review via app APIs (`/api/verifier/review/*`) and/or Telegram bot (`docs/TELEGRAM_VERIFIER_BOT.md`).
-3. Approve → DCU accrual paths on DCURewardManager; Impact Product claim on dashboard.
+3. Approve → DCU accrual paths on DCURewardManager; tRWI claim on dashboard.
 
-### Impact Product
+### tRWI
 
 - Claim from dashboard after approval (`claimImpactProductFromVerification` in `contracts.ts`).
 - Max level **10** (`MAX_IMPACT_PRODUCT_LEVEL`); new submissions disabled at max.

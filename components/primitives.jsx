@@ -430,7 +430,7 @@ function Nav({ onLaunch, onGuide, palette, onTogglePalette }) {
   );
 }
 
-// Modal — Launch / Start Cleaning: one dApp, pick Base or Celo
+// Modal — Launch / Start Cleaning: one dApp, pick network
 function StartModal({ open, onClose }) {
   useEffect(() => {
     if (!open) return;
@@ -450,7 +450,7 @@ function StartModal({ open, onClose }) {
           <button onClick={onClose} aria-label="Close" style={{ background: "transparent", border: "none", color: "var(--ink-mute)", cursor: "pointer", padding: 6, fontSize: 20 }}>×</button>
         </div>
         <p style={{ fontFamily: "var(--f-sans)", color: "var(--ink-mute)", fontSize: 15, marginTop: 12, marginBottom: 22, lineHeight: 1.45 }}>
-          One app at dapp.decleanup.net — pick the network that fits you.
+          Pick the network that fits you.
         </p>
         <div className="start-modal-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
           <NetworkChoice
@@ -458,14 +458,38 @@ function StartModal({ open, onClose }) {
             logo="public/base-mark.svg"
             name="Base"
             accent="#0052FF"
-            points={["Simple cleanup path", "Photo verify · earn $bDCU"]}
+            logoFilter="brightness(0) invert(1)"
+            points={[
+              "Simple cleanup submission path",
+              "Community verification · claim tokens and level",
+              "Accept donations",
+            ]}
           />
           <NetworkChoice
             href="https://dapp.decleanup.net/?chain=celo"
             logo="public/celo-mark.svg"
             name="Celo"
             accent="#FAFF00"
-            points={["Full participation", "Maps · Hypercerts · governance"]}
+            logoFilter="none"
+            points={[
+              "Full participation",
+              "Advanced cleanup submission · AI and human verification",
+              "Impact portfolio · Hypercerts · governance",
+              "Funding and donations",
+            ]}
+          />
+          <NetworkChoice
+            href="https://dapp.decleanup.net/?chain=robinhood"
+            logo="public/robinhood-feather.svg"
+            name="Robinhood Chain"
+            accent="#CCFF00"
+            badge="TESTNET"
+            wide
+            logoFilter="none"
+            points={[
+              "Experiment",
+              "Community verification · demo reward token",
+            ]}
           />
         </div>
         <p className="meta" style={{ marginTop: 20, textAlign: "center" }}>OPENS DAPP.DECLEANUP.NET</p>
@@ -474,7 +498,7 @@ function StartModal({ open, onClose }) {
   );
 }
 
-function NetworkChoice({ href, logo, name, accent, points }) {
+function NetworkChoice({ href, logo, name, accent, points, badge, wide, logoFilter }) {
   return (
     <a
       href={href}
@@ -495,6 +519,7 @@ function NetworkChoice({ href, logo, name, accent, points }) {
         position: "relative",
         overflow: "hidden",
         minHeight: 148,
+        gridColumn: wide ? "1 / -1" : undefined,
       }}
       onMouseEnter={(e) => { e.currentTarget.style.borderColor = accent; }}
       onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line)"; }}
@@ -506,26 +531,42 @@ function NetworkChoice({ href, logo, name, accent, points }) {
         opacity: 0.18,
         pointerEvents: "none",
       }} />
-      <div style={{ display: "flex", alignItems: "center", gap: 10, position: "relative" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, position: "relative", flexWrap: "wrap" }}>
         <span style={{
           width: 36, height: 36, borderRadius: 8,
           background: accent,
           display: "inline-flex", alignItems: "center", justifyContent: "center",
           flexShrink: 0,
         }}>
-          <img
-            src={img(logo)}
-            alt=""
-            width={20}
-            height={20}
-            style={{
-              display: "block",
-              filter: name === "Celo" ? "brightness(0)" : "brightness(0) invert(1)",
-            }}
-            onError={(e) => { e.currentTarget.style.display = "none"; }}
-          />
+          {logo ? (
+            <img
+              src={img(logo)}
+              alt=""
+              width={22}
+              height={22}
+              style={{
+                display: "block",
+                objectFit: "contain",
+                filter: logoFilter || "none",
+              }}
+              onError={(e) => { e.currentTarget.style.display = "none"; }}
+            />
+          ) : null}
         </span>
         <div style={{ fontWeight: 700, fontSize: 18, letterSpacing: "0.01em" }}>{name}</div>
+        {badge && (
+          <span style={{
+            marginLeft: "auto",
+            fontFamily: "var(--f-mono)",
+            fontSize: 9,
+            letterSpacing: "0.14em",
+            padding: "3px 7px",
+            borderRadius: 3,
+            border: "1px solid color-mix(in oklch, var(--yellow) 45%, transparent)",
+            color: "var(--yellow)",
+            fontWeight: 700,
+          }}>{badge}</span>
+        )}
       </div>
       <ul style={{
         margin: 0, padding: 0, listStyle: "none",
@@ -573,21 +614,34 @@ function GuideModal({ open, onClose }) {
           <button onClick={onClose} aria-label="Close" style={{ background: "transparent", border: "none", color: "var(--ink-mute)", cursor: "pointer", padding: 6, fontSize: 20 }}>×</button>
         </div>
         <p style={{ fontFamily: "var(--f-sans)", color: "var(--ink-mute)", fontSize: 15, marginTop: 12, marginBottom: 20, lineHeight: 1.45 }}>
-          Base is the simple submission flow and token rewards. Celo is the full app: governance, funding, and impact reporting.
+          Base is the simple path. Celo is full participation. Robinhood Chain is a testnet experiment.
         </p>
         <div style={{ display: "grid", gap: 10 }}>
           <ChoiceLink
             href="/public/guides/base.html"
             label="Base guide"
-            sub="Simple submission flow and token rewards"
-            tag="BASE" tagColor="#0052FF"
+            sub="Simple submission · community verify · tokens and level"
+            logo="public/base-mark.svg"
+            logoFilter="brightness(0) invert(1)"
+            tagColor="#0052FF"
             external={false}
           />
           <ChoiceLink
             href="/public/guides/celo.html"
             label="Celo guide"
-            sub="Full features: governance, funding, and impact reporting"
-            tag="CELO" tagColor="#FAFF00"
+            sub="Full app · AI and human verify · Hypercerts · governance"
+            logo="public/celo-mark.svg"
+            logoFilter="none"
+            tagColor="#FAFF00"
+            external={false}
+          />
+          <ChoiceLink
+            href="/public/guides/robinhood.html"
+            label="Robinhood Chain guide"
+            sub="Testnet experiment · community verify · demo $rDCU"
+            logo="public/robinhood-feather.svg"
+            logoFilter="none"
+            tagColor="#CCFF00"
             external={false}
           />
         </div>
@@ -597,7 +651,7 @@ function GuideModal({ open, onClose }) {
   );
 }
 
-function ChoiceLink({ href, label, sub, tag, tagColor, external = true }) {
+function ChoiceLink({ href, label, sub, tag, tagColor, logo, logoFilter, external = true }) {
   return (
     <a
       href={href}
@@ -619,13 +673,30 @@ function ChoiceLink({ href, label, sub, tag, tagColor, external = true }) {
         <div style={{ fontWeight: 600, fontSize: 14 }}>{label}</div>
         <div style={{ color: "var(--ink-dim)", fontSize: 12, marginTop: 2 }}>{sub}</div>
       </div>
-      <div style={{
-        fontFamily: "var(--f-mono)",
-        fontSize: 9, letterSpacing: "0.16em",
-        padding: "3px 6px", borderRadius: 3,
-        background: tagColor, color: "#0a0a0a",
-        fontWeight: 700,
-      }}>{tag}</div>
+      {logo ? (
+        <span style={{
+          width: 32, height: 32, borderRadius: 8,
+          background: tagColor || "var(--bg-elev)",
+          display: "inline-flex", alignItems: "center", justifyContent: "center",
+          flexShrink: 0,
+        }}>
+          <img
+            src={img(logo)}
+            alt=""
+            width={20}
+            height={20}
+            style={{ display: "block", objectFit: "contain", filter: logoFilter || "none" }}
+          />
+        </span>
+      ) : (
+        <div style={{
+          fontFamily: "var(--f-mono)",
+          fontSize: 9, letterSpacing: "0.16em",
+          padding: "3px 6px", borderRadius: 3,
+          background: tagColor, color: "#0a0a0a",
+          fontWeight: 700,
+        }}>{tag}</div>
+      )}
     </a>
   );
 }

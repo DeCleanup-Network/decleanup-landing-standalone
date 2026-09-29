@@ -7,10 +7,23 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accent": "#58B12F"
 }/*EDITMODE-END*/;
 
+const PALETTE_STORAGE_KEY = "decleanup-palette";
+
+function readStoredPalette() {
+  try {
+    const p = localStorage.getItem(PALETTE_STORAGE_KEY);
+    if (p === "kraft" || p === "dark") return p;
+  } catch (_) {}
+  return null;
+}
+
 function App() {
   const [modal, setModal] = React.useState(false);
   const [guideModal, setGuideModal] = React.useState(false);
-  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const storedPalette = readStoredPalette();
+  const [t, setTweak] = useTweaks(
+    storedPalette ? { ...TWEAK_DEFAULTS, palette: storedPalette } : TWEAK_DEFAULTS
+  );
 
   // Hide static SEO fallback once React is live.
   React.useEffect(() => {
@@ -49,6 +62,7 @@ function App() {
     r.setAttribute("data-density", t.density);
     r.setAttribute("data-photo",   t.photo);
     r.style.setProperty("--green", t.accent);
+    try { localStorage.setItem(PALETTE_STORAGE_KEY, t.palette); } catch (_) {}
   }, [t]);
 
   // Global IntersectionObserver: arms any `.scan-in` heading with `.scanning` when

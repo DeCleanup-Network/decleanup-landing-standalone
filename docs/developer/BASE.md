@@ -41,7 +41,7 @@ Master reference for integrators, contributors, and operators on **Base mainnet*
 2. Submit cleanups with before/after photos and geotag (IPFS hash onchain).
 3. Get verified by human verifiers.
 4. Earn **DCU** participation points on-chain (`PointsRewardDistributor`).
-5. Advance **Impact Product** NFT levels (10 tiers).
+5. Advance **tRWI** NFT levels (10 tiers).
 6. Claim **`$bDCU` (`bDCU`)** ERC-20 when eligible (Level 3+, ≥30 DCU points).
 
 External marketing sites ([decleanup.net](https://decleanup.net)) link here for Base CTAs. They do **not** submit cleanups or mint tokens directly. Live impact stats on the marketing site currently come from the **Celo** dapp public API — see [COMMON.md § Public impact API](./COMMON.md#public-impact-api).
@@ -91,7 +91,7 @@ Use **proxy addresses** in apps and integrations. Core contracts are **UUPS upgr
 | Contract | Role | Address (proxy) | Basescan |
 |----------|------|-----------------|----------|
 | **PointsRewardDistributor** | DCU points, $bDCU claims, staking, verifiers | [`0x492065137E07c660DCfAe4dC335A3Fa9C1203dd9`](https://basescan.org/address/0x492065137E07c660DCfAe4dC335A3Fa9C1203dd9) | Proxy |
-| **ImpactProductNFT** | Dynamic Impact Product NFTs (10 levels) | [`0x8D71Cd7445423CD42293E196B91E47f085E81BCf`](https://basescan.org/address/0x8D71Cd7445423CD42293E196B91E47f085E81BCf) | Proxy |
+| **ImpactProductNFT** | Dynamic tRWI NFTs (10 levels) | [`0x8D71Cd7445423CD42293E196B91E47f085E81BCf`](https://basescan.org/address/0x8D71Cd7445423CD42293E196B91E47f085E81BCf) | Proxy |
 | **VerificationContract** | Cleanup submissions, verify/reject, claim fees | [`0x69715d43EA6D46F65045FCe2391D9B7F89ec819F`](https://basescan.org/address/0x69715d43EA6D46F65045FCe2391D9B7F89ec819F) | Proxy |
 | **$bDCU (ERC-20)** | Reward / action token (Clanker) | [`0x30171b7014c02229497CdE6745DD3aD821F12b07`](https://basescan.org/token/0x30171b7014c02229497CdE6745DD3aD821F12b07) | Token |
 
@@ -131,7 +131,7 @@ Deploy fresh proxies per environment; addresses come from `contracts/deployment-
 | How earned | Verified cleanups, streaks, referrals, verifier activity | Claimed through PointsRewardDistributor when eligible |
 | User-facing | Dashboard points, claim eligibility | Wallet balance, Uniswap liquidity |
 
-Unlike Celo’s **ClaimVault + EIP-712** path, Base claims are driven by onchain point balances, Impact Product level, and token price logic in the distributor contract / app.
+Unlike Celo’s **ClaimVault + EIP-712** path, Base claims are driven by onchain point balances, tRWI level, and token price logic in the distributor contract / app.
 
 ---
 
@@ -139,8 +139,8 @@ Unlike Celo’s **ClaimVault + EIP-712** path, Base claims are driven by onchain
 
 1. User connects wallet on Base (Farcaster Mini App, Base app, or browser).
 2. Submits cleanup: before/after photos + geotag → stored on IPFS, hash onchain via **VerificationContract** (submission fee = **0**).
-3. Verifiers approve/reject → user earns DCU points and advances Impact Product level.
-4. User claims Impact Product NFT (optional small ETH claim fee; shown in UI before confirm).
+3. Verifiers approve/reject → user earns DCU points and advances tRWI level.
+4. User claims tRWI (optional small ETH claim fee; shown in UI before confirm).
 5. At **Level 3** and **≥30 DCU** points, user can claim **$bDCU** via **PointsRewardDistributor** (amount depends on onchain token price and multipliers).
 
 ---
@@ -162,11 +162,11 @@ Unlike Celo’s **ClaimVault + EIP-712** path, Base claims are driven by onchain
 | Requirement | Value |
 |-------------|-------|
 | Min points to claim $bDCU | **30 DCU** |
-| Min Impact Product level to claim / stake | **Level 3** |
+| Min tRWI level to claim / stake | **Level 3** |
 | Stake to become verifier | **≥51%** of available $bDCU at stake time |
-| Impact Product levels | **10** (Newbie → Guardian) |
+| tRWI levels | **10** (Newbie → Guardian) |
 | Submission fee | **0** |
-| Claim Impact Product fee | Optional ETH; shown before tx |
+| Claim tRWI fee | Optional ETH; shown before tx |
 
 ### Claim formula (simplified)
 

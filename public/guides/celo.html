@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="/public/guides/guide-theme.js"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>User Guide on Celo</title>
@@ -27,9 +28,9 @@
       --text-body: 1rem;
       --text-small: 0.875rem;
       --text-xs: 0.75rem;
-      --white-60: rgba(255, 255, 255, 0.6);
-      --white-50: rgba(255, 255, 255, 0.5);
-      --white-70: rgba(255, 255, 255, 0.7);
+      --white-60: rgba(255, 255, 255, 0.78);
+      --white-50: rgba(255, 255, 255, 0.68);
+      --white-70: rgba(255, 255, 255, 0.82);
       --white-08: rgba(255, 255, 255, 0.08);
       --white-03: rgba(255, 255, 255, 0.03);
       --white-04: rgba(255, 255, 255, 0.04);
@@ -139,10 +140,11 @@
       transition: width 0.2s ease;
     }
 
-    .site-header {
-      margin-bottom: 2.5rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--white-08);
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
     }
 
     .logo-link {
@@ -155,81 +157,57 @@
 
     .logo-link:hover { opacity: 0.9; }
 
-    .logo { width: 3.5rem; height: 3.5rem; }
+    .logo { width: 2.75rem; height: 2.75rem; }
 
-    @media (min-width: 640px) {
-      .logo { width: 4rem; height: 4rem; }
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      min-width: 0;
     }
 
-    .chain-kicker {
-      margin: 1rem 0 0;
+    .brand-kicker {
+      margin: 0;
       font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 400;
+      font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--white-60);
     }
 
-    .title {
-      margin: 0.5rem 0 0;
+    .brand-title {
+      margin: 0;
       font-family: var(--font-heading);
-      font-size: 1.875rem;
+      font-size: 1.125rem;
       font-weight: 600;
-      letter-spacing: -0.025em;
-      line-height: 1.15;
-      color: var(--green);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem 0.65rem;
-    }
-
-    @media (min-width: 640px) {
-      .title { font-size: 2.25rem; }
-    }
-
-    .title-chain {
+      letter-spacing: -0.02em;
+      color: var(--foreground);
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      color: var(--foreground);
+      gap: 0.4rem;
+      flex-wrap: wrap;
     }
 
-    .title-chain-mark {
+    .chain-mark {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 1.35em;
       height: 1.35em;
       border-radius: 0.35em;
+      background: #FAFF00;
       flex-shrink: 0;
     }
 
-    .title-chain-mark img {
-      width: 0.72em;
-      height: 0.72em;
+    .chain-mark img {
+      width: 0.92em;
+      height: 0.92em;
       display: block;
-    }
-
-    .title-chain-mark.is-base {
-      background: #0052FF;
-    }
-
-    .title-chain-mark.is-base img {
-      filter: brightness(0) invert(1);
-    }
-
-    .title-chain-mark.is-celo {
-      background: #FAFF00;
-    }
-
-    .title-chain-mark.is-celo img {
-      filter: brightness(0);
+      filter: none;
     }
 
     .lede {
-      margin: 0.5rem 0 0;
+      margin: 0.75rem 0 1.5rem;
       max-width: 42rem;
       font-size: var(--text-small);
       line-height: 1.625;
@@ -244,6 +222,10 @@
       color: var(--green);
       text-decoration: underline;
       text-underline-offset: 2px;
+    }
+
+    .lede a:hover {
+      color: color-mix(in srgb, var(--green) 90%, white);
     }
 
     .steps { display: flex; flex-direction: column; gap: 2rem; }
@@ -577,6 +559,88 @@
       color: var(--white-70);
     }
 
+    .gas-expand {
+      margin-top: 0.85rem;
+      border: 1px solid color-mix(in srgb, var(--green) 25%, transparent);
+      background: color-mix(in srgb, var(--green) 5%, transparent);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .gas-expand > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      min-height: 44px;
+      padding: 0.65rem 0.85rem;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .gas-expand > summary::-webkit-details-marker { display: none; }
+
+    .gas-expand > summary::after {
+      content: "+";
+      font-size: 16px;
+      line-height: 1;
+      color: var(--green);
+    }
+
+    .gas-expand[open] > summary::after { content: "−"; }
+
+    .gas-expand-body {
+      padding: 0 0.85rem 0.9rem;
+      border-top: 1px solid var(--white-08);
+    }
+
+    .gas-option {
+      margin: 0.75rem 0 0;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--white-08);
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--background) 40%, transparent);
+    }
+
+    .gas-option-label {
+      margin: 0 0 0.3rem;
+      font-family: var(--font-heading);
+      font-size: var(--text-small);
+      font-weight: 600;
+      color: var(--foreground);
+    }
+
+    .gas-option p {
+      margin: 0;
+      font-size: var(--text-xs);
+      line-height: 1.55;
+      color: var(--white-60);
+    }
+
+    .gas-option a {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .gas-option a:hover {
+      color: color-mix(in srgb, var(--green) 90%, white);
+    }
+
+    .gas-note {
+      margin: 0.75rem 0 0;
+      font-size: var(--text-xs);
+      line-height: 1.55;
+      color: var(--white-60);
+    }
+
     .notice-box {
       border: 1px solid var(--line);
       background: var(--white-03);
@@ -785,7 +849,114 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
+
+    .term-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-family: var(--font-heading);
+      font-size: var(--text-small);
+      font-weight: 600;
+      color: var(--green);
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+    }
+
+    .term-btn:hover { color: color-mix(in srgb, var(--green) 90%, white); }
+
+    .term-q {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 9999px;
+      border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .explorer-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      margin-top: 0.75rem;
+      color: var(--green);
+      font-size: var(--text-small);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .explorer-link:hover { color: color-mix(in srgb, var(--green) 90%, white); }
+
+    .modal-back {
+      position: fixed;
+      inset: 0;
+      background: color-mix(in oklch, #000 70%, transparent);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-back[hidden] { display: none; }
+
+    .modal {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px 20px;
+      max-width: 380px;
+      width: 100%;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .modal-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--white-50);
+      cursor: pointer;
+      padding: 4px;
+      font-size: 22px;
+      line-height: 1;
+      margin-top: -2px;
+    }
+
+    .modal-body {
+      margin: 0;
+      font-size: var(--text-small);
+      line-height: 1.5;
+      color: var(--white-60);
+    }
   </style>
+  <link rel="stylesheet" href="/public/guides/guide-theme.css?v=20260929j" />
 </head>
 <body>
   <div class="page">
@@ -799,25 +970,57 @@
       </div>
     </div>
 
-    <header class="site-header">
+    <div class="brand-row">
       <a class="logo-link" href="https://dapp.decleanup.net/?chain=celo" aria-label="DeCleanup Rewards home">
         <img class="logo" src="https://dapp.decleanup.net/logo.png" alt="DeCleanup Network" />
       </a>
-      <p class="chain-kicker">Full participation</p>
-      <h1 class="title">
-        User Guide on
-        <span class="title-chain">
-          <span class="title-chain-mark is-celo" aria-hidden="true">
+      <div class="brand-copy">
+        <p class="brand-kicker">Full participation</p>
+        <h1 class="brand-title">
+          <span class="chain-mark" aria-hidden="true">
             <img src="/public/celo-mark.svg" alt="" width="16" height="16" />
           </span>
           Celo
-        </span>
-      </h1>
-      <p class="lede">
-        Log cleanups, earn DCU, and claim $cDCU at
-        <a href="https://dapp.decleanup.net/?chain=celo">dapp.decleanup.net</a>.
-      </p>
-    </header>
+        </h1>
+      </div>
+    </div>
+    <p class="lede">
+      Log cleanups, earn DCU, and claim $cDCU at
+      <a href="https://dapp.decleanup.net/?chain=celo">dapp.decleanup.net</a>.
+    </p>
+
+    <section class="network-card" aria-labelledby="network-card-title">
+      <div class="network-card-head">
+        <h2 id="network-card-title">Network details</h2>
+        <span class="badge-chain is-celo">Mainnet</span>
+      </div>
+      <dl class="net-grid">
+        <div class="net-row">
+          <dt>Network</dt>
+          <dd>Celo</dd>
+        </div>
+        <div class="net-row">
+          <dt>Chain ID</dt>
+          <dd>42220</dd>
+        </div>
+        <div class="net-row">
+          <dt>RPC URL</dt>
+          <dd>https://forno.celo.org</dd>
+        </div>
+        <div class="net-row">
+          <dt>Currency</dt>
+          <dd>CELO</dd>
+        </div>
+        <div class="net-row">
+          <dt>Explorer</dt>
+          <dd><a href="https://celoscan.io" target="_blank" rel="noopener noreferrer">celoscan.io</a></dd>
+        </div>
+      </dl>
+      <p class="net-note">The app adds this network automatically when you connect. If it does not, add it manually using the details above.</p>
+      <div class="net-actions">
+        <button type="button" class="mm-btn is-celo" id="add-metamask">Add to MetaMask</button>
+      </div>
+    </section>
 
     <div class="steps">
       <section class="step is-open" data-step="0" id="step-1">
@@ -855,8 +1058,29 @@
               </div>
               <p class="card-copy">
                 MetaMask or any WalletConnect-compatible app, full key custody, small CELO balance needed for gas.
-                <a href="#">How to get CELO</a>
               </p>
+              <details class="gas-expand" id="gas-celo">
+                <summary>How to get CELO</summary>
+                <div class="gas-expand-body">
+                  <div class="gas-option">
+                    <p class="gas-option-label">Cheapest and fastest</p>
+                    <p>Swap any token to CELO on <a href="https://app.uniswap.org" target="_blank" rel="noopener noreferrer">Uniswap</a> or <a href="https://app.ubeswap.org" target="_blank" rel="noopener noreferrer">Ubeswap</a> on Celo network.</p>
+                  </div>
+                  <div class="gas-option">
+                    <p class="gas-option-label">Already have crypto elsewhere</p>
+                    <p>Bridge to Celo via <a href="https://app.squidrouter.com" target="_blank" rel="noopener noreferrer">Squid Router</a> or <a href="https://jumper.exchange" target="_blank" rel="noopener noreferrer">Jumper</a>. Works from most EVM chains.</p>
+                  </div>
+                  <div class="gas-option">
+                    <p class="gas-option-label">Starting from cash</p>
+                    <p>Buy CELO on <a href="https://coinbase.com" target="_blank" rel="noopener noreferrer">Coinbase</a>, <a href="https://binance.com" target="_blank" rel="noopener noreferrer">Binance</a>, or <a href="https://bitget.com" target="_blank" rel="noopener noreferrer">Bitget</a>, then withdraw to your wallet. Or use <a href="https://transak.com" target="_blank" rel="noopener noreferrer">Transak</a> for card to CELO in one step.</p>
+                  </div>
+                  <div class="gas-option">
+                    <p class="gas-option-label">Already in MiniPay</p>
+                    <p>You have cUSD. Swap a small amount to CELO inside the Opera Mini browser.</p>
+                  </div>
+                  <p class="gas-note">CELO gas fees are tiny. A few cents worth covers many transactions.</p>
+                </div>
+              </details>
             </article>
           </div>
           <button class="complete-btn" type="button" data-complete="0">Mark complete</button>
@@ -887,7 +1111,7 @@
             <li>
               <label class="check-item">
                 <input type="checkbox" data-check="2" />
-                <span>Optionally add an impact report and/or recyclables report</span>
+                <span>Submit the impact form and recyclables form (optional)</span>
               </label>
             </li>
             <li>
@@ -905,14 +1129,14 @@
             <li>
               <label class="check-item">
                 <input type="checkbox" data-check="5" />
-                <span>Once approved, claim your Impact Product level from the dashboard</span>
+                <span>Once approved, claim your tRWI level from the dashboard</span>
               </label>
             </li>
           </ul>
           <div class="tip-box">
             <strong>Tip:</strong> iPhone users should avoid HEIC format. Use JPEG when possible, or enable "Most Compatible" in iPhone camera settings: Settings &gt; Camera &gt; Formats.
           </div>
-          <a class="form-link" href="https://dapp.decleanup.net/cleanup">Open cleanup form →</a>
+          <a class="form-link" href="https://dapp.decleanup.net/?chain=celo" target="_blank" rel="noopener noreferrer">Open app →</a>
           <div>
             <button class="complete-btn" type="button" data-complete="1">Mark complete</button>
           </div>
@@ -922,66 +1146,38 @@
       <section class="step" data-step="2" id="step-3">
         <button class="step-toggle" type="button" aria-expanded="false" aria-controls="step-3-body" id="step-3-toggle">
           <span class="step-num" aria-hidden="true">3</span>
-          <span class="step-title">Step 3: Understand your rewards</span>
+          <span class="step-title">Step 3: Collect your rewards</span>
           <span class="step-done-chip">Done</span>
           <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
         </button>
         <div class="step-body" id="step-3-body" role="region" aria-labelledby="step-3-toggle" hidden>
-          <p class="body-copy">DCU are your onchain participation points. Every 50 DCU unlocks a $cDCU claim from your dashboard.</p>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Action</th>
-                  <th>DCU Earned</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Verified cleanup (Impact Product level claim)</td>
-                  <td class="dcu">10 DCU</td>
-                </tr>
-                <tr>
-                  <td>Referral: invited user completes a verified cleanup</td>
-                  <td class="dcu">3 DCU</td>
-                </tr>
-                <tr>
-                  <td>Streak level (weekly activity)</td>
-                  <td class="dcu">3 DCU per level</td>
-                </tr>
-                <tr>
-                  <td>Impact report (verified)</td>
-                  <td class="dcu">5 DCU</td>
-                </tr>
-                <tr>
-                  <td>Recyclables report (verified)</td>
-                  <td class="dcu">5 DCU</td>
-                </tr>
-                <tr>
-                  <td>Verifier work (reviewing a submission)</td>
-                  <td class="dcu">1 DCU per review</td>
-                </tr>
-                <tr>
-                  <td>Hypercert creation (per 10 verified cleanups)</td>
-                  <td class="dcu">10 DCU</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
           <div class="asset-grid">
             <article class="asset-card">
-              <h3 class="card-title">DCU</h3>
-              <p class="card-copy">Onchain participation points, earned from verified actions in the app</p>
+              <h3 class="card-title">
+                <button type="button" class="term-btn" data-term="dcu" aria-haspopup="dialog">
+                  DCU <span class="term-q" aria-hidden="true">?</span>
+                </button>
+              </h3>
+              <p class="card-copy">Onchain participation points from verified actions.</p>
             </article>
             <article class="asset-card">
-              <h3 class="card-title">Impact Product</h3>
-              <p class="card-copy">Onchain progression asset, each approved cleanup can advance your level</p>
+              <h3 class="card-title">
+                <button type="button" class="term-btn" data-term="trwi" aria-haspopup="dialog">
+                  tRWI <span class="term-q" aria-hidden="true">?</span>
+                </button>
+              </h3>
+              <p class="card-copy">Your onchain cleanup level. Levels up with each verified event. Claim from the dashboard after verification is done.</p>
             </article>
             <article class="asset-card">
-              <h3 class="card-title">$cDCU</h3>
-              <p class="card-copy">Claimable ERC-20 token, every 50 DCU milestone unlocks a claim</p>
+              <h3 class="card-title">
+                <button type="button" class="term-btn" data-term="cdcu" aria-haspopup="dialog">
+                  $cDCU <span class="term-q" aria-hidden="true">?</span>
+                </button>
+              </h3>
+              <p class="card-copy">Claimable ERC-20 token. Every 50 DCU milestone unlocks a claim from the dashboard.</p>
             </article>
           </div>
+          <a class="explorer-link" href="https://celoscan.io" target="_blank" rel="noopener noreferrer">View transactions at celoscan.io</a>
           <p class="inline-links">
             <a href="https://decleanup.net/litepaper" target="_blank" rel="noopener noreferrer">Litepaper</a>
             ·
@@ -1049,7 +1245,7 @@
           <div class="info-grid stack-after">
             <article class="info-card">
               <h3 class="card-title">Smart account (Safe)</h3>
-              <p class="card-copy">Owns your submissions and Impact Products. This is the address shown on your Impact Portfolio.</p>
+              <p class="card-copy">Owns your submissions and tRWI. This is the address shown on your Impact Portfolio.</p>
             </article>
             <article class="info-card">
               <h3 class="card-title">Signer address</h3>
@@ -1102,7 +1298,7 @@
 
       <div class="done-banner" id="done-banner" role="status" hidden>
         <h2>Guide complete</h2>
-        <p>All six steps are done. You are ready to clean up, earn DCU, and secure your wallet on Celo.</p>
+        <p>You are set up on Celo. Submit cleanups, get verified, earn DCU and $cDCU, and level up your tRWI.</p>
       </div>
     </div>
 
@@ -1110,6 +1306,8 @@
       <p>
         Something not working?
         <a href="https://t.me/c/DecentralizedCleanup/17" target="_blank" rel="noopener noreferrer">Message us on Telegram</a>
+        or email
+        <a href="mailto:support@decleanup.net">support@decleanup.net</a>
       </p>
       <p class="footer-links">
         <a href="http://decleanup.net/user-guide" target="_blank" rel="noopener noreferrer">Full Network Guide</a>
@@ -1119,9 +1317,19 @@
     </footer>
   </div>
 
+  <div class="modal-back" id="term-modal" hidden role="dialog" aria-modal="true" aria-labelledby="term-modal-title">
+    <div class="modal">
+      <div class="modal-head">
+        <span class="modal-meta" id="term-modal-title"></span>
+        <button type="button" class="modal-close" id="term-modal-close" aria-label="Close">×</button>
+      </div>
+      <p class="modal-body" id="term-modal-body"></p>
+    </div>
+  </div>
+
   <script>
     (function () {
-      var STORAGE_KEY = "decleanup-celo-guide-v1";
+      var STORAGE_KEY = "decleanup-celo-guide-v2";
       var STEP_COUNT = 6;
       var CHECK_COUNT = 10;
       var steps = Array.prototype.slice.call(document.querySelectorAll(".step"));
@@ -1130,6 +1338,35 @@
       var fill = document.getElementById("progress-fill");
       var count = document.getElementById("progress-count");
       var banner = document.getElementById("done-banner");
+      var termModal = document.getElementById("term-modal");
+      var termTitle = document.getElementById("term-modal-title");
+      var termBody = document.getElementById("term-modal-body");
+      var termClose = document.getElementById("term-modal-close");
+
+      var TERMS = {
+        dcu: {
+          title: "DCU points",
+          body: "DCU are your onchain participation points. You earn them from verified actions in the app. Your DCU total ranks you on the leaderboard.",
+          breakdown: [
+            ["Verified cleanup (tRWI level claim)", "10 DCU"],
+            ["Referral (both parties)", "3 DCU each"],
+            ["Streak level (weekly activity)", "3 DCU per level"],
+            ["Impact report (verified)", "5 DCU"],
+            ["Recyclables report (verified)", "5 DCU"],
+            ["Verifier work (per review)", "1 DCU"],
+            ["Hypercert creation (per 10 verified cleanups)", "10 DCU"]
+          ],
+          note: "Every 50 DCU unlocks a $cDCU claim from the dashboard via Claim Vault."
+        },
+        cdcu: {
+          title: "$cDCU",
+          body: "The Celo proof token. Minted via Claim Vault when you claim from DCU milestones (every 50 DCU). Used for reputation and Gardens governance on Celo."
+        },
+        trwi: {
+          title: "tRWI - tokenized Real-World Impact",
+          body: "Your onchain cleanup level represented as an NFT. Each verified cleanup can advance your level. tRWI is the onchain record of your cumulative verified environmental work - what funders and marketplaces like Regen Bazaar read when you want to monetize your impact."
+        }
+      };
 
       var state = {
         completed: [false, false, false, false, false, false],
@@ -1204,7 +1441,10 @@
         btn.addEventListener("click", function () {
           var next = !state.completed[i];
           state.completed[i] = next;
-          if (next && i < STEP_COUNT - 1) state.open[i + 1] = true;
+          if (next && i < STEP_COUNT - 1) {
+            state.open[i] = false;
+            state.open[i + 1] = true;
+          }
           persist();
           render();
         });
@@ -1216,6 +1456,59 @@
           state.checks[i] = box.checked;
           persist();
         });
+      });
+
+      var CELO_CHAIN = {
+        chainId: "0xa4ec",
+        chainName: "Celo",
+        nativeCurrency: { name: "CELO", symbol: "CELO", decimals: 18 },
+        rpcUrls: ["https://forno.celo.org"],
+        blockExplorerUrls: ["https://celoscan.io"]
+      };
+
+      document.getElementById("add-metamask").addEventListener("click", function () {
+        if (!window.ethereum || typeof window.ethereum.request !== "function") return;
+        window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [CELO_CHAIN]
+        }).catch(function () {});
+      });
+
+      function openTerm(key) {
+        var term = TERMS[key];
+        if (!term) return;
+        termTitle.textContent = term.title;
+        var html = "<p>" + term.body + "</p>";
+        if (term.breakdown && term.breakdown.length) {
+          html += '<ul class="term-breakdown">';
+          term.breakdown.forEach(function (row) {
+            html += "<li><span>" + row[0] + "</span><strong>" + row[1] + "</strong></li>";
+          });
+          html += "</ul>";
+        }
+        if (term.note) html += '<p class="term-note">' + term.note + "</p>";
+        termBody.innerHTML = html;
+        termModal.removeAttribute("hidden");
+        document.documentElement.style.overflow = "hidden";
+      }
+
+      function closeTerm() {
+        termModal.setAttribute("hidden", "");
+        document.documentElement.style.overflow = "";
+      }
+
+      Array.prototype.forEach.call(document.querySelectorAll("[data-term]"), function (btn) {
+        btn.addEventListener("click", function () {
+          openTerm(btn.getAttribute("data-term"));
+        });
+      });
+
+      termClose.addEventListener("click", closeTerm);
+      termModal.addEventListener("click", function (e) {
+        if (e.target === termModal) closeTerm();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && !termModal.hasAttribute("hidden")) closeTerm();
       });
 
       render();
