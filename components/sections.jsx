@@ -140,7 +140,7 @@ function DmrvSection() {
 
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))", gap: 12 }}>
               <RoleTile label="NGOs"        body="Show the photo. Show the GPS. Show the count." />
-              <RoleTile label="Corporates" body="ESG data & sponsored cleanups" />
+              <RoleTile label="Corporates" body="ESG data, sponsorship campaigns & organizer donations" />
               <RoleTile label="Sponsors"    body="Sponsor 60 people on a beach. Watch every bag." />
             </div>
           </div>

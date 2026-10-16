@@ -11,6 +11,7 @@ Chain-specific addresses, RPC URLs, and env vars are in [CELO.md](./CELO.md) and
 |---------|------|
 | [Ecosystem map](#ecosystem-map) | Sites, dapps, repos |
 | [Core product loop](#core-product-loop) | Submit → verify → earn → claim |
+| [Funding surfaces](#funding-surfaces) | Sponsorship campaigns vs organizer donations |
 | [DCU vs chain tokens](#dcu-vs-chain-tokens) | Points vs ERC-20 |
 | [Evidence & IPFS](#evidence--ipfs) | Photos, forms, hashes on-chain |
 | [Verification](#verification) | Human verifiers, optional ML |
@@ -28,7 +29,9 @@ Chain-specific addresses, RPC URLs, and env vars are in [CELO.md](./CELO.md) and
 | Layer | Role | Typical URL |
 |-------|------|-------------|
 | **Marketing site** | Explains the network; shows live impact stats via public API | https://decleanup.net |
-| **Full dapp (Celo)** | Submit cleanups, verify, dashboard, claims, wallet, Hypercerts | https://dapp.decleanup.net |
+| **Full dapp (Celo)** | Submit cleanups, verify, dashboard, claims, wallet, Hypercerts, funding | https://dapp.decleanup.net |
+| **Sponsorship campaigns** | Fund **campaigns submitted for sponsorship** (organizers who applied for funding) | https://dapp.decleanup.net/sponsor |
+| **Cleanup ledger / organizer donations** | Browse verified cleanups and donate directly to organizers who already delivered impact (no sponsorship campaign required) | https://dapp.decleanup.net/proof |
 | **Mini app (Base)** | Lightweight entry via Farcaster, Base app, or browser | https://miniapp.decleanup.net |
 
 Each **chain app** is a Next.js App Router deploy with its own smart-contract stack, token (`$cDCU` on Celo, `$bDCU` on Base), and production URL. They share product semantics (cleanup → verify → DCU → claim) but differ in auth model and claim mechanics — see chain docs.
@@ -59,6 +62,23 @@ Connect / sign in → Submit cleanup (photos + GPS → IPFS)
 | Claim token | Celo: **ClaimVault** + **CDCUToken** · Base: **PointsRewardDistributor** + **$bDCU** | Eligibility checks, signing (Celo), onchain price read (Base) |
 
 On **Celo**, GPS on **Submission** is stored as **int256 microdegrees** (degrees × 1,000,000). Public feeds divide by `1_000_000` for decimal degrees. Base stores geotag via its verification contract — see [BASE.md](./BASE.md).
+
+---
+
+## Funding surfaces
+
+Funders and donors have **two** product paths in the Celo dapp. Use this naming everywhere (marketing, guides, integrator docs):
+
+| Path | Who it is for | Surface | Marketing CTA |
+|------|---------------|---------|---------------|
+| **Campaigns submitted for sponsorship** | Organizers who explicitly submitted a cleanup / campaign **for sponsorship** (funding ask) | [`/sponsor`](https://dapp.decleanup.net/sponsor) | **Fund campaigns** |
+| **Donate to organizers** | Anyone who already completed verified impact and appears in the ledger — **no** sponsorship campaign required | [`/proof`](https://dapp.decleanup.net/proof) | **Donate to organizers** |
+
+- `/sponsor` lists only campaigns submitted for sponsorship.
+- `/proof` is the full cleanup ledger: pick an existing verified cleanup and donate to its organizer.
+- decleanup.net hero links both CTAs; **View all cleanups** under Recent verifications also opens `/proof`.
+
+Do not describe `/proof` as “campaigns submitted for sponsorship.” Those are separate flows.
 
 ---
 
@@ -194,6 +214,7 @@ Migrations: `frontend/supabase/migrations/` in each dapp monorepo (Celo).
 
 - Call public impact GET endpoints on the Celo dapp.
 - Link users to `dapp.decleanup.net`, `miniapp.decleanup.net`, or Farcaster mini app URLs for submit/claim flows.
+- Link funders to `/sponsor` (campaigns submitted for sponsorship) and `/proof` (donate to existing cleanup organizers).
 - Display on-chain data via explorer links.
 
 **External sites MUST NOT:**

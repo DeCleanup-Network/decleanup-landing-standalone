@@ -204,14 +204,20 @@ function FundingSubFlow() {
       <GuideCard
         id="fund-4"
         icon="ti-writing"
-        action="Create your proposal"
-        context={<>Include: date, location, participant count, itemized expenses, <Tooltip term="impact portfolio" tip="Your personal page showing all verified cleanups at dapp.decleanup.net/impact/YOUR-ADDRESS.">impact portfolio</Tooltip> link, social post link, beneficiary address. Max 90 <Tooltip term="$cUSD" tip="A stablecoin on Celo always worth approximately 1 US dollar.">$cUSD</Tooltip>.</>}
+        action="Create your sponsorship campaign"
+        context={<>This is a campaign submitted for sponsorship. Include: date, location, participant count, itemized expenses, <Tooltip term="impact portfolio" tip="Your personal page showing all verified cleanups at dapp.decleanup.net/impact/YOUR-ADDRESS.">impact portfolio</Tooltip> link, social post link, beneficiary address. Max 90 <Tooltip term="$cUSD" tip="A stablecoin on Celo always worth approximately 1 US dollar.">$cUSD</Tooltip>. Funders browse these on <LinkCta href={`${DAPP}/sponsor`}>/sponsor</LinkCta>.</>}
       />
       <GuideCard
         id="fund-5"
         icon="ti-hourglass"
         action="Wait for conviction"
         context={<>Votes build over time. Once <Tooltip term="conviction" tip="The longer votes stay on a proposal, the stronger it grows. Once it reaches the level, funds release.">conviction</Tooltip> reaches the threshold, funds release automatically. Allow at least one month.</>}
+      />
+      <GuideCard
+        id="fund-6"
+        icon="ti-heart-handshake"
+        action="Also receive direct donations"
+        context={<>Separately from sponsorship campaigns: donors can open any verified cleanup on <LinkCta href={`${DAPP}/proof`}>/proof</LinkCta> and donate to the organizer who already delivered impact.</>}
       />
       <CashOutChips />
     </SubFlow>
@@ -371,10 +377,10 @@ function VolunteerGuide({ onJumpCard, expandFunding, setExpandFunding }) {
           <div className="ug-card-row">
             <div className="ug-card-icon"><Icon name="ti-seeding" /></div>
             <div className="ug-card-body">
-              <h3 className="ug-card-action">Apply for funding</h3>
-              <p className="ug-card-context">Once you have 250 $cDCU, you can submit a funding proposal on Gardens.fund.</p>
+              <h3 className="ug-card-action">Submit a campaign for sponsorship</h3>
+              <p className="ug-card-context">Once you have 250 $cDCU, submit a sponsorship campaign (Gardens proposal). Funders find it on /sponsor. Separately, anyone can donate to you from a verified cleanup on /proof.</p>
               <ExpandBtn open={expandFunding} onClick={() => { setExpandFunding((v) => !v); setExpandTA(false); }}>
-                See funding steps
+                See sponsorship steps
               </ExpandBtn>
             </div>
           </div>
@@ -431,11 +437,11 @@ function CoordinatorGuide({ goVolunteer, setExpandFunding, expandFunding }) {
       <GuideCard
         id="coord-5"
         icon="ti-coin"
-        action="Apply for group funding"
-        context={<>Same proposal process as volunteers. Cover equipment, logistics, and transport for your group. Max 90 <Tooltip term="$cUSD" tip="A stablecoin on Celo always worth approximately 1 US dollar.">$cUSD</Tooltip>.</>}
+        action="Submit a campaign for sponsorship"
+        context={<>Same Gardens proposal process as volunteers: submit a campaign for sponsorship (equipment, logistics, transport). Listed for funders on <LinkCta href={`${DAPP}/sponsor`}>/sponsor</LinkCta>. Donors can also support your verified cleanups directly on <LinkCta href={`${DAPP}/proof`}>/proof</LinkCta>. Max 90 <Tooltip term="$cUSD" tip="A stablecoin on Celo always worth approximately 1 US dollar.">$cUSD</Tooltip>.</>}
         cta={
           <ExpandBtn open={expandFunding} onClick={() => setExpandFunding((v) => !v)}>
-            Funding steps
+            Sponsorship steps
           </ExpandBtn>
         }
       />

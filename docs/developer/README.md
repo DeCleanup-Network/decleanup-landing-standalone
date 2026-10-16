@@ -13,7 +13,7 @@ Master reference for integrators, contributors, and operators across DeCleanup d
 
 ## How to use these docs
 
-1. Start with **[COMMON.md](./COMMON.md)** — concepts shared by both apps (flows, DCU vs tokens, IPFS, verification, public APIs).
+1. Start with **[COMMON.md](./COMMON.md)** — concepts shared by both apps (flows, funding surfaces, DCU vs tokens, IPFS, verification, public APIs).
 2. Open the chain-specific guide for addresses, env vars, and deployment:
    - **[CELO.md](./CELO.md)** — full platform on Celo ([decleanup-main-celo](https://github.com/DeCleanup-Network/decleanup-main-celo))
    - **[BASE.md](./BASE.md)** — Farcaster Mini App + web on Base ([Farcaster-Mini-App](https://github.com/DeCleanup-Network/Farcaster-Mini-App))
@@ -27,6 +27,8 @@ Deep-dive topic files (ClaimVault, Hypercerts, ML, Telegram bot, etc.) live in e
 | Resource | Celo | Base |
 |----------|------|------|
 | Production app | https://dapp.decleanup.net | https://miniapp.decleanup.net |
+| Campaigns submitted for sponsorship | https://dapp.decleanup.net/sponsor | — |
+| Donate to organizers (ledger) | https://dapp.decleanup.net/proof | — |
 | Public impact API | `GET /api/impact/global` | _Not shared yet — see [BASE.md](./BASE.md)_ |
 | GitHub | [decleanup-main-celo](https://github.com/DeCleanup-Network/decleanup-main-celo) | [Farcaster-Mini-App](https://github.com/DeCleanup-Network/Farcaster-Mini-App) |
 | Explorer | https://celoscan.io | https://basescan.org |

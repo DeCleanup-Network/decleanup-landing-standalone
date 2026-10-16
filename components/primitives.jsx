@@ -475,7 +475,7 @@ function StartModal({ open, onClose }) {
               "Full participation",
               "Advanced cleanup submission · AI and human verification",
               "Impact portfolio · Hypercerts · governance",
-              "Funding and donations",
+              "Sponsorship campaigns · donate to organizers",
             ]}
           />
           <NetworkChoice

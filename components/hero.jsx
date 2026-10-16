@@ -113,7 +113,15 @@ function Hero({ onLaunch, onGuide }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Fund current campaigns
+                  Fund campaigns
+                </a>
+                <a
+                  className="btn btn-ghost"
+                  href="https://dapp.decleanup.net/proof"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Donate to organizers
                 </a>
               </div>
             </div>
@@ -234,12 +242,18 @@ function Hero({ onLaunch, onGuide }) {
                 </p>
               )}
 
-              <a href="#impact" className="meta" style={{
-                display: "flex", justifyContent: "space-between", alignItems: "center",
-                marginTop: 12, paddingTop: 12, borderTop: "1px solid var(--line)",
-                color: "var(--ink)", textDecoration: "none",
-              }}>
-                <span>View full ledger</span>
+              <a
+                href="https://dapp.decleanup.net/proof"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="meta"
+                style={{
+                  display: "flex", justifyContent: "space-between", alignItems: "center",
+                  marginTop: 12, paddingTop: 12, borderTop: "1px solid var(--line)",
+                  color: "var(--ink)", textDecoration: "none",
+                }}
+              >
+                <span>View all cleanups</span>
               </a>
             </div>
           </div>

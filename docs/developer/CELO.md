@@ -55,6 +55,8 @@ For auth, IPFS, verification, and public API semantics shared with Base, see [CO
 | Resource | URL |
 |----------|-----|
 | Celo dapp (production) | https://dapp.decleanup.net |
+| Campaigns submitted for sponsorship | https://dapp.decleanup.net/sponsor |
+| Cleanup ledger / donate to organizers | https://dapp.decleanup.net/proof |
 | Marketing site | https://decleanup.net |
 | GitHub (monorepo) | https://github.com/DeCleanup-Network/decleanup-main-celo |
 | Block explorer | https://celoscan.io |
